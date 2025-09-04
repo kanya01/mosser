@@ -4,24 +4,21 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
-      colors: {
-        primary: {
-          50: '#eff6ff',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-        }
-      },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.5s ease-out',
-        'float': 'float 3s ease-in-out infinite',
+        'pulse': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'bounce': 'bounce 2s infinite',
+      },
+      backdropBlur: {
+        'xs': '2px',
+      },
+      boxShadow: {
+        'glow': '0 0 20px rgba(168, 85, 247, 0.4)',
+        'glow-blue': '0 0 20px rgba(59, 130, 246, 0.4)',
       }
     },
   },
