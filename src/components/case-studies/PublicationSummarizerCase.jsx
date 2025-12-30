@@ -73,7 +73,7 @@ const PublicationSummarizerCase = () => {
                 'Would AI-summarized content be trusted for decision-making?',
                 'What level of detail is required for different use cases?',
                 'How should uncertainty and nuance be communicated?',
-                'What's the acceptable accuracy threshold?'
+                'What is the acceptable accuracy threshold?'
             ],
             methods: ['Concept Testing', 'Prototype Feedback', 'A/B Testing']
         },
