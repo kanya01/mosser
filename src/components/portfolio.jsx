@@ -68,23 +68,23 @@ const Portfolio = () => {
         {
             number: "02",
             name: "freq.space",
-            description: "Full-stack marketplace connecting creative professionals with clients. Built with React, Node.js, and MongoDB. Features include audio waveform visualization, real-time comments, and portfolio management.",
-            link: "https://github.com/kanya01",
+            description: "Full-stack marketplace connecting creative professionals with clients. Built with React, Node.js, Ruby on Rails and MongoDB. Features include audio waveform visualization, real-time comments, and portfolio management.",
+            link: "https://github.com/kanya01/COLABS",
             linkText: "View on GitHub"
         },
         {
             number: "03",
             name: "Publication Summarizer",
             description: "AI-powered tool to summarize economic and general publications into succinct, actionable insights. Designed to help professionals stay informed efficiently.",
-            link: "#",
-            linkText: "Coming soon"
+            link: "https://github.com/kanya01/ePub",
+            linkText: "View on Github"
         }
     ];
 
     const skills = {
         analytics: ["Tableau", "SQL & NRQL", "New Relic", "A/B Testing", "User Research"],
         product: ["Product Strategy", "Requirements Analysis", "Agile / Scrum", "Stakeholder Management", "Market Research"],
-        technical: ["React & Node.js", "Python", "MongoDB", "REST APIs", "ETL Processes"],
+        technical: ["Ruby/Ruby on Rails","React & Node.js", "Python", "MongoDB", "REST APIs", "ETL Processes"],
         education: ["King's College London — Product Management (2024-25)", "Multiverse — Software Engineering (2022-24)"]
     };
 
