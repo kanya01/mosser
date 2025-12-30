@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Mail, Phone, ExternalLink, ChevronDown, ArrowRight, BarChart3, Users, Zap, Brain } from 'lucide-react';
+import { Github, Mail, ArrowRight, ArrowUpRight } from 'lucide-react';
 
 const Portfolio = () => {
-    const [activeSection, setActiveSection] = useState('home');
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -21,8 +20,7 @@ const Portfolio = () => {
                 "Created comprehensive impact dashboards in Tableau for data-driven strategic decisions",
                 "Collaborated with product teams and public health researchers on analytical requirements",
                 "Conducted deep-dive analysis on user journey data to identify platform improvement opportunities"
-            ],
-            color: "from-purple-600 to-blue-600"
+            ]
         },
         {
             company: "Trainline",
@@ -35,8 +33,7 @@ const Portfolio = () => {
                 "Created real-time monitoring dashboards using New Relic and NRQL",
                 "Conducted A/B testing and experimentation to validate feature improvements",
                 "Served as Scrum Master facilitating data-driven sprint planning"
-            ],
-            color: "from-green-600 to-teal-600"
+            ]
         },
         {
             company: "Bentley",
@@ -46,8 +43,7 @@ const Portfolio = () => {
             achievements: [
                 "Supported analytical projects for digital solution implementations",
                 "Participated in requirements gathering and analysis for product development"
-            ],
-            color: "from-orange-600 to-red-600"
+            ]
         }
     ];
 
@@ -55,53 +51,26 @@ const Portfolio = () => {
         {
             id: 'filmslate',
             name: "FilmSlate",
-            description: "Enhanced Onboarding Experience for Indie Film Platform",
-            fullDescription: "Designed and prototyped a personalized onboarding flow for an indie film streaming platform, focusing on user preference collection and immediate value delivery.",
-            tech: ["Product Design", "User Research", "Prototyping", "A/B Testing"],
-            features: ["Personalized Onboarding", "Preference Selection", "Film Curation", "User Journey Optimization"],
+            description: "Enhanced onboarding experience for an indie film streaming platform, focusing on personalization to improve trial-to-paid conversion rates.",
+            category: "Product Strategy",
             status: "MVP Complete",
-            color: "from-blue-600 to-indigo-600",
-            link: "/case-study/filmslate",
-            linkText: "View case study"
+            link: "/case-study/filmslate"
         },
         {
             id: 'freq-space',
             name: "freq.space",
-            description: "The Marketplace for Creative Professionals",
-            fullDescription: "A full-stack web application connecting talented creative professionals with clients. Features multi-format uploads, waveform visualization, social features, and marketplace functionality.",
-            tech: ["React 18", "Node.js", "MongoDB", "Redux Toolkit", "Socket.IO", "Tailwind CSS"],
-            features: ["Multi-format Upload", "Waveform Visualization", "Real-time Comments", "User Profiles", "Marketplace"],
+            description: "Full-stack marketplace connecting creative professionals with clients through portfolio showcasing and real-time collaboration tools.",
+            category: "Full-Stack Development",
             status: "In Development",
-            color: "from-violet-600 to-purple-600",
-            link: "/case-study/freq-space",
-            linkText: "View project"
+            link: "/case-study/freq-space"
         },
         {
             id: 'publication-summarizer',
             name: "Publication Summarizer",
-            description: "AI-Powered Economic Publication Analysis",
-            fullDescription: "A tool to summarize economic and general publications using AI to extract succinct points and key insights for faster consumption.",
-            tech: ["AI/ML", "Natural Language Processing", "Data Analysis"],
-            features: ["Automated Summarization", "Key Point Extraction", "Publication Analysis"],
+            description: "AI-powered tool to extract key insights from economic publications, helping professionals stay informed efficiently.",
+            category: "AI/ML Concept",
             status: "Concept Phase",
-            color: "from-emerald-600 to-cyan-600",
-            link: "/case-study/publication-summarizer",
-            linkText: "Coming soon"
-        }
-    ];
-
-    const education = [
-        {
-            institution: "King's College London",
-            degree: "Product Management, Postgraduate Certificate",
-            period: "2024 - 2025",
-            focus: "Product Strategy, Market Research, Data-Driven Decision Making"
-        },
-        {
-            institution: "Multiverse",
-            degree: "Software Engineering, Apprenticeship (Merit)",
-            period: "2022 - 2024",
-            focus: "Full-stack Development, Data Analysis, ETL Processes, API Design"
+            link: "/case-study/publication-summarizer"
         }
     ];
 
@@ -112,30 +81,36 @@ const Portfolio = () => {
         { category: "Data", items: ["ETL Processes", "Large Datasets", "GDPR Compliance", "Statistical Analysis"] }
     ];
 
-    return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-            {/* Animated Background */}
-            <div className="fixed inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20"></div>
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            </div>
+    const education = [
+        {
+            institution: "King's College London",
+            degree: "Product Management, Postgraduate Certificate",
+            period: "2024 - 2025"
+        },
+        {
+            institution: "Multiverse",
+            degree: "Software Engineering, Apprenticeship (Merit)",
+            period: "2022 - 2024"
+        }
+    ];
 
+    return (
+        <div className="min-h-screen bg-stone-50 text-stone-900" style={{ fontFamily: 'Georgia, serif' }}>
             {/* Navigation */}
-            <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
-                <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center backdrop-blur-md bg-gray-900/50 rounded-b-2xl mx-4 mt-2 border border-gray-700/50">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                        MM
-                    </div>
+            <nav className="fixed top-0 w-full z-50 bg-stone-50/95 backdrop-blur-sm border-b border-stone-200">
+                <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+                    <Link to="/" className="text-xl tracking-tight font-medium text-stone-900">
+                        Moses Mwangi
+                    </Link>
                     <div className="flex gap-8">
-                        {['About', 'Experience', 'Projects', 'Skills', 'Contact'].map((item) => (
+                        {['Home', 'Experience', 'Projects', 'Contact'].map((item) => (
                             <a
                                 key={item}
                                 href={`#${item.toLowerCase()}`}
-                                className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
+                                className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                                style={{ fontFamily: 'system-ui, sans-serif' }}
                             >
                                 {item}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
                             </a>
                         ))}
                     </div>
@@ -143,71 +118,178 @@ const Portfolio = () => {
             </nav>
 
             {/* Hero Section */}
-            <section id="about" className="relative z-10 min-h-screen flex items-center justify-center px-6 pt-20">
-                <div className={`max-w-4xl text-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                    <h1 className="text-6xl md:text-8xl font-bold mb-6">
-                        <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
-                            Moses Mwangi
+            <section id="home" className={`min-h-screen flex items-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <div className="max-w-6xl mx-auto px-6 pt-24">
+                    <div className="mb-4">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                            Product Analyst • London
                         </span>
+                    </div>
+                    
+                    <h1 className="text-5xl md:text-7xl leading-tight mb-8">
+                        <span className="block font-normal text-stone-900">Turning data into</span>
+                        <span className="block italic text-blue-500">product decisions</span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                        Product Analyst | Data-Driven Problem Solver | Full-Stack Developer
+                    
+                    <p className="text-lg text-stone-600 max-w-xl mb-12 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        I help product teams make better decisions through data analysis, 
+                        user research, and cross-functional collaboration. 
+                        Currently shaping product strategy at Raviro.
                     </p>
-                    <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-12">
-                        Transforming complex data into actionable insights. Experienced in driving product improvements
-                        through analytics, user research, and cross-functional collaboration.
-                    </p>
-                    <div className="flex justify-center gap-4">
-                        <a
-                            href="#projects"
-                            className="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:-translate-y-1"
-                        >
-                            View Projects
-                        </a>
+                    
+                    <div className="flex gap-4">
                         <a
                             href="#contact"
-                            className="px-8 py-3 border border-gray-600 rounded-full font-semibold hover:border-purple-400 hover:text-purple-400 transition-all duration-300"
+                            className="inline-flex items-center gap-2 bg-stone-900 text-stone-50 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
-                            Get in Touch
+                            <Mail className="w-4 h-4" />
+                            Get in touch
+                        </a>
+                        <a
+                            href="https://github.com/kanya01"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 border border-stone-300 text-stone-700 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 hover:bg-stone-100"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <Github className="w-4 h-4" />
+                            View GitHub
                         </a>
                     </div>
-                    <div className="mt-16 animate-bounce">
-                        <ChevronDown className="w-8 h-8 mx-auto text-gray-500" />
+
+                    {/* Scroll indicator */}
+                    <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
+                        <div className="w-px h-16 bg-stone-300 mx-auto"></div>
                     </div>
                 </div>
             </section>
 
             {/* Experience Section */}
-            <section id="experience" className="relative z-10 py-20 px-6">
+            <section id="experience" className="py-24 px-6">
                 <div className="max-w-6xl mx-auto">
-                    <h2 className="text-4xl font-bold mb-16 text-center bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                        Experience
-                    </h2>
+                    <div className="mb-16">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Background</span>
+                        <h2 className="text-4xl md:text-5xl font-normal">
+                            <span className="text-stone-900">Professional </span>
+                            <span className="italic text-blue-500">experience</span>
+                        </h2>
+                    </div>
 
-                    <div className="space-y-8">
+                    <div className="space-y-16">
                         {experiences.map((exp, index) => (
                             <div
                                 key={index}
-                                className={`bg-gray-800/40 backdrop-blur-md border border-gray-700/50 rounded-2xl p-8 transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
-                                style={{ transitionDelay: `${index * 200}ms` }}
+                                className={`border-t border-stone-200 pt-8 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                style={{ transitionDelay: `${index * 150}ms` }}
                             >
-                                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                                <div className="grid md:grid-cols-3 gap-8">
                                     <div>
-                                        <h3 className={`text-2xl font-bold bg-gradient-to-r ${exp.color} bg-clip-text text-transparent`}>
-                                            {exp.company}
-                                        </h3>
-                                        <p className="text-xl text-gray-300">{exp.role}</p>
+                                        <h3 className="text-xl font-medium text-stone-900 mb-1">{exp.company}</h3>
+                                        <p className="text-stone-600" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.role}</p>
+                                        <p className="text-sm text-stone-400 mt-2" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.period}</p>
+                                        <p className="text-sm text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.location}</p>
                                     </div>
-                                    <div className="text-gray-400 mt-2 md:mt-0">
-                                        <p>{exp.period}</p>
-                                        <p>{exp.location}</p>
+                                    <div className="md:col-span-2">
+                                        <ul className="space-y-3">
+                                            {exp.achievements.map((achievement, achIndex) => (
+                                                <li key={achIndex} className="flex gap-3 text-stone-600 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                    <span className="text-blue-500 mt-1.5">—</span>
+                                                    {achievement}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
-                                <ul className="space-y-3">
-                                    {exp.achievements.map((achievement, achIndex) => (
-                                        <li key={achIndex} className="flex items-start gap-3 text-gray-300">
-                                            <ArrowRight className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
-                                            <span>{achievement}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Education */}
+                    <div className="mt-24">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-8" style={{ fontFamily: 'system-ui, sans-serif' }}>Education</span>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {education.map((edu, index) => (
+                                <div key={index} className="border-t border-stone-200 pt-6">
+                                    <h4 className="text-lg font-medium text-stone-900 mb-1">{edu.institution}</h4>
+                                    <p className="text-stone-600" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.degree}</p>
+                                    <p className="text-sm text-stone-400 mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.period}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Projects Section */}
+            <section id="projects" className="py-24 px-6 bg-white">
+                <div className="max-w-6xl mx-auto">
+                    <div className="mb-16">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Work</span>
+                        <h2 className="text-4xl md:text-5xl font-normal">
+                            <span className="text-stone-900">Selected </span>
+                            <span className="italic text-blue-500">projects</span>
+                        </h2>
+                    </div>
+
+                    <div className="space-y-6">
+                        {projects.map((project, index) => (
+                            <Link
+                                key={project.id}
+                                to={project.link}
+                                className={`block group border border-stone-200 rounded-lg p-8 hover:border-stone-300 hover:bg-stone-50 transition-all duration-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                style={{ transitionDelay: `${index * 100}ms` }}
+                            >
+                                <div className="flex justify-between items-start">
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-3 mb-3">
+                                            <span className="text-xs tracking-[0.2em] uppercase text-blue-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                {project.category}
+                                            </span>
+                                            <span className={`text-xs px-2 py-1 rounded-full ${
+                                                project.status === 'MVP Complete' 
+                                                    ? 'bg-blue-50 text-blue-600' 
+                                                    : project.status === 'In Development'
+                                                    ? 'bg-amber-50 text-amber-600'
+                                                    : 'bg-stone-100 text-stone-600'
+                                            }`} style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                {project.status}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-2xl font-medium text-stone-900 mb-2">{project.name}</h3>
+                                        <p className="text-stone-600 max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>{project.description}</p>
+                                    </div>
+                                    <div className="ml-6 mt-2">
+                                        <ArrowUpRight className="w-5 h-5 text-stone-400 group-hover:text-stone-900 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Skills Section */}
+            <section className="py-24 px-6">
+                <div className="max-w-6xl mx-auto">
+                    <div className="mb-16">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Capabilities</span>
+                        <h2 className="text-4xl md:text-5xl font-normal">
+                            <span className="text-stone-900">Skills & </span>
+                            <span className="italic text-blue-500">expertise</span>
+                        </h2>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                        {skills.map((skillGroup, index) => (
+                            <div key={index}>
+                                <h4 className="text-sm font-medium text-stone-900 mb-4 pb-2 border-b border-stone-200" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                    {skillGroup.category}
+                                </h4>
+                                <ul className="space-y-2">
+                                    {skillGroup.items.map((skill, sIndex) => (
+                                        <li key={sIndex} className="text-stone-600 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                            {skill}
                                         </li>
                                     ))}
                                 </ul>
@@ -217,162 +299,53 @@ const Portfolio = () => {
                 </div>
             </section>
 
-            {/* Selected Work Section */}
-            <section id="projects" className="relative z-10 py-20 px-6 bg-gray-900/30">
-                <div className="max-w-6xl mx-auto">
-                    <h2 className="text-4xl font-bold mb-16 text-center bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                        Selected Work
-                    </h2>
-
-                    <div className="grid md:grid-cols-3 gap-6">
-                        {projects.map((project, index) => (
-                            <div
-                                key={index}
-                                className={`group bg-gray-800/40 backdrop-blur-md border border-gray-700/50 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-2 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                                style={{ transitionDelay: `${index * 200}ms` }}
-                            >
-                                <div className={`h-2 bg-gradient-to-r ${project.color}`}></div>
-                                
-                                <div className="p-6">
-                                    <span className="text-5xl font-bold text-gray-700/50 mb-4 block">
-                                        {String(index + 1).padStart(2, '0')}
-                                    </span>
-
-                                    <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r ${project.color} bg-clip-text text-transparent`}>
-                                        {project.name}
-                                    </h3>
-
-                                    <p className="text-gray-400 mb-4 leading-relaxed">
-                                        {project.fullDescription}
-                                    </p>
-
-                                    <div className="mb-6">
-                                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                                            project.status === 'MVP Complete' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' :
-                                            project.status === 'In Development' ? 'bg-violet-500/20 text-violet-300 border border-violet-500/30' :
-                                            'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                                        }`}>
-                                            {project.status}
-                                        </span>
-                                    </div>
-
-                                    <Link
-                                        to={project.link}
-                                        className="inline-flex items-center gap-2 text-gray-300 hover:text-white group/link transition-colors"
-                                    >
-                                        <span className="font-medium">{project.linkText}</span>
-                                        <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Skills Section */}
-            <section id="skills" className="relative z-10 py-20 px-6">
-                <div className="max-w-6xl mx-auto">
-                    <h2 className="text-4xl font-bold mb-16 text-center bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                        Skills & Expertise
-                    </h2>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {skills.map((skillGroup, index) => (
-                            <div
-                                key={index}
-                                className={`bg-gray-800/40 backdrop-blur-md border border-gray-700/50 rounded-2xl p-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                                style={{ transitionDelay: `${index * 200}ms` }}
-                            >
-                                <h3 className="text-xl font-bold text-white mb-4 text-center">{skillGroup.category}</h3>
-                                <div className="space-y-2">
-                                    {skillGroup.items.map((skill, skillIndex) => (
-                                        <div
-                                            key={skillIndex}
-                                            className="bg-gray-700/30 px-3 py-2 rounded-lg text-gray-300 text-center transition-all duration-300 hover:bg-gray-600/30 hover:text-white"
-                                        >
-                                            {skill}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Education Section */}
-            <section className="relative z-10 py-20 px-6 bg-gray-900/30">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-4xl font-bold mb-16 text-center bg-gradient-to-r from-emerald-400 to-purple-400 bg-clip-text text-transparent">
-                        Education
-                    </h2>
-
-                    <div className="space-y-6">
-                        {education.map((edu, index) => (
-                            <div
-                                key={index}
-                                className={`bg-gray-800/40 backdrop-blur-md border border-gray-700/50 rounded-2xl p-8 transition-all duration-500 hover:shadow-xl ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                                style={{ transitionDelay: `${index * 200}ms` }}
-                            >
-                                <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white">{edu.institution}</h3>
-                                        <p className="text-lg text-purple-400">{edu.degree}</p>
-                                        <p className="text-gray-400 mt-2">{edu.focus}</p>
-                                    </div>
-                                    <div className="text-gray-400 mt-2 md:mt-0">
-                                        {edu.period}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* Contact Section */}
-            <section id="contact" className="relative z-10 py-20 px-6">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                        Let's Connect
-                    </h2>
-                    <p className="text-xl text-gray-400 mb-12">
-                        Interested in working together or just want to say hello? I'd love to hear from you.
-                    </p>
+            <section id="contact" className="py-24 px-6 bg-white">
+                <div className="max-w-6xl mx-auto text-center">
+                    <div className="mb-12">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Connect</span>
+                        <h2 className="text-4xl md:text-5xl font-normal mb-6">
+                            <span className="text-stone-900">Let's </span>
+                            <span className="italic text-blue-500">work together</span>
+                        </h2>
+                        <p className="text-stone-600 max-w-lg mx-auto leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                            I'm always interested in discussing new opportunities, 
+                            product challenges, or potential collaborations.
+                        </p>
+                    </div>
 
-                    <div className="flex flex-wrap justify-center gap-6">
+                    <div className="flex flex-wrap justify-center gap-4">
                         <a
                             href="mailto:mosesmwangikanya@gmail.com"
-                            className="flex items-center gap-3 px-6 py-3 bg-gray-800/40 backdrop-blur-md border border-gray-700/50 rounded-xl hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
+                            className="inline-flex items-center gap-2 bg-stone-900 text-stone-50 px-8 py-4 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
-                            <Mail className="w-5 h-5 text-purple-400" />
-                            <span>mosesmwangikanya@gmail.com</span>
-                        </a>
-                        <a
-                            href="tel:+447361507912"
-                            className="flex items-center gap-3 px-6 py-3 bg-gray-800/40 backdrop-blur-md border border-gray-700/50 rounded-xl hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
-                        >
-                            <Phone className="w-5 h-5 text-purple-400" />
-                            <span>+44 7361 507912</span>
+                            <Mail className="w-4 h-4" />
+                            mosesmwangikanya@gmail.com
                         </a>
                         <a
                             href="https://github.com/kanya01"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-3 px-6 py-3 bg-gray-800/40 backdrop-blur-md border border-gray-700/50 rounded-xl hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
+                            className="inline-flex items-center gap-2 border border-stone-300 text-stone-700 px-8 py-4 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 hover:bg-stone-100"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
-                            <Github className="w-5 h-5 text-purple-400" />
-                            <span>GitHub</span>
+                            <Github className="w-4 h-4" />
+                            GitHub
                         </a>
                     </div>
                 </div>
             </section>
 
             {/* Footer */}
-            <footer className="relative z-10 py-8 px-6 border-t border-gray-800">
-                <div className="max-w-6xl mx-auto text-center text-gray-500">
-                    <p>© 2024 Moses Mwangi. Built with React & Tailwind CSS.</p>
+            <footer className="py-8 px-6 border-t border-stone-200">
+                <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        © 2025 Moses Mwangi
+                    </p>
+                    <p className="text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        Product Analyst • London, England
+                    </p>
                 </div>
             </footer>
         </div>
