@@ -1,0 +1,40 @@
+# See https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
+
+name: Deploy to Fly.io
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    concurrency: 
+      group: deploy-production
+      cancel-in-progress: false
+    
+    environment:
+      name: production
+      url: https://mosser.fly.dev
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      
+      - name: Deploy to Fly.io
+        run: flyctl deploy --remote-only --build-arg NEXT_PUBLIC_API_URL=https://mosser.fly.dev
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      
+      - name: Verify deployment
+        run: |
+          echo "Deployment completed successfully!"
+          echo "Application URL: https://mosser.fly.dev"
+          flyctl status
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
