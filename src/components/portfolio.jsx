@@ -181,6 +181,14 @@ const Portfolio = () => {
                             <Github className="w-4 h-4" />
                             View GitHub
                         </a>
+                        <Link
+                            to="/blog"
+                            className="inline-flex items-center gap-2 border border-stone-300 text-stone-700 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 hover:bg-stone-100"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <ArrowRight className="w-4 h-4" />
+                            Read Blog
+                        </Link>
                     </div>
 
                     {/* Scroll indicator */}
