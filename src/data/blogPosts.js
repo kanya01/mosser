@@ -1,5 +1,109 @@
 export const blogPosts = [
     {
+        id: 'brilliant-learning-usability',
+        title: 'Brilliant: The Science of Learning Through Interaction',
+        excerpt: 'How Brilliant.org transforms complex STEM concepts into engaging interactive experiences through exceptional usability design.',
+        category: 'Usability Analysis',
+        date: '2025-01-20',
+        readTime: '7 min read',
+        content: {
+            introduction: 'Brilliant.org has cracked the code on something many ed-tech platforms struggle with: making learning genuinely engaging. By focusing on interactive problem-solving rather than passive video watching, they\'ve created a product where usability directly amplifies learning effectiveness.',
+            sections: [
+                {
+                    heading: 'Interactive Learning as Core Design',
+                    content: 'Unlike traditional learning platforms that rely on video lectures, Brilliant structures every lesson around hands-on problem-solving. Users aren\'t just watching—they\'re manipulating variables, visualizing concepts, and building intuition through experimentation. This active learning approach is backed by cognitive science, and the interface makes it effortless.',
+                    keyPoints: [
+                        'Interactive visualizations make abstract concepts tangible',
+                        'Immediate feedback loops reinforce correct understanding',
+                        'Progressive difficulty adapts to user performance'
+                    ]
+                },
+                {
+                    heading: 'Cognitive Load Management',
+                    content: 'Brilliant excels at breaking down complex topics into digestible chunks. Each lesson introduces one concept at a time, building on previous knowledge systematically. The bite-sized format (10-15 minutes per lesson) respects attention spans while maintaining momentum. Visual clarity and minimal UI distractions keep focus on learning.',
+                    keyPoints: [
+                        'Single-concept lessons prevent cognitive overload',
+                        'Visual hierarchy guides attention to key information',
+                        'Progress indicators provide sense of achievement'
+                    ]
+                },
+                {
+                    heading: 'Gamification Done Right',
+                    content: 'Brilliant uses gamification elements—streaks, achievements, levels—but they enhance rather than distract from learning. The dopamine hits come from solving problems and understanding concepts, not just collecting badges. This subtle distinction keeps the focus on intrinsic motivation rather than superficial engagement metrics.',
+                    keyPoints: [
+                        'Rewards tied to genuine understanding, not just completion',
+                        'Streak system encourages consistent practice habits',
+                        'Community features connect learners without comparison pressure'
+                    ]
+                },
+                {
+                    heading: 'Areas for Improvement',
+                    content: 'While the learning experience is excellent, Brilliant\'s onboarding could better communicate value to skeptical users. The paywall comes early, and free users hit limits quickly. Mobile experience, while functional, lacks some of the interactive richness of the web version. More diverse learning paths would help users with specific goals.',
+                    keyPoints: [
+                        'Limited free tier restricts trial period exploration',
+                        'Mobile interactivity constraints reduce engagement',
+                        'Path customization could better match individual goals'
+                    ]
+                }
+            ],
+            conclusion: 'Brilliant proves that usability isn\'t just about making things easy to use—it\'s about making the right things easy. By aligning interface design with how humans actually learn, they\'ve created an ed-tech product where the user experience and educational outcomes reinforce each other. The lesson: understand your user\'s core goal, then design every interaction to support it.'
+        },
+        tags: ['Ed-Tech', 'Usability', 'Learning Design', 'User Experience']
+    },
+    {
+        id: 'bereal-rise-and-fall',
+        title: 'BeReal: When Authenticity Becomes Routine',
+        excerpt: 'Analyzing how BeReal\'s anti-Instagram philosophy captured attention but failed to sustain engagement—and what product teams can learn from its trajectory.',
+        category: 'Product Strategy',
+        date: '2025-01-18',
+        readTime: '8 min read',
+        content: {
+            introduction: 'BeReal exploded onto the social media scene in 2022 with a compelling premise: authentic, unfiltered sharing. The app\'s daily notification prompted users to post within two minutes, capturing "real" moments instead of curated highlight reels. It was brilliant—until it wasn\'t.',
+            sections: [
+                {
+                    heading: 'The Product Insight',
+                    content: 'BeReal identified a real pain point: social media fatigue from endless performative content. Their solution was elegant—randomized daily prompts that level the playing field. No one has time to stage perfect shots when you have 2 minutes to post. This constraint-based design forced authenticity and created genuine FOMO around participation.',
+                    keyPoints: [
+                        'Time constraint removed performance pressure',
+                        'Randomization prevented strategic posting',
+                        'Late posting disclosure maintained social accountability'
+                    ]
+                },
+                {
+                    heading: 'The Hype Cycle',
+                    content: 'BeReal\'s growth was meteoric—downloads surged from 7.7M in January 2022 to 53M by October. The novelty factor was strong: finally, a social network that wasn\'t toxic. Media coverage amplified the narrative. Gen Z users, burnt out on Instagram, flocked to the platform. But the fundamentals were shaky.',
+                    keyPoints: [
+                        'Viral growth driven by novelty, not sustained value',
+                        'Network effects created FOMO-based adoption',
+                        'Media narrative overshadowed product limitations'
+                    ]
+                },
+                {
+                    heading: 'Why It Failed to Sustain',
+                    content: 'The core mechanic that made BeReal interesting—once-daily posting—became its limitation. Users had nothing to do for the other 23 hours and 58 minutes. The feed was static, interactions were minimal, and there was no content discovery. "Authentic" quickly became "boring." Without engagement loops, retention plummeted.',
+                    keyPoints: [
+                        'Single daily interaction insufficient for habit formation',
+                        'No content discovery or exploration features',
+                        'Limited social interactions beyond basic reactions',
+                        'Authenticity constraint also constrained interesting content'
+                    ]
+                },
+                {
+                    heading: 'Product Strategy Lessons',
+                    content: 'BeReal\'s trajectory illustrates classic product pitfalls: solving for a pain point without building sustainable engagement, confusing novelty with product-market fit, and optimizing for growth over retention. A contrarian product position attracts attention, but you still need core engagement loops that drive daily usage.',
+                    keyPoints: [
+                        'Anti-positioning attracts attention but needs substance',
+                        'Daily active usage requires more than daily prompts',
+                        'Viral growth without retention is a vanity metric',
+                        'Product constraints need offsetting engagement features'
+                    ]
+                }
+            ],
+            conclusion: 'BeReal was a good product that was overhyped—not because the idea was flawed, but because the execution didn\'t support sustained engagement. It captured a genuine insight about social media fatigue, but failed to build the infrastructure needed to keep users coming back. The lesson: a strong product thesis needs equally strong engagement mechanics to survive beyond the hype cycle.'
+        },
+        tags: ['Social Media', 'Product Strategy', 'User Retention', 'Growth']
+    },
+    {
         id: 'notion-usability-analysis',
         title: 'Notion: When Flexibility Becomes Friction',
         excerpt: 'An in-depth analysis of how Notion\'s infinite customization paradoxically creates usability challenges for new users.',
@@ -133,6 +237,61 @@ export const blogPosts = [
             conclusion: 'Linear proves that opinionated design can be a competitive advantage. By refusing to be everything to everyone, they\'ve created something exceptional for their target audience. The lesson: better to be loved by some than merely liked by many.'
         },
         tags: ['Project Management', 'Engineering Tools', 'Design Philosophy']
+    },
+    {
+        id: 'untitled-music-collaboration',
+        title: 'Untitled: Solving Music Collaboration\'s Hidden Pain Points',
+        excerpt: 'How a niche product captured the music collaboration market by addressing workflow friction that Spotify and SoundCloud ignored.',
+        category: 'Product Design Excellence',
+        date: '2025-01-12',
+        readTime: '6 min read',
+        content: {
+            introduction: 'While Spotify dominates music consumption and SoundCloud owns creator distribution, Untitled quietly built a thriving business by solving a problem nobody else was addressing: seamless music file collaboration between artists, producers, and collaborators.',
+            sections: [
+                {
+                    heading: 'The Overlooked Pain Point',
+                    content: 'Musicians and producers were cobbling together workflows using Dropbox, Google Drive, email attachments, and messaging apps to share work-in-progress tracks. Version control was a nightmare. Feedback lived in scattered threads. High-quality file transfers ate bandwidth. Untitled saw this messy workflow and built a product specifically to solve it.',
+                    keyPoints: [
+                        'Centralized workspace for all project files and versions',
+                        'Timestamp-based commenting directly on waveforms',
+                        'Lossless file transfer optimized for large audio files',
+                        'Automatic version history without manual file naming'
+                    ]
+                },
+                {
+                    heading: 'Workflow-First Design',
+                    content: 'Untitled\'s interface mirrors how musicians actually work. Projects are organized by song, not by folder structure. Comments are placed directly on the timeline where issues occur. Collaborators can hear previous versions with one click. The product doesn\'t try to be a DAW or a distribution platform—it excels at the collaboration layer.',
+                    keyPoints: [
+                        'Song-centric organization matches mental models',
+                        'Waveform commenting enables precise feedback',
+                        'Side-by-side version comparison streamlines decisions',
+                        'Mobile app supports on-the-go feedback loops'
+                    ]
+                },
+                {
+                    heading: 'Network Effects in Niche Markets',
+                    content: 'Untitled\'s success demonstrates that network effects work in specialized markets. Once a producer uses Untitled with one artist, they bring it to all their collaborations. The platform becomes the standard workflow tool in their network. Premium features (higher storage, advanced analytics) convert well because the value is obvious and immediate.',
+                    keyPoints: [
+                        'Collaboration inherently drives multi-user adoption',
+                        'Professional tier pricing aligned with industry budgets',
+                        'Integration with popular DAWs reduces friction',
+                        'Community features connect similar creators'
+                    ]
+                },
+                {
+                    heading: 'Strategic Positioning',
+                    content: 'By staying focused on collaboration rather than competing with Spotify or DAWs, Untitled carved out a defensible niche. They\'re not trying to be a platform for everything—just the best tool for one specific job. This focus allowed them to build deep functionality where it matters most rather than shallow features across a broad surface area.',
+                    keyPoints: [
+                        'Narrow focus enables deep feature development',
+                        'Avoids direct competition with music industry giants',
+                        'Addresses underserved professional creator segment',
+                        'Premium pricing sustainable in B2B context'
+                    ]
+                }
+            ],
+            conclusion: 'Untitled\'s success proves that huge markets aren\'t the only opportunity for product builders. Sometimes the best strategy is finding a painful workflow that affects a specific group intensely, then building the absolute best solution for that exact problem. Niche doesn\'t mean small when you solve the right pain point for the right people.'
+        },
+        tags: ['Music Tech', 'Collaboration', 'Niche Products', 'B2B']
     },
     {
         id: 'stripe-api-design',
