@@ -25,16 +25,34 @@ const Blog = () => {
                         Moses Mwangi
                     </Link>
                     <div className="flex gap-8">
-                        {['Home', 'Blog', 'Projects', 'Contact'].map((item) => (
-                            <a
-                                key={item}
-                                href={item === 'Home' ? '/' : item === 'Blog' ? '/blog' : `/#${item.toLowerCase()}`}
-                                className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
-                                style={{ fontFamily: 'system-ui, sans-serif' }}
-                            >
-                                {item}
-                            </a>
-                        ))}
+                        <Link
+                            to="/"
+                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            to="/blog"
+                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            Blog
+                        </Link>
+                        <a
+                            href="/#projects"
+                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            Projects
+                        </a>
+                        <a
+                            href="/#contact"
+                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            Contact
+                        </a>
                     </div>
                 </div>
             </nav>

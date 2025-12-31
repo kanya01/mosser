@@ -10,18 +10,19 @@ const BlogPost = () => {
 
     const post = blogPosts.find(p => p.id === id);
 
+    // Redirect to blog if post not found
+    if (!post) {
+        navigate('/blog');
+        return null;
+    }
+
     useEffect(() => {
         setIsLoaded(true);
         window.scrollTo(0, 0);
     }, []);
 
-    useEffect(() => {
-        if (!post) {
-            navigate('/blog');
-        }
-    }, [post, navigate]);
-
     if (!post) {
+        navigate('/blog');
         return null;
     }
 
