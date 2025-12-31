@@ -103,10 +103,10 @@ const Portfolio = () => {
                         Moses Mwangi
                     </Link>
                     <div className="flex gap-8">
-                        {['Home', 'Experience', 'Projects', 'Contact'].map((item) => (
+                        {['Home', 'Blog', 'Experience', 'Projects', 'Contact'].map((item) => (
                             <a
                                 key={item}
-                                href={`#${item.toLowerCase()}`}
+                                href={item === 'Blog' ? '/blog' : `#${item.toLowerCase()}`}
                                 className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
                                 style={{ fontFamily: 'system-ui, sans-serif' }}
                             >
