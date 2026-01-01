@@ -84,6 +84,8 @@ export const blogPosts = [
             conclusion: 'I don\'t know if I\'ll ever "arrive" at some final version of myself. I suspect that\'s not how this works. What I do know is that each choice that felt like a betrayal was actually an act of integrity—staying true to an evolving understanding of who I\'m becoming. The path gets clearer not because I have all the answers, but because I\'m learning which questions matter. If that makes me a villain in some stories, so be it. I\'d rather be the architect of my own becoming than the supporting character in someone else\'s comfort. We\'re all someone\'s villain. The question isn\'t whether you\'ll disappoint people—it\'s whether you\'ll disappoint yourself.'
         },
         tags: ['Personal Growth', 'Philosophy', 'Career', 'Self-Actualization', 'Perseverance']
+    },
+    {
         id: 'gemini-antigravity-analysis',
         title: 'Gemini 3.0 and Antigravity: How Google Caught Up in the AI Race',
         excerpt: 'An in-depth analysis of Google\'s Gemini 3.0 and the innovative Antigravity IDE, examining how Google closed the gap with competitors like Claude and what this means for the future of AI development.',
