@@ -72,9 +72,8 @@ const Blog = () => {
                     </h1>
                     
                     <p className="text-lg text-stone-600 max-w-2xl leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        Exploring digital products through the lens of product management and design. 
-                        Analyzing usability, design quality, and opportunities for improvement across 
-                        the products we use every day.
+                        Here are my thoughts—sometimes on products, sometimes on life. 
+                        Mostly trying to make sense of both, occasionally succeeding.
                     </p>
                 </div>
             </section>

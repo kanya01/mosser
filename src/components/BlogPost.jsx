@@ -103,6 +103,21 @@ const BlogPost = () => {
                                         </ul>
                                     </div>
                                 )}
+
+                                {section.quotes && section.quotes.length > 0 && (
+                                    <div className="mt-8 space-y-6">
+                                        {section.quotes.map((quote, quoteIndex) => (
+                                            <blockquote key={quoteIndex} className="border-l-4 border-stone-300 pl-6 py-2">
+                                                <p className="text-xl italic text-stone-700 mb-2 leading-relaxed">
+                                                    "{quote.text}"
+                                                </p>
+                                                <cite className="text-sm text-stone-500 not-italic" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                    — {quote.author}
+                                                </cite>
+                                            </blockquote>
+                                        ))}
+                                    </div>
+                                )}
                             </section>
                         ))}
                     </div>
