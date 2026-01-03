@@ -132,6 +132,29 @@ const BlogPost = () => {
                         </p>
                     </div>
 
+                    {/* Sources (if available) */}
+                    {post.sources && post.sources.length > 0 && (
+                        <div className="mt-12 pt-8 border-t border-stone-200">
+                            <h3 className="text-xl font-medium mb-4 text-stone-900">
+                                Sources
+                            </h3>
+                            <ul className="space-y-2">
+                                {post.sources.map((source, index) => (
+                                    <li key={index} className="text-stone-600" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                        <a 
+                                            href={source} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="text-blue-500 hover:text-blue-700 underline break-all"
+                                        >
+                                            {source}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
                     {/* Tags */}
                     <div className="mt-12 pt-8 border-t border-stone-200">
                         <div className="flex items-center gap-3 flex-wrap">

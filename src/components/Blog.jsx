@@ -62,18 +62,19 @@ const Blog = () => {
                 <div className="max-w-6xl mx-auto">
                     <div className="mb-4">
                         <span className="text-xs tracking-[0.3em] uppercase text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                            Digital Product Analysis
+                            Musings & Meanderings
                         </span>
                     </div>
                     
                     <h1 className="text-5xl md:text-7xl leading-tight mb-8">
-                        <span className="block font-normal text-stone-900">Insights on</span>
-                        <span className="block italic text-blue-500">product design</span>
+                        <span className="block font-normal text-stone-900">Thoughts on</span>
+                        <span className="block italic text-blue-500">things that matter</span>
                     </h1>
                     
                     <p className="text-lg text-stone-600 max-w-2xl leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        Here are my thoughts—sometimes on products, sometimes on life. 
-                        Mostly trying to make sense of both, occasionally succeeding.
+                        Products, tech bubbles, life philosophies, and the occasional existential crisis. 
+                        Sometimes insightful, always honest, frequently caffeinated. Think of this as my 
+                        digital notebook—except you're invited to read it.
                     </p>
                 </div>
             </section>
