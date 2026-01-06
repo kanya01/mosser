@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Github, Mail, ArrowRight, ArrowUpRight } from 'lucide-react';
+import DarkModeToggle from './DarkModeToggle';
 
 const Portfolio = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -95,49 +96,50 @@ const Portfolio = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-stone-50 text-stone-900" style={{ fontFamily: 'Georgia, serif' }}>
+        <div className="min-h-screen bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-300" style={{ fontFamily: 'Georgia, serif' }}>
             {/* Navigation */}
-            <nav className="fixed top-0 w-full z-50 bg-stone-50/95 backdrop-blur-sm border-b border-stone-200">
+            <nav className="fixed top-0 w-full z-50 bg-stone-50/95 dark:bg-stone-950/95 backdrop-blur-sm border-b border-stone-200 dark:border-stone-800">
                 <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-                    <Link to="/" className="text-xl tracking-tight font-medium text-stone-900">
+                    <Link to="/" className="text-xl tracking-tight font-medium text-stone-900 dark:text-stone-100">
                         Moses Mwangi
                     </Link>
-                    <div className="flex gap-8">
+                    <div className="flex items-center gap-8">
                         <a
                             href="#home"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Home
                         </a>
                         <Link
                             to="/blog"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Blog
                         </Link>
                         <a
                             href="#experience"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Experience
                         </a>
                         <a
                             href="#projects"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Projects
                         </a>
                         <a
                             href="#contact"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Contact
                         </a>
+                        <DarkModeToggle />
                     </div>
                 </div>
             </nav>
@@ -146,17 +148,17 @@ const Portfolio = () => {
             <section id="home" className={`min-h-screen flex items-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className="max-w-6xl mx-auto px-6 pt-24">
                     <div className="mb-4">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Product Analyst • London
                         </span>
                     </div>
                     
                     <h1 className="text-5xl md:text-7xl leading-tight mb-8">
-                        <span className="block font-normal text-stone-900">Turning data into</span>
-                        <span className="block italic text-blue-500">product decisions</span>
+                        <span className="block font-normal text-stone-900 dark:text-stone-100">Turning data into</span>
+                        <span className="block italic text-blue-500 dark:text-blue-400">product decisions</span>
                     </h1>
                     
-                    <p className="text-lg text-stone-600 max-w-xl mb-12 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-lg text-stone-600 dark:text-stone-400 max-w-xl mb-12 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         I help product teams make better decisions through data analysis, 
                         user research, and cross-functional collaboration. 
                         Currently shaping product strategy at Raviro.
@@ -165,7 +167,7 @@ const Portfolio = () => {
                     <div className="flex gap-4">
                         <a
                             href="#contact"
-                            className="inline-flex items-center gap-2 bg-stone-900 text-stone-50 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800"
+                            className="inline-flex items-center gap-2 bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800 dark:hover:bg-stone-200"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             <Mail className="w-4 h-4" />
@@ -175,7 +177,7 @@ const Portfolio = () => {
                             href="https://github.com/kanya01"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 border border-stone-300 text-stone-700 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 hover:bg-stone-100"
+                            className="inline-flex items-center gap-2 border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-100 dark:hover:bg-stone-900"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             <Github className="w-4 h-4" />
@@ -183,7 +185,7 @@ const Portfolio = () => {
                         </a>
                         <Link
                             to="/blog"
-                            className="inline-flex items-center gap-2 border border-stone-300 text-stone-700 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 hover:bg-stone-100"
+                            className="inline-flex items-center gap-2 border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-100 dark:hover:bg-stone-900"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             <ArrowRight className="w-4 h-4" />
@@ -193,7 +195,7 @@ const Portfolio = () => {
 
                     {/* Scroll indicator */}
                     <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
-                        <div className="w-px h-16 bg-stone-300 mx-auto"></div>
+                        <div className="w-px h-16 bg-stone-300 dark:bg-stone-700 mx-auto"></div>
                     </div>
                 </div>
             </section>
@@ -202,10 +204,10 @@ const Portfolio = () => {
             <section id="experience" className="py-24 px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="mb-16">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Background</span>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Background</span>
                         <h2 className="text-4xl md:text-5xl font-normal">
-                            <span className="text-stone-900">Professional </span>
-                            <span className="italic text-blue-500">experience</span>
+                            <span className="text-stone-900 dark:text-stone-100">Professional </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">experience</span>
                         </h2>
                     </div>
 
@@ -213,21 +215,21 @@ const Portfolio = () => {
                         {experiences.map((exp, index) => (
                             <div
                                 key={index}
-                                className={`border-t border-stone-200 pt-8 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                className={`border-t border-stone-200 dark:border-stone-800 pt-8 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                                 style={{ transitionDelay: `${index * 150}ms` }}
                             >
                                 <div className="grid md:grid-cols-3 gap-8">
                                     <div>
-                                        <h3 className="text-xl font-medium text-stone-900 mb-1">{exp.company}</h3>
-                                        <p className="text-stone-600" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.role}</p>
-                                        <p className="text-sm text-stone-400 mt-2" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.period}</p>
-                                        <p className="text-sm text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.location}</p>
+                                        <h3 className="text-xl font-medium text-stone-900 dark:text-stone-100 mb-1">{exp.company}</h3>
+                                        <p className="text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.role}</p>
+                                        <p className="text-sm text-stone-400 dark:text-stone-500 mt-2" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.period}</p>
+                                        <p className="text-sm text-stone-400 dark:text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.location}</p>
                                     </div>
                                     <div className="md:col-span-2">
                                         <ul className="space-y-3">
                                             {exp.achievements.map((achievement, achIndex) => (
-                                                <li key={achIndex} className="flex gap-3 text-stone-600 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                                                    <span className="text-blue-500 mt-1.5">—</span>
+                                                <li key={achIndex} className="flex gap-3 text-stone-600 dark:text-stone-400 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                    <span className="text-blue-500 dark:text-blue-400 mt-1.5">—</span>
                                                     {achievement}
                                                 </li>
                                             ))}
@@ -240,13 +242,13 @@ const Portfolio = () => {
 
                     {/* Education */}
                     <div className="mt-24">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-8" style={{ fontFamily: 'system-ui, sans-serif' }}>Education</span>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-8" style={{ fontFamily: 'system-ui, sans-serif' }}>Education</span>
                         <div className="grid md:grid-cols-2 gap-8">
                             {education.map((edu, index) => (
-                                <div key={index} className="border-t border-stone-200 pt-6">
-                                    <h4 className="text-lg font-medium text-stone-900 mb-1">{edu.institution}</h4>
-                                    <p className="text-stone-600" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.degree}</p>
-                                    <p className="text-sm text-stone-400 mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.period}</p>
+                                <div key={index} className="border-t border-stone-200 dark:border-stone-800 pt-6">
+                                    <h4 className="text-lg font-medium text-stone-900 dark:text-stone-100 mb-1">{edu.institution}</h4>
+                                    <p className="text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.degree}</p>
+                                    <p className="text-sm text-stone-400 dark:text-stone-500 mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.period}</p>
                                 </div>
                             ))}
                         </div>
@@ -255,13 +257,13 @@ const Portfolio = () => {
             </section>
 
             {/* Projects Section */}
-            <section id="projects" className="py-24 px-6 bg-white">
+            <section id="projects" className="py-24 px-6 bg-white dark:bg-stone-900">
                 <div className="max-w-6xl mx-auto">
                     <div className="mb-16">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Work</span>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Work</span>
                         <h2 className="text-4xl md:text-5xl font-normal">
-                            <span className="text-stone-900">Selected </span>
-                            <span className="italic text-blue-500">projects</span>
+                            <span className="text-stone-900 dark:text-stone-100">Selected </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">projects</span>
                         </h2>
                     </div>
 
@@ -270,30 +272,30 @@ const Portfolio = () => {
                             <Link
                                 key={project.id}
                                 to={project.link}
-                                className={`block group border border-stone-200 rounded-lg p-8 hover:border-stone-300 hover:bg-stone-50 transition-all duration-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                className={`block group border border-stone-200 dark:border-stone-800 rounded-lg p-8 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-all duration-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                                 style={{ transitionDelay: `${index * 100}ms` }}
                             >
                                 <div className="flex justify-between items-start">
                                     <div className="flex-1">
                                         <div className="flex items-center gap-3 mb-3">
-                                            <span className="text-xs tracking-[0.2em] uppercase text-blue-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                            <span className="text-xs tracking-[0.2em] uppercase text-blue-500 dark:text-blue-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                                                 {project.category}
                                             </span>
                                             <span className={`text-xs px-2 py-1 rounded-full ${
                                                 project.status === 'MVP Complete' 
-                                                    ? 'bg-blue-50 text-blue-600' 
+                                                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' 
                                                     : project.status === 'In Development'
-                                                    ? 'bg-amber-50 text-amber-600'
-                                                    : 'bg-stone-100 text-stone-600'
+                                                    ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
+                                                    : 'bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400'
                                             }`} style={{ fontFamily: 'system-ui, sans-serif' }}>
                                                 {project.status}
                                             </span>
                                         </div>
-                                        <h3 className="text-2xl font-medium text-stone-900 mb-2">{project.name}</h3>
-                                        <p className="text-stone-600 max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>{project.description}</p>
+                                        <h3 className="text-2xl font-medium text-stone-900 dark:text-stone-100 mb-2">{project.name}</h3>
+                                        <p className="text-stone-600 dark:text-stone-400 max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>{project.description}</p>
                                     </div>
                                     <div className="ml-6 mt-2">
-                                        <ArrowUpRight className="w-5 h-5 text-stone-400 group-hover:text-stone-900 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                                        <ArrowUpRight className="w-5 h-5 text-stone-400 dark:text-stone-500 group-hover:text-stone-900 dark:group-hover:text-stone-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                                     </div>
                                 </div>
                             </Link>
@@ -306,22 +308,22 @@ const Portfolio = () => {
             <section className="py-24 px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="mb-16">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Capabilities</span>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Capabilities</span>
                         <h2 className="text-4xl md:text-5xl font-normal">
-                            <span className="text-stone-900">Skills & </span>
-                            <span className="italic text-blue-500">expertise</span>
+                            <span className="text-stone-900 dark:text-stone-100">Skills & </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">expertise</span>
                         </h2>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
                         {skills.map((skillGroup, index) => (
                             <div key={index}>
-                                <h4 className="text-sm font-medium text-stone-900 mb-4 pb-2 border-b border-stone-200" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                <h4 className="text-sm font-medium text-stone-900 dark:text-stone-100 mb-4 pb-2 border-b border-stone-200 dark:border-stone-800" style={{ fontFamily: 'system-ui, sans-serif' }}>
                                     {skillGroup.category}
                                 </h4>
                                 <ul className="space-y-2">
                                     {skillGroup.items.map((skill, sIndex) => (
-                                        <li key={sIndex} className="text-stone-600 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                        <li key={sIndex} className="text-stone-600 dark:text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
                                             {skill}
                                         </li>
                                     ))}
@@ -333,15 +335,15 @@ const Portfolio = () => {
             </section>
 
             {/* Contact Section */}
-            <section id="contact" className="py-24 px-6 bg-white">
+            <section id="contact" className="py-24 px-6 bg-white dark:bg-stone-900">
                 <div className="max-w-6xl mx-auto text-center">
                     <div className="mb-12">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Connect</span>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Connect</span>
                         <h2 className="text-4xl md:text-5xl font-normal mb-6">
-                            <span className="text-stone-900">Let's </span>
-                            <span className="italic text-blue-500">work together</span>
+                            <span className="text-stone-900 dark:text-stone-100">Let's </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">work together</span>
                         </h2>
-                        <p className="text-stone-600 max-w-lg mx-auto leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        <p className="text-stone-600 dark:text-stone-400 max-w-lg mx-auto leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             I'm always interested in discussing new opportunities, 
                             product challenges, or potential collaborations.
                         </p>
@@ -350,7 +352,7 @@ const Portfolio = () => {
                     <div className="flex flex-wrap justify-center gap-4">
                         <a
                             href="mailto:mosesmwangikanya@gmail.com"
-                            className="inline-flex items-center gap-2 bg-stone-900 text-stone-50 px-8 py-4 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800"
+                            className="inline-flex items-center gap-2 bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 px-8 py-4 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800 dark:hover:bg-stone-200"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             <Mail className="w-4 h-4" />
@@ -360,7 +362,7 @@ const Portfolio = () => {
                             href="https://github.com/kanya01"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 border border-stone-300 text-stone-700 px-8 py-4 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 hover:bg-stone-100"
+                            className="inline-flex items-center gap-2 border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 px-8 py-4 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-100 dark:hover:bg-stone-800"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             <Github className="w-4 h-4" />
@@ -371,12 +373,12 @@ const Portfolio = () => {
             </section>
 
             {/* Footer */}
-            <footer className="py-8 px-6 border-t border-stone-200">
+            <footer className="py-8 px-6 border-t border-stone-200 dark:border-stone-800">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-stone-400 dark:text-stone-500 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         © 2025 Moses Mwangi
                     </p>
-                    <p className="text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-stone-400 dark:text-stone-500 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         Product Analyst • London, England
                     </p>
                 </div>
