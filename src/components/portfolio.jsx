@@ -149,7 +149,7 @@ const Portfolio = () => {
                 <div className="max-w-6xl mx-auto px-6 pt-24">
                     <div className="mb-4">
                         <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                            Product Analyst • London
+                            Product Associate • London
                         </span>
                     </div>
                     
