@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { blogPosts, blogCategories } from '../data/blogPosts';
+import DarkModeToggle from './DarkModeToggle';
 
 const Blog = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -17,42 +18,43 @@ const Blog = () => {
         : blogPosts.filter(post => post.category === selectedCategory);
 
     return (
-        <div className="min-h-screen bg-stone-50 text-stone-900" style={{ fontFamily: 'Georgia, serif' }}>
+        <div className="min-h-screen bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-300" style={{ fontFamily: 'Georgia, serif' }}>
             {/* Navigation */}
-            <nav className="fixed top-0 w-full z-50 bg-stone-50/95 backdrop-blur-sm border-b border-stone-200">
+            <nav className="fixed top-0 w-full z-50 bg-stone-50/95 dark:bg-stone-950/95 backdrop-blur-sm border-b border-stone-200 dark:border-stone-800">
                 <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-                    <Link to="/" className="text-xl tracking-tight font-medium text-stone-900">
+                    <Link to="/" className="text-xl tracking-tight font-medium text-stone-900 dark:text-stone-100">
                         Moses Mwangi
                     </Link>
-                    <div className="flex gap-8">
+                    <div className="flex items-center gap-8">
                         <Link
                             to="/"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Home
                         </Link>
                         <Link
                             to="/blog"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Blog
                         </Link>
                         <a
                             href="/#projects"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Projects
                         </a>
                         <a
                             href="/#contact"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Contact
                         </a>
+                        <DarkModeToggle />
                     </div>
                 </div>
             </nav>
@@ -61,17 +63,17 @@ const Blog = () => {
             <section className={`pt-32 pb-16 px-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className="max-w-6xl mx-auto">
                     <div className="mb-4">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Musings & Meanderings
                         </span>
                     </div>
                     
                     <h1 className="text-5xl md:text-7xl leading-tight mb-8">
-                        <span className="block font-normal text-stone-900">Thoughts on</span>
-                        <span className="block italic text-blue-500">things that matter</span>
+                        <span className="block font-normal text-stone-900 dark:text-stone-100">Thoughts on</span>
+                        <span className="block italic text-blue-500 dark:text-blue-400">things that matter</span>
                     </h1>
                     
-                    <p className="text-lg text-stone-600 max-w-2xl leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-lg text-stone-600 dark:text-stone-400 max-w-2xl leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         Products, tech bubbles, life philosophies, and the occasional existential crisis. 
                         Sometimes insightful, always honest, frequently caffeinated. Think of this as my 
                         digital notebook—except you're invited to read it.
@@ -89,8 +91,8 @@ const Blog = () => {
                                 onClick={() => setSelectedCategory(category)}
                                 className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
                                     selectedCategory === category
-                                        ? 'bg-stone-900 text-stone-50'
-                                        : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-300'
+                                        ? 'bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900'
+                                        : 'bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700'
                                 }`}
                                 style={{ fontFamily: 'system-ui, sans-serif' }}
                             >
@@ -109,27 +111,27 @@ const Blog = () => {
                             <Link
                                 key={post.id}
                                 to={`/blog/${post.id}`}
-                                className={`group bg-white border border-stone-200 rounded-lg overflow-hidden hover:border-stone-300 hover:shadow-lg transition-all duration-300 ${
+                                className={`group bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-lg overflow-hidden hover:border-stone-300 dark:hover:border-stone-700 hover:shadow-lg dark:hover:shadow-stone-900/50 transition-all duration-300 ${
                                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                                 }`}
                                 style={{ transitionDelay: `${index * 100}ms` }}
                             >
                                 <div className="p-8">
                                     <div className="flex items-center gap-3 mb-4">
-                                        <span className="text-xs tracking-[0.2em] uppercase text-blue-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                        <span className="text-xs tracking-[0.2em] uppercase text-blue-500 dark:text-blue-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                                             {post.category}
                                         </span>
                                     </div>
 
-                                    <h2 className="text-2xl font-medium text-stone-900 mb-3 group-hover:text-blue-500 transition-colors">
+                                    <h2 className="text-2xl font-medium text-stone-900 dark:text-stone-100 mb-3 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
                                         {post.title}
                                     </h2>
 
-                                    <p className="text-stone-600 mb-6 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                    <p className="text-stone-600 dark:text-stone-400 mb-6 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
                                         {post.excerpt}
                                     </p>
 
-                                    <div className="flex items-center gap-4 text-sm text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                    <div className="flex items-center gap-4 text-sm text-stone-400 dark:text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
                                         <div className="flex items-center gap-1">
                                             <Calendar className="w-4 h-4" />
                                             {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -140,7 +142,7 @@ const Blog = () => {
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-2 mt-6 text-stone-600 group-hover:text-blue-500 transition-colors" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                    <div className="flex items-center gap-2 mt-6 text-stone-600 dark:text-stone-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" style={{ fontFamily: 'system-ui, sans-serif' }}>
                                         <span className="text-sm">Read article</span>
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
@@ -152,7 +154,7 @@ const Blog = () => {
                                         {post.tags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="text-xs px-2 py-1 bg-stone-100 text-stone-600 rounded"
+                                                className="text-xs px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 rounded"
                                                 style={{ fontFamily: 'system-ui, sans-serif' }}
                                             >
                                                 {tag}
@@ -167,12 +169,12 @@ const Blog = () => {
             </section>
 
             {/* Footer */}
-            <footer className="py-8 px-6 border-t border-stone-200">
+            <footer className="py-8 px-6 border-t border-stone-200 dark:border-stone-800">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-stone-400 dark:text-stone-500 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         © 2025 Moses Mwangi
                     </p>
-                    <p className="text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-stone-400 dark:text-stone-500 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         Product Analyst • London, England
                     </p>
                 </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Brain, FileText, Clock, TrendingUp, Newspaper, BookOpen, Users } from 'lucide-react';
+import DarkModeToggle from '../DarkModeToggle';
 
 const PublicationSummarizerCase = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -109,21 +110,24 @@ const PublicationSummarizerCase = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-stone-50 text-stone-900" style={{ fontFamily: 'Georgia, serif' }}>
+        <div className="min-h-screen bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-300" style={{ fontFamily: 'Georgia, serif' }}>
             {/* Navigation */}
-            <header className="fixed top-0 w-full z-50 bg-stone-50/95 backdrop-blur-sm border-b border-stone-200">
+            <header className="fixed top-0 w-full z-50 bg-stone-50/95 dark:bg-stone-950/95 backdrop-blur-sm border-b border-stone-200 dark:border-stone-800">
                 <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
                     <Link 
                         to="/" 
-                        className="flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors group"
+                        className="flex items-center gap-2 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors group"
                         style={{ fontFamily: 'system-ui, sans-serif' }}
                     >
                         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                         <span>Back to Portfolio</span>
                     </Link>
-                    <span className="text-xs tracking-[0.3em] uppercase text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        Product Concept
-                    </span>
+                    <div className="flex items-center gap-6">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                            Product Concept
+                        </span>
+                        <DarkModeToggle />
+                    </div>
                 </div>
             </header>
 
@@ -131,20 +135,20 @@ const PublicationSummarizerCase = () => {
             <section className={`pt-32 pb-20 px-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className="max-w-4xl mx-auto">
                     <div className="flex items-center gap-3 mb-6">
-                        <span className="text-xs tracking-[0.2em] uppercase text-blue-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        <span className="text-xs tracking-[0.2em] uppercase text-blue-500 dark:text-blue-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             AI/ML Concept
                         </span>
-                        <span className="text-xs px-2 py-1 rounded-full bg-stone-100 text-stone-600" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        <span className="text-xs px-2 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Concept Phase
                         </span>
                     </div>
                     
                     <h1 className="text-5xl md:text-7xl font-normal mb-6">
-                        <span className="text-stone-900">Publication </span>
-                        <span className="block italic text-blue-500">Summarizer</span>
+                        <span className="text-stone-900 dark:text-stone-100">Publication </span>
+                        <span className="block italic text-blue-500 dark:text-blue-400">Summarizer</span>
                     </h1>
                     
-                    <p className="text-xl text-stone-600 leading-relaxed max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-xl text-stone-600 dark:text-stone-400 leading-relaxed max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         An AI-powered tool to summarize economic and general publications into succinct, 
                         actionable insights. Designed to help professionals stay informed efficiently.
                     </p>
@@ -153,7 +157,7 @@ const PublicationSummarizerCase = () => {
                         {['AI/ML', 'Natural Language Processing', 'Product Strategy', 'User Research'].map((tag) => (
                             <span 
                                 key={tag}
-                                className="px-4 py-2 bg-stone-100 text-stone-600 rounded-full text-sm"
+                                className="px-4 py-2 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 rounded-full text-sm"
                                 style={{ fontFamily: 'system-ui, sans-serif' }}
                             >
                                 {tag}
@@ -182,8 +186,8 @@ const PublicationSummarizerCase = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {problemStats.map((stat, index) => (
                             <div key={index} className="text-center">
-                                <div className="text-4xl md:text-5xl font-normal text-blue-500 mb-2">{stat.value}</div>
-                                <div className="text-sm text-stone-600" style={{ fontFamily: 'system-ui, sans-serif' }}>{stat.label}</div>
+                                <div className="text-4xl md:text-5xl font-normal text-blue-500 dark:text-blue-400 mb-2">{stat.value}</div>
+                                <div className="text-sm text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{stat.label}</div>
                             </div>
                         ))}
                     </div>
@@ -191,33 +195,33 @@ const PublicationSummarizerCase = () => {
             </section>
 
             {/* Target Users */}
-            <section className="py-20 px-6 bg-white">
+            <section className="py-20 px-6 bg-white dark:bg-stone-900">
                 <div className="max-w-6xl mx-auto">
                     <div className="mb-16">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Users
                         </span>
                         <h2 className="text-3xl md:text-4xl font-normal">
-                            <span className="text-stone-900">Target </span>
-                            <span className="italic text-blue-500">audience</span>
+                            <span className="text-stone-900 dark:text-stone-100">Target </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">audience</span>
                         </h2>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6">
                         {targetUsers.map((user, index) => (
-                            <div key={index} className="border border-stone-200 rounded-lg p-6">
-                                <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                                    <Users className="w-5 h-5 text-blue-500" />
+                            <div key={index} className="border border-stone-200 dark:border-stone-800 rounded-lg p-6">
+                                <div className="w-10 h-10 bg-blue-50 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+                                    <Users className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                                 </div>
-                                <h3 className="text-lg font-medium text-stone-900 mb-4">{user.persona}</h3>
+                                <h3 className="text-lg font-medium text-stone-900 dark:text-stone-100 mb-4">{user.persona}</h3>
                                 <div className="space-y-3">
                                     <div>
-                                        <span className="text-xs uppercase tracking-wide text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>Needs</span>
-                                        <p className="text-stone-600 text-sm mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{user.needs}</p>
+                                        <span className="text-xs uppercase tracking-wide text-stone-400 dark:text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>Needs</span>
+                                        <p className="text-stone-600 dark:text-stone-400 text-sm mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{user.needs}</p>
                                     </div>
                                     <div>
-                                        <span className="text-xs uppercase tracking-wide text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>Pain Point</span>
-                                        <p className="text-stone-600 text-sm mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{user.pain}</p>
+                                        <span className="text-xs uppercase tracking-wide text-stone-400 dark:text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>Pain Point</span>
+                                        <p className="text-stone-600 dark:text-stone-400 text-sm mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{user.pain}</p>
                                     </div>
                                 </div>
                             </div>
@@ -230,12 +234,12 @@ const PublicationSummarizerCase = () => {
             <section className="py-20 px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="mb-16">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Solution
                         </span>
                         <h2 className="text-3xl md:text-4xl font-normal">
-                            <span className="text-stone-900">Proposed </span>
-                            <span className="italic text-blue-500">features</span>
+                            <span className="text-stone-900 dark:text-stone-100">Proposed </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">features</span>
                         </h2>
                     </div>
 
@@ -243,23 +247,23 @@ const PublicationSummarizerCase = () => {
                         {proposedFeatures.map((feature, index) => {
                             const Icon = feature.icon;
                             return (
-                                <div key={index} className="border border-stone-200 rounded-lg p-6 hover:border-stone-300 transition-colors">
+                                <div key={index} className="border border-stone-200 dark:border-stone-800 rounded-lg p-6 hover:border-stone-300 dark:hover:border-stone-700 transition-colors">
                                     <div className="flex items-start justify-between mb-4">
-                                        <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                                            <Icon className="w-5 h-5 text-blue-500" />
+                                        <div className="w-10 h-10 bg-blue-50 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                                            <Icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                                         </div>
                                         <span className={`text-xs px-2 py-1 rounded-full ${
                                             feature.status === 'Planned' 
-                                                ? 'bg-blue-50 text-blue-600'
+                                                ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
                                                 : feature.status === 'Concept'
-                                                ? 'bg-amber-50 text-amber-600'
-                                                : 'bg-stone-100 text-stone-500'
+                                                ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
+                                                : 'bg-stone-100 dark:bg-stone-800 text-stone-500 dark:text-stone-400'
                                         }`} style={{ fontFamily: 'system-ui, sans-serif' }}>
                                             {feature.status}
                                         </span>
                                     </div>
-                                    <h3 className="text-lg font-medium text-stone-900 mb-2">{feature.title}</h3>
-                                    <p className="text-stone-600 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>{feature.description}</p>
+                                    <h3 className="text-lg font-medium text-stone-900 dark:text-stone-100 mb-2">{feature.title}</h3>
+                                    <p className="text-stone-600 dark:text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>{feature.description}</p>
                                 </div>
                             );
                         })}
@@ -268,7 +272,7 @@ const PublicationSummarizerCase = () => {
             </section>
 
             {/* Value Proposition */}
-            <section className="py-20 px-6 bg-blue-500 text-white">
+            <section className="py-20 px-6 bg-blue-500 dark:bg-blue-600 text-white">
                 <div className="max-w-4xl mx-auto text-center">
                     <span className="text-xs tracking-[0.3em] uppercase text-blue-200 block mb-6" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         Value Proposition
@@ -297,29 +301,29 @@ const PublicationSummarizerCase = () => {
             </section>
 
             {/* Research Framework */}
-            <section className="py-20 px-6 bg-white">
+            <section className="py-20 px-6 bg-white dark:bg-stone-900">
                 <div className="max-w-4xl mx-auto">
                     <div className="mb-12">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Research
                         </span>
                         <h2 className="text-3xl md:text-4xl font-normal">
-                            <span className="text-stone-900">Validation </span>
-                            <span className="italic text-blue-500">framework</span>
+                            <span className="text-stone-900 dark:text-stone-100">Validation </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">framework</span>
                         </h2>
                     </div>
 
                     <div className="space-y-8">
                         {researchPhases.map((phase, index) => (
-                            <div key={index} className="border-t border-stone-200 pt-8">
+                            <div key={index} className="border-t border-stone-200 dark:border-stone-800 pt-8">
                                 <div className="flex gap-6">
-                                    <span className="text-4xl font-light text-stone-300">0{index + 1}</span>
+                                    <span className="text-4xl font-light text-stone-300 dark:text-stone-700">0{index + 1}</span>
                                     <div className="flex-1">
-                                        <h3 className="text-xl font-medium text-stone-900 mb-4">{phase.phase}</h3>
+                                        <h3 className="text-xl font-medium text-stone-900 dark:text-stone-100 mb-4">{phase.phase}</h3>
                                         <ul className="space-y-2">
                                             {phase.questions.map((q, i) => (
-                                                <li key={i} className="flex gap-3 text-stone-600" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                                                    <span className="text-blue-500 mt-0.5">—</span>
+                                                <li key={i} className="flex gap-3 text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                    <span className="text-blue-500 dark:text-blue-400 mt-0.5">—</span>
                                                     {q}
                                                 </li>
                                             ))}
@@ -336,12 +340,12 @@ const PublicationSummarizerCase = () => {
             <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto">
                     <div className="mb-12">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Roadmap
                         </span>
                         <h2 className="text-3xl md:text-4xl font-normal">
-                            <span className="text-stone-900">Next </span>
-                            <span className="italic text-blue-500">steps</span>
+                            <span className="text-stone-900 dark:text-stone-100">Next </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">steps</span>
                         </h2>
                     </div>
 
@@ -351,25 +355,25 @@ const PublicationSummarizerCase = () => {
                                 key={item.step}
                                 className={`flex items-center gap-4 p-4 rounded-lg border ${
                                     item.status === 'upcoming' 
-                                        ? 'bg-blue-50 border-blue-200' 
-                                        : 'bg-stone-50 border-stone-200'
+                                        ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' 
+                                        : 'bg-stone-50 dark:bg-stone-800/50 border-stone-200 dark:border-stone-800'
                                 }`}
                             >
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center font-medium ${
                                     item.status === 'upcoming'
                                         ? 'bg-blue-500 text-white'
-                                        : 'bg-stone-300 text-stone-600'
+                                        : 'bg-stone-300 dark:bg-stone-700 text-stone-600 dark:text-stone-400'
                                 }`} style={{ fontFamily: 'system-ui, sans-serif' }}>
                                     {item.step}
                                 </div>
                                 <div className="flex-grow">
-                                    <h3 className="font-medium text-stone-900">{item.title}</h3>
-                                    <p className="text-sm text-stone-600" style={{ fontFamily: 'system-ui, sans-serif' }}>{item.description}</p>
+                                    <h3 className="font-medium text-stone-900 dark:text-stone-100">{item.title}</h3>
+                                    <p className="text-sm text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{item.description}</p>
                                 </div>
                                 <span className={`text-xs px-2 py-1 rounded-full ${
                                     item.status === 'upcoming'
-                                        ? 'bg-blue-100 text-blue-700'
-                                        : 'bg-stone-200 text-stone-600'
+                                        ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300'
+                                        : 'bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-400'
                                 }`} style={{ fontFamily: 'system-ui, sans-serif' }}>
                                     {item.status === 'upcoming' ? 'Up Next' : 'Planned'}
                                 </span>
@@ -380,14 +384,14 @@ const PublicationSummarizerCase = () => {
             </section>
 
             {/* Footer */}
-            <section className="py-20 px-6 border-t border-stone-200">
+            <section className="py-20 px-6 border-t border-stone-200 dark:border-stone-800">
                 <div className="max-w-4xl mx-auto text-center">
-                    <p className="text-stone-500 mb-8" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-stone-500 dark:text-stone-400 mb-8" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         This project is currently in the concept phase. Follow along as it develops.
                     </p>
                     <Link 
                         to="/"
-                        className="inline-flex items-center gap-2 bg-stone-900 text-stone-50 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800"
+                        className="inline-flex items-center gap-2 bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800 dark:hover:bg-stone-200"
                         style={{ fontFamily: 'system-ui, sans-serif' }}
                     >
                         <ArrowLeft className="w-4 h-4" />
