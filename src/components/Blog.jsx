@@ -1,163 +1,301 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Clock } from 'lucide-react';
-import { blogPosts, blogCategories } from '../data/blogPosts';
+import { Github, Mail, ArrowRight, ArrowUpRight } from 'lucide-react';
+import DarkModeToggle from './DarkModeToggle';
 
-const Blog = () => {
+const Portfolio = () => {
     const [isLoaded, setIsLoaded] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState('All Posts');
 
     useEffect(() => {
         setIsLoaded(true);
-        window.scrollTo(0, 0);
     }, []);
 
-    const filteredPosts = selectedCategory === 'All Posts' 
-        ? blogPosts 
-        : blogPosts.filter(post => post.category === selectedCategory);
+    const experiences = [
+        {
+            company: "Raviro",
+            role: "Product Associate",
+            period: "June 2024 - Present",
+            location: "London, UK",
+            achievements: [
+                "Analyzed user behavior data across 12 developing regions, implementing automated validation features that increased completion rates by 13%",
+                "Created comprehensive impact dashboards in Tableau for data-driven strategic decisions",
+                "Collaborated with product teams and public health researchers on analytical requirements",
+                "Conducted deep-dive analysis on user journey data to identify platform improvement opportunities"
+            ]
+        },
+        {
+            company: "Trainline",
+            role: "Apprentice Software Engineer",
+            period: "September 2022 - June 2024",
+            location: "London, UK",
+            achievements: [
+                "Led analytical initiatives improving customer experience for 300k+ daily users",
+                "Developed GDPR-compliant data processing solutions with large datasets",
+                "Created real-time monitoring dashboards using New Relic and NRQL",
+                "Conducted A/B testing and experimentation to validate feature improvements",
+                "Served as Scrum Master facilitating data-driven sprint planning"
+            ]
+        },
+        {
+            company: "Bentley",
+            role: "Digital Technology Solutions Apprentice",
+            period: "June 2020 - September 2020",
+            location: "London, UK",
+            achievements: [
+                "Supported analytical projects for digital solution implementations",
+                "Participated in requirements gathering and analysis for product development"
+            ]
+        }
+    ];
+
+    const projects = [
+        {
+            id: 'filmslate',
+            name: "FilmSlate",
+            description: "Enhanced onboarding experience for an indie film streaming platform, focusing on personalization to improve trial-to-paid conversion rates.",
+            category: "Product Strategy",
+            status: "MVP Complete",
+            link: "/case-study/filmslate"
+        },
+        {
+            id: 'freq-space',
+            name: "freq.space",
+            description: "Full-stack marketplace connecting creative professionals with clients through portfolio showcasing and real-time collaboration tools.",
+            category: "Full-Stack Development",
+            status: "In Development",
+            link: "/case-study/freq-space"
+        },
+        {
+            id: 'publication-summarizer',
+            name: "Publication Summarizer",
+            description: "AI-powered tool to extract key insights from economic publications, helping professionals stay informed efficiently.",
+            category: "AI/ML Concept",
+            status: "Concept Phase",
+            link: "/case-study/publication-summarizer"
+        }
+    ];
+
+    const skills = [
+        { category: "Analytics", items: ["Tableau", "New Relic", "NRQL", "A/B Testing", "User Journey Analysis"] },
+        { category: "Development", items: ["Ruby", "React", "Node.js", "MongoDB", "Postgres", "Rails", "Express.js", "Socket.IO"] },
+        { category: "Product", items: ["Product Strategy", "User Research", "Market Research", "Agile/Scrum"] },
+        { category: "Data", items: ["ETL Processes", "Large Datasets", "GDPR Compliance", "Statistical Analysis"] }
+    ];
+
+    const education = [
+        {
+            institution: "King's College London",
+            degree: "Product Management, Postgraduate Certificate",
+            period: "2024 - 2025"
+        },
+        {
+            institution: "Multiverse",
+            degree: "Software Engineering, Apprenticeship (Merit)",
+            period: "2022 - 2024"
+        }
+    ];
 
     return (
-        <div className="min-h-screen bg-stone-50 text-stone-900" style={{ fontFamily: 'Georgia, serif' }}>
+        <div className="min-h-screen bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-300" style={{ fontFamily: 'Georgia, serif' }}>
             {/* Navigation */}
-            <nav className="fixed top-0 w-full z-50 bg-stone-50/95 backdrop-blur-sm border-b border-stone-200">
+            <nav className="fixed top-0 w-full z-50 bg-stone-50/95 dark:bg-stone-950/95 backdrop-blur-sm border-b border-stone-200 dark:border-stone-800">
                 <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-                    <Link to="/" className="text-xl tracking-tight font-medium text-stone-900">
+                    <Link to="/" className="text-xl tracking-tight font-medium text-stone-900 dark:text-stone-100">
                         Moses Mwangi
                     </Link>
-                    <div className="flex gap-8">
-                        <Link
-                            to="/"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                    <div className="flex items-center gap-8">
+                        <a
+                            href="#home"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Home
-                        </Link>
+                        </a>
                         <Link
                             to="/blog"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Blog
                         </Link>
                         <a
-                            href="/#projects"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            href="#experience"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            Experience
+                        </a>
+                        <a
+                            href="#projects"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Projects
                         </a>
                         <a
-                            href="/#contact"
-                            className="text-sm tracking-wide text-stone-500 hover:text-stone-900 transition-colors"
+                            href="#contact"
+                            className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
                         >
                             Contact
                         </a>
+                        <DarkModeToggle />
                     </div>
                 </div>
             </nav>
 
             {/* Hero Section */}
-            <section className={`pt-32 pb-16 px-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <div className="max-w-6xl mx-auto">
+            <section id="home" className={`min-h-screen flex items-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <div className="max-w-6xl mx-auto px-6 pt-24">
                     <div className="mb-4">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                            Musings & Meanderings
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                            Product Analyst • London
                         </span>
                     </div>
                     
                     <h1 className="text-5xl md:text-7xl leading-tight mb-8">
-                        <span className="block font-normal text-stone-900">Thoughts on</span>
-                        <span className="block italic text-blue-500">things that matter</span>
+                        <span className="block font-normal text-stone-900 dark:text-stone-100">Turning data into</span>
+                        <span className="block italic text-blue-500 dark:text-blue-400">product decisions</span>
                     </h1>
                     
-                    <p className="text-lg text-stone-600 max-w-2xl leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        Products, tech bubbles, life philosophies, and the occasional existential crisis. 
-                        Sometimes insightful, always honest, frequently caffeinated. Think of this as my 
-                        digital notebook—except you're invited to read it.
+                    <p className="text-lg text-stone-600 dark:text-stone-400 max-w-xl mb-12 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        I help product teams make better decisions through data analysis, 
+                        user research, and cross-functional collaboration. 
+                        Currently shaping product strategy at Raviro.
                     </p>
-                </div>
-            </section>
+                    
+                    <div className="flex gap-4">
+                        <a
+                            href="#contact"
+                            className="inline-flex items-center gap-2 bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800 dark:hover:bg-stone-200"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <Mail className="w-4 h-4" />
+                            Get in touch
+                        </a>
+                        <a
+                            href="https://github.com/kanya01"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-100 dark:hover:bg-stone-900"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <Github className="w-4 h-4" />
+                            View GitHub
+                        </a>
+                        <Link
+                            to="/blog"
+                            className="inline-flex items-center gap-2 border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-100 dark:hover:bg-stone-900"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <ArrowRight className="w-4 h-4" />
+                            Read Blog
+                        </Link>
+                    </div>
 
-            {/* Category Filter */}
-            <section className="px-6 pb-12">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-wrap gap-3">
-                        {blogCategories.map((category) => (
-                            <button
-                                key={category}
-                                onClick={() => setSelectedCategory(category)}
-                                className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
-                                    selectedCategory === category
-                                        ? 'bg-stone-900 text-stone-50'
-                                        : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-300'
-                                }`}
-                                style={{ fontFamily: 'system-ui, sans-serif' }}
-                            >
-                                {category}
-                            </button>
-                        ))}
+                    {/* Scroll indicator */}
+                    <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
+                        <div className="w-px h-16 bg-stone-300 dark:bg-stone-700 mx-auto"></div>
                     </div>
                 </div>
             </section>
 
-            {/* Blog Posts Grid */}
-            <section className="px-6 pb-24">
+            {/* Experience Section */}
+            <section id="experience" className="py-24 px-6">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {filteredPosts.map((post, index) => (
-                            <Link
-                                key={post.id}
-                                to={`/blog/${post.id}`}
-                                className={`group bg-white border border-stone-200 rounded-lg overflow-hidden hover:border-stone-300 hover:shadow-lg transition-all duration-300 ${
-                                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                                }`}
-                                style={{ transitionDelay: `${index * 100}ms` }}
+                    <div className="mb-16">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Background</span>
+                        <h2 className="text-4xl md:text-5xl font-normal">
+                            <span className="text-stone-900 dark:text-stone-100">Professional </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">experience</span>
+                        </h2>
+                    </div>
+
+                    <div className="space-y-16">
+                        {experiences.map((exp, index) => (
+                            <div
+                                key={index}
+                                className={`border-t border-stone-200 dark:border-stone-800 pt-8 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                style={{ transitionDelay: `${index * 150}ms` }}
                             >
-                                <div className="p-8">
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <span className="text-xs tracking-[0.2em] uppercase text-blue-500" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                                            {post.category}
-                                        </span>
+                                <div className="grid md:grid-cols-3 gap-8">
+                                    <div>
+                                        <h3 className="text-xl font-medium text-stone-900 dark:text-stone-100 mb-1">{exp.company}</h3>
+                                        <p className="text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.role}</p>
+                                        <p className="text-sm text-stone-400 dark:text-stone-500 mt-2" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.period}</p>
+                                        <p className="text-sm text-stone-400 dark:text-stone-500" style={{ fontFamily: 'system-ui, sans-serif' }}>{exp.location}</p>
                                     </div>
-
-                                    <h2 className="text-2xl font-medium text-stone-900 mb-3 group-hover:text-blue-500 transition-colors">
-                                        {post.title}
-                                    </h2>
-
-                                    <p className="text-stone-600 mb-6 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                                        {post.excerpt}
-                                    </p>
-
-                                    <div className="flex items-center gap-4 text-sm text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                                        <div className="flex items-center gap-1">
-                                            <Calendar className="w-4 h-4" />
-                                            {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                            <Clock className="w-4 h-4" />
-                                            {post.readTime}
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-center gap-2 mt-6 text-stone-600 group-hover:text-blue-500 transition-colors" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                                        <span className="text-sm">Read article</span>
-                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    <div className="md:col-span-2">
+                                        <ul className="space-y-3">
+                                            {exp.achievements.map((achievement, achIndex) => (
+                                                <li key={achIndex} className="flex gap-3 text-stone-600 dark:text-stone-400 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                    <span className="text-blue-500 dark:text-blue-400 mt-1.5">—</span>
+                                                    {achievement}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
+                            </div>
+                        ))}
+                    </div>
 
-                                {/* Tags */}
-                                <div className="px-8 pb-6">
-                                    <div className="flex flex-wrap gap-2">
-                                        {post.tags.map((tag) => (
-                                            <span
-                                                key={tag}
-                                                className="text-xs px-2 py-1 bg-stone-100 text-stone-600 rounded"
-                                                style={{ fontFamily: 'system-ui, sans-serif' }}
-                                            >
-                                                {tag}
+                    {/* Education */}
+                    <div className="mt-24">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-8" style={{ fontFamily: 'system-ui, sans-serif' }}>Education</span>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {education.map((edu, index) => (
+                                <div key={index} className="border-t border-stone-200 dark:border-stone-800 pt-6">
+                                    <h4 className="text-lg font-medium text-stone-900 dark:text-stone-100 mb-1">{edu.institution}</h4>
+                                    <p className="text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.degree}</p>
+                                    <p className="text-sm text-stone-400 dark:text-stone-500 mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.period}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Projects Section */}
+            <section id="projects" className="py-24 px-6 bg-white dark:bg-stone-900">
+                <div className="max-w-6xl mx-auto">
+                    <div className="mb-16">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Work</span>
+                        <h2 className="text-4xl md:text-5xl font-normal">
+                            <span className="text-stone-900 dark:text-stone-100">Selected </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">projects</span>
+                        </h2>
+                    </div>
+
+                    <div className="space-y-6">
+                        {projects.map((project, index) => (
+                            <Link
+                                key={project.id}
+                                to={project.link}
+                                className={`block group border border-stone-200 dark:border-stone-800 rounded-lg p-8 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800/50 transition-all duration-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                style={{ transitionDelay: `${index * 100}ms` }}
+                            >
+                                <div className="flex justify-between items-start">
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-3 mb-3">
+                                            <span className="text-xs tracking-[0.2em] uppercase text-blue-500 dark:text-blue-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                {project.category}
                                             </span>
-                                        ))}
+                                            <span className={`text-xs px-2 py-1 rounded-full ${
+                                                project.status === 'MVP Complete' 
+                                                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' 
+                                                    : project.status === 'In Development'
+                                                    ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
+                                                    : 'bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400'
+                                            }`} style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                {project.status}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-2xl font-medium text-stone-900 dark:text-stone-100 mb-2">{project.name}</h3>
+                                        <p className="text-stone-600 dark:text-stone-400 max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>{project.description}</p>
+                                    </div>
+                                    <div className="ml-6 mt-2">
+                                        <ArrowUpRight className="w-5 h-5 text-stone-400 dark:text-stone-500 group-hover:text-stone-900 dark:group-hover:text-stone-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                                     </div>
                                 </div>
                             </Link>
@@ -166,13 +304,81 @@ const Blog = () => {
                 </div>
             </section>
 
+            {/* Skills Section */}
+            <section className="py-24 px-6">
+                <div className="max-w-6xl mx-auto">
+                    <div className="mb-16">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Capabilities</span>
+                        <h2 className="text-4xl md:text-5xl font-normal">
+                            <span className="text-stone-900 dark:text-stone-100">Skills & </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">expertise</span>
+                        </h2>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                        {skills.map((skillGroup, index) => (
+                            <div key={index}>
+                                <h4 className="text-sm font-medium text-stone-900 dark:text-stone-100 mb-4 pb-2 border-b border-stone-200 dark:border-stone-800" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                    {skillGroup.category}
+                                </h4>
+                                <ul className="space-y-2">
+                                    {skillGroup.items.map((skill, sIndex) => (
+                                        <li key={sIndex} className="text-stone-600 dark:text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                            {skill}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Contact Section */}
+            <section id="contact" className="py-24 px-6 bg-white dark:bg-stone-900">
+                <div className="max-w-6xl mx-auto text-center">
+                    <div className="mb-12">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>Connect</span>
+                        <h2 className="text-4xl md:text-5xl font-normal mb-6">
+                            <span className="text-stone-900 dark:text-stone-100">Let's </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">work together</span>
+                        </h2>
+                        <p className="text-stone-600 dark:text-stone-400 max-w-lg mx-auto leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                            I'm always interested in discussing new opportunities, 
+                            product challenges, or potential collaborations.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-wrap justify-center gap-4">
+                        <a
+                            href="mailto:mosesmwangikanya@gmail.com"
+                            className="inline-flex items-center gap-2 bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 px-8 py-4 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800 dark:hover:bg-stone-200"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <Mail className="w-4 h-4" />
+                            mosesmwangikanya@gmail.com
+                        </a>
+                        <a
+                            href="https://github.com/kanya01"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 px-8 py-4 rounded-full text-sm tracking-wide transition-all duration-300 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-100 dark:hover:bg-stone-800"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <Github className="w-4 h-4" />
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             {/* Footer */}
-            <footer className="py-8 px-6 border-t border-stone-200">
+            <footer className="py-8 px-6 border-t border-stone-200 dark:border-stone-800">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-stone-400 dark:text-stone-500 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         © 2025 Moses Mwangi
                     </p>
-                    <p className="text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    <p className="text-stone-400 dark:text-stone-500 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         Product Analyst • London, England
                     </p>
                 </div>
@@ -181,4 +387,4 @@ const Blog = () => {
     );
 };
 
-export default Blog;
+export default Portfolio;
