@@ -12,7 +12,7 @@ const Portfolio = () => {
     const experiences = [
         {
             company: "Raviro",
-            role: "Junior Product Analyst",
+            role: "Product Associate",
             period: "June 2024 - Present",
             location: "London, UK",
             achievements: [
@@ -76,7 +76,7 @@ const Portfolio = () => {
 
     const skills = [
         { category: "Analytics", items: ["Tableau", "New Relic", "NRQL", "A/B Testing", "User Journey Analysis"] },
-        { category: "Development", items: ["React", "Node.js", "MongoDB", "Express.js", "Socket.IO"] },
+        { category: "Development", items: ["Ruby", "React", "Node.js", "MongoDB", "Postgres", "Rails", "Express.js", "Socket.IO"] },
         { category: "Product", items: ["Product Strategy", "User Research", "Market Research", "Agile/Scrum"] },
         { category: "Data", items: ["ETL Processes", "Large Datasets", "GDPR Compliance", "Statistical Analysis"] }
     ];
