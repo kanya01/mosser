@@ -12,7 +12,7 @@ const LiveOCase = () => {
     }, []);
 
     const techStack = {
-        backend: ['Ruby on Rails', 'PostgreSQL', 'OAuth', 'Stripe API', 'Action Cable'],
+        backend: ['Ruby on Rails', 'PostgreSQL', 'OAuth', 'Stripe API', 'Action Cable', 'Redis', 'Sentry'],
         frontend: ['Next.js', 'React 18', 'Tailwind CSS', 'OAuth Authentication']
     };
 
@@ -150,8 +150,8 @@ const LiveOCase = () => {
                     </span>
                     <p className="text-2xl md:text-3xl font-light leading-relaxed">
                         A unified platform where creative professionals can showcase their work, 
-                        connect with clients, and build sustainable careers through a democratized 
-                        marketplace—eliminating the barriers that prevent talented creators from thriving.
+                        connect with collaborators, and build sustainable careers—all without 
+                        fragmenting their presence across multiple services.
                     </p>
                 </div>
             </section>
@@ -247,13 +247,15 @@ const LiveOCase = () => {
                         Key Differentiator
                     </span>
                     <h3 className="text-2xl md:text-3xl font-light leading-relaxed mb-6">
-                        Pattern Matching & Tiered Pricing
+                        Interactive Waveform Comments & Pattern Matching
                     </h3>
                     <p className="text-blue-100 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        Unlike Fiverr's overwhelming marketplace or SoundCloud's basic service listings, live.o features 
-                        an intelligent pattern matching system that connects users with suitable creative services based on their 
-                        specific needs. Combined with a flexible tiered payment system and revision management, creators can 
-                        offer structured packages while clients find exactly what they need—faster and more efficiently.
+                        Unlike SoundCloud's basic commenting or Behance's visual-only feedback, live.o enables 
+                        precise timestamp-based comments on audio waveforms. Creative professionals can receive 
+                        specific feedback at exact moments in their tracks—essential for collaborative music 
+                        production and audio engineering workflows. Combined with an intelligent pattern matching 
+                        system and tiered payment with revision management, live.o connects the right creators 
+                        with the right clients—faster and more efficiently than traditional marketplaces.
                     </p>
                 </div>
             </section>
