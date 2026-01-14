@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Github, Music, MessageCircle, Users, ShoppingBag, Zap, Layout } from 'lucide-react';
 import DarkModeToggle from '../DarkModeToggle';
 
-const FreqSpaceCase = () => {
+const LiveOCase = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -12,8 +12,8 @@ const FreqSpaceCase = () => {
     }, []);
 
     const techStack = {
-        backend: ['Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'JWT', 'Sharp', 'FFmpeg'],
-        frontend: ['React 18', 'Redux Toolkit', 'React Router v6', 'Tailwind CSS', 'Axios']
+        backend: ['Ruby on Rails', 'PostgreSQL', 'OAuth', 'Stripe API', 'Action Cable'],
+        frontend: ['Next.js', 'React 18', 'Tailwind CSS', 'OAuth Authentication']
     };
 
     const features = [
@@ -25,27 +25,27 @@ const FreqSpaceCase = () => {
         },
         {
             icon: Zap,
-            title: 'Waveform Visualization',
-            description: 'Interactive audio waveforms with timestamp-based comments.',
-            status: 'Complete'
+            title: 'OAuth Authentication',
+            description: 'Secure authentication flow with OAuth integration.',
+            status: 'In Progress'
         },
         {
             icon: Layout,
-            title: 'Portfolio System',
-            description: 'Organize and showcase creative work with customizable pages.',
-            status: 'Complete'
+            title: 'Pattern Matching System',
+            description: 'Intelligent system to match users with suitable services based on their needs.',
+            status: 'In Progress'
         },
         {
             icon: Users,
-            title: 'User Profiles',
-            description: 'Customizable profiles with bio, skills, and social links.',
-            status: 'Complete'
+            title: 'Stripe Payment Integration',
+            description: 'Secure payment processing with Stripe for seamless transactions.',
+            status: 'In Progress'
         },
         {
             icon: MessageCircle,
-            title: 'Real-time Comments',
-            description: 'Live commenting powered by Socket.IO for instant collaboration.',
-            status: 'Complete'
+            title: 'Tiered Payment System',
+            description: 'Flexible pricing tiers with revision system for creative services.',
+            status: 'In Progress'
         },
         {
             icon: ShoppingBag,
@@ -74,7 +74,7 @@ const FreqSpaceCase = () => {
         {
             phase: '04',
             title: 'Technical Architecture',
-            description: 'Built with MERN stack for scalability. Implemented Socket.IO for real-time features, Sharp and FFmpeg for media processing, and JWT authentication.'
+            description: 'Built with Ruby on Rails backend and Next.js frontend for scalability and performance. Implemented OAuth for secure authentication, Stripe for payment processing, and Action Cable for real-time features. Currently integrating payment flow and testing authentication, while developing pattern matching system for service discovery and tiered payment system with revision management.'
         }
     ];
 
@@ -119,17 +119,17 @@ const FreqSpaceCase = () => {
                     </div>
                     
                     <h1 className="text-5xl md:text-7xl font-normal mb-6">
-                        <span className="text-stone-900 dark:text-stone-100">freq</span>
-                        <span className="italic text-blue-500 dark:text-blue-400">.space</span>
+                        <span className="text-stone-900 dark:text-stone-100">live</span>
+                        <span className="italic text-blue-500 dark:text-blue-400">.o</span>
                     </h1>
                     
                     <p className="text-xl text-stone-600 dark:text-stone-400 leading-relaxed max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        The marketplace for creative professionals. A full-stack platform connecting 
-                        musicians, producers, and engineers with clients who need their services.
+                        Building the next Fiverr for the creative space. A full-stack platform connecting 
+                        musicians, producers, and creative professionals with clients who need their services.
                     </p>
 
                     <div className="flex flex-wrap gap-2 mt-8">
-                        {['React 18', 'Node.js', 'MongoDB', 'Socket.IO', 'Redux Toolkit'].map((tag) => (
+                        {['Next.js', 'Ruby on Rails', 'OAuth', 'Stripe', 'PostgreSQL'].map((tag) => (
                             <span 
                                 key={tag}
                                 className="px-4 py-2 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 rounded-full text-sm"
@@ -150,8 +150,8 @@ const FreqSpaceCase = () => {
                     </span>
                     <p className="text-2xl md:text-3xl font-light leading-relaxed">
                         A unified platform where creative professionals can showcase their work, 
-                        connect with collaborators, and build sustainable careers—all without 
-                        fragmenting their presence across multiple services.
+                        connect with clients, and build sustainable careers through a democratized 
+                        marketplace—eliminating the barriers that prevent talented creators from thriving.
                     </p>
                 </div>
             </section>
@@ -247,13 +247,13 @@ const FreqSpaceCase = () => {
                         Key Differentiator
                     </span>
                     <h3 className="text-2xl md:text-3xl font-light leading-relaxed mb-6">
-                        Interactive Waveform Comments
+                        Pattern Matching & Tiered Pricing
                     </h3>
                     <p className="text-blue-100 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        Unlike SoundCloud's basic commenting or Behance's visual-only feedback, freq.space enables 
-                        precise timestamp-based comments on audio waveforms. Creative professionals can receive 
-                        specific feedback at exact moments in their tracks—essential for collaborative music 
-                        production and audio engineering workflows.
+                        Unlike Fiverr's overwhelming marketplace or SoundCloud's basic service listings, live.o features 
+                        an intelligent pattern matching system that connects users with suitable creative services based on their 
+                        specific needs. Combined with a flexible tiered payment system and revision management, creators can 
+                        offer structured packages while clients find exactly what they need—faster and more efficiently.
                     </p>
                 </div>
             </section>
@@ -300,11 +300,11 @@ const FreqSpaceCase = () => {
             <section className="py-20 px-6 border-t border-stone-200 dark:border-stone-800">
                 <div className="max-w-4xl mx-auto text-center">
                     <p className="text-stone-500 dark:text-stone-400 mb-8" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        freq.space is an open-source project. Check out the repository to see the full implementation.
+                        live.o is an open-source project. Check out the repository to see the full implementation.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
                         <a 
-                            href="https://github.com/kanya01/freq.space"
+                            href="https://github.com/kanya01/live.o"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800 dark:hover:bg-stone-200"
@@ -328,4 +328,4 @@ const FreqSpaceCase = () => {
     );
 };
 
-export default FreqSpaceCase;
+export default LiveOCase;

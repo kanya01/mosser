@@ -1,5 +1,245 @@
 export const blogPosts = [
     {
+        id: 'oauth-rails-implementation',
+        title: 'Building OAuth Authentication with Rails: A Technical Deep Dive',
+        excerpt: 'A comprehensive guide to implementing OAuth authentication in a Ruby on Rails application, covering security best practices, session management, and integration patterns.',
+        category: 'Tech & Development',
+        date: '2026-01-14',
+        readTime: '15 min read',
+        content: {
+            introduction: 'Authentication is the backbone of any modern web application, and OAuth has become the industry standard for secure, delegated access. In building live.o, our creative marketplace platform, we chose Ruby on Rails for the backend and OAuth for authentication. This decision wasn\'t arbitrary—it was driven by Rails\' convention-over-configuration philosophy and OAuth\'s proven security model. Here\'s what we learned implementing it from scratch.',
+            sections: [
+                {
+                    heading: 'Why OAuth Over Traditional Authentication?',
+                    content: 'Traditional username/password authentication puts the burden of credential management on your application. You\'re responsible for storing passwords securely, implementing password reset flows, handling two-factor authentication, and maintaining security patches. OAuth delegates this responsibility to trusted providers (Google, GitHub, etc.) who specialize in identity management. For live.o, this meant we could focus on building marketplace features rather than reinventing authentication infrastructure. Additionally, OAuth reduces friction in user onboarding—users can sign up with one click using existing credentials rather than creating yet another password.',
+                    keyPoints: [
+                        'Delegate credential management to specialized identity providers',
+                        'Reduce security surface area by not storing passwords',
+                        'Improve user experience with one-click social login',
+                        'Leverage existing trust relationships users have with providers',
+                        'Simplify compliance with data protection regulations'
+                    ]
+                },
+                {
+                    heading: 'Rails and OAuth: The Technical Stack',
+                    content: 'We built our authentication layer using Rails 7 with the OmniAuth gem, which provides a standardized interface for multiple OAuth providers. Our stack includes OmniAuth for OAuth abstraction, Devise for user session management (though we\'re using minimal Devise features), PostgreSQL for user data storage with encrypted tokens, and Action Cable for real-time session updates. The architecture separates authentication (proving who you are) from authorization (what you\'re allowed to do), which becomes crucial as the platform scales.',
+                    keyPoints: [
+                        'OmniAuth gem abstracts provider-specific OAuth implementations',
+                        'Devise handles session management and user model concerns',
+                        'PostgreSQL stores encrypted OAuth tokens and user data',
+                        'Clear separation between authentication and authorization layers',
+                        'Middleware architecture allows easy addition of new providers'
+                    ]
+                },
+                {
+                    heading: 'The OAuth Flow: Step by Step',
+                    content: 'Understanding the OAuth 2.0 authorization code flow is essential. Here\'s how it works in live.o: 1) User clicks "Sign in with Google" on our frontend. 2) Frontend redirects to our Rails backend OAuth initiation endpoint. 3) Rails redirects user to Google\'s authorization server with our client ID and requested scopes. 4) User authenticates with Google and grants permissions. 5) Google redirects back to our callback URL with an authorization code. 6) Our Rails backend exchanges the code for an access token via server-to-server request. 7) We use the access token to fetch user profile information from Google. 8) Rails creates or updates the user record in our database. 9) We generate a session token and return it to the frontend. This flow ensures that sensitive credentials never touch our frontend code.',
+                    keyPoints: [
+                        'Authorization code flow is most secure for server-side apps',
+                        'Frontend never sees OAuth access tokens or refresh tokens',
+                        'State parameter prevents CSRF attacks during OAuth flow',
+                        'Callback URL must be registered with OAuth provider',
+                        'Token exchange happens server-to-server for security'
+                    ]
+                },
+                {
+                    heading: 'Security Considerations',
+                    content: 'OAuth implementation requires careful attention to security. First, always use HTTPS in production—OAuth tokens sent over HTTP can be intercepted. Second, implement CSRF protection using the state parameter. We generate a random state value before redirecting to the OAuth provider and verify it matches when receiving the callback. Third, store OAuth refresh tokens encrypted in the database—we use Rails\' built-in encryption via ActiveRecord::Encryption. Fourth, implement token rotation—refresh tokens should be rotated on each use. Fifth, set appropriate token expiration—our access tokens expire after 1 hour, refresh tokens after 30 days. Sixth, validate redirect URIs strictly—only allow registered callback URLs to prevent open redirect vulnerabilities.',
+                    keyPoints: [
+                        'HTTPS mandatory for all OAuth flows in production',
+                        'State parameter prevents CSRF attacks',
+                        'Encrypt refresh tokens at rest using ActiveRecord::Encryption',
+                        'Rotate refresh tokens on each use',
+                        'Implement appropriate token expiration policies',
+                        'Strictly validate redirect URIs to prevent open redirects'
+                    ]
+                },
+                {
+                    heading: 'Session Management in Rails',
+                    content: 'After OAuth authentication succeeds, we need to manage user sessions. Rails provides several options: cookie-based sessions (simple but limited to 4KB), database-backed sessions (scalable but requires DB reads), Redis-backed sessions (fast and scalable), and JWT tokens (stateless but can\'t be invalidated). For live.o, we chose Redis-backed sessions for performance and the ability to invalidate sessions server-side. Our session store configuration uses Redis with a 2-week TTL, secure and HTTP-only cookies, and SameSite=Lax for CSRF protection. We also implement concurrent session detection—if a user logs in from a new device, we notify them and allow them to invalidate other sessions.',
+                    keyPoints: [
+                        'Redis-backed sessions provide performance and scalability',
+                        'Secure and HTTP-only cookie flags prevent XSS attacks',
+                        'SameSite=Lax provides CSRF protection for most scenarios',
+                        'Session TTL balances security and user convenience',
+                        'Concurrent session detection improves account security',
+                        'Server-side session invalidation enables forced logout'
+                    ]
+                },
+                {
+                    heading: 'Multi-Provider Support',
+                    content: 'live.o supports multiple OAuth providers: Google, GitHub, and eventually Apple and Microsoft. The OmniAuth architecture makes this straightforward. Each provider requires configuration in omniauth.rb with provider-specific client ID and secret. We use environment variables for credentials (never commit secrets to git). Our User model has a polymorphic relationship with Authentication records—a user can have multiple linked providers. The first authentication creates the user account; subsequent ones link to the existing user if emails match. We handle email conflicts gracefully—if an email is already registered with a different provider, we prompt the user to link accounts.',
+                    keyPoints: [
+                        'OmniAuth middleware allows easy multi-provider configuration',
+                        'Environment variables manage provider credentials securely',
+                        'Polymorphic association allows multiple auth methods per user',
+                        'Email matching logic handles account linking automatically',
+                        'Graceful handling of email conflicts prevents duplicate accounts',
+                        'Each provider has specific scope requirements for profile data'
+                    ]
+                },
+                {
+                    heading: 'Integrating with Next.js Frontend',
+                    content: 'Our Next.js frontend needs to handle OAuth flow while maintaining a smooth user experience. We implemented a dedicated OAuth callback page that handles the redirect from the provider, exchanges the authorization code for a session token via our Rails API, stores the session token in HTTP-only cookies, and redirects to the user dashboard. On the Rails side, we expose API endpoints for: initiating OAuth (/auth/:provider), handling callbacks (/auth/:provider/callback), refreshing tokens (/auth/refresh), and logging out (/auth/logout). The frontend uses these endpoints transparently—users don\'t see the complexity of the OAuth dance.',
+                    keyPoints: [
+                        'Dedicated callback page in Next.js handles OAuth redirects',
+                        'Session tokens stored in HTTP-only cookies for security',
+                        'Rails API provides clean authentication endpoints',
+                        'Frontend uses SWR for automatic token refresh',
+                        'Loading states prevent UI flicker during auth flow',
+                        'Error handling provides clear user feedback'
+                    ]
+                },
+                {
+                    heading: 'Testing OAuth Flows',
+                    content: 'Testing OAuth is notoriously difficult because it involves third-party services. Our testing strategy includes: 1) OmniAuth mock mode for unit tests—OmniAuth provides mock callbacks that don\'t hit real OAuth providers. 2) VCR for integration tests—records HTTP interactions with OAuth providers and replays them in tests. 3) Test OAuth apps—we create separate OAuth applications with providers specifically for testing. 4) Staging environment testing—manual testing against real providers before production deployment. We also test edge cases like: provider returns error, user denies permission, email already exists, provider changes user email, token refresh fails, and concurrent login attempts.',
+                    keyPoints: [
+                        'OmniAuth mock mode enables fast unit tests',
+                        'VCR records and replays provider interactions',
+                        'Separate test OAuth apps prevent production data pollution',
+                        'Comprehensive edge case testing prevents runtime errors',
+                        'Staging environment validates real provider integration',
+                        'RSpec shared examples reduce test duplication'
+                    ]
+                },
+                {
+                    heading: 'Common Pitfalls and How We Avoided Them',
+                    content: 'We encountered several challenges implementing OAuth: First, callback URL mismatches—providers require exact URL matches including protocol and trailing slashes. We centralized callback URL generation in a helper method. Second, state parameter confusion—some developers skip the state parameter, opening CSRF vulnerabilities. We enforce state validation in our callback handler. Third, token storage—storing tokens in localStorage makes them vulnerable to XSS. We use HTTP-only cookies exclusively. Fourth, error handling—OAuth can fail in many ways (user denies permission, provider is down, network timeout). We implemented comprehensive error handling with user-friendly messages. Fifth, testing in development—OAuth providers often don\'t allow localhost redirects. We use ngrok to create public URLs for local development.',
+                    keyPoints: [
+                        'Centralize callback URL generation to prevent mismatches',
+                        'Always validate state parameter to prevent CSRF',
+                        'Never store tokens in localStorage—use HTTP-only cookies',
+                        'Implement comprehensive error handling for all failure modes',
+                        'Use ngrok or similar tools for local OAuth testing',
+                        'Document provider-specific quirks and limitations'
+                    ]
+                },
+                {
+                    heading: 'Performance Optimization',
+                    content: 'OAuth adds latency to the authentication flow—users are redirected to external providers and back. To optimize performance: 1) We cache user profile data from providers to avoid fetching it on every login. 2) We implement optimistic UI updates—show loading states immediately while OAuth completes. 3) We preconnect to provider domains using link preconnect tags. 4) We use Redis for session storage to minimize database load. 5) We implement connection pooling for external HTTP requests to providers. These optimizations reduced our average authentication time from 3.2 seconds to 1.8 seconds.',
+                    keyPoints: [
+                        'Cache provider profile data to reduce external API calls',
+                        'Optimistic UI updates improve perceived performance',
+                        'Link preconnect reduces latency to OAuth provider domains',
+                        'Redis session storage minimizes database round trips',
+                        'Connection pooling improves external API performance',
+                        'Monitoring and logging help identify performance bottlenecks'
+                    ]
+                }
+            ],
+            conclusion: 'Implementing OAuth with Rails taught us that security and user experience don\'t have to be at odds. By delegating authentication to trusted providers, we improved both security (no password storage) and UX (one-click signup). The Rails ecosystem, particularly OmniAuth and Devise, provides excellent abstractions that handle the complexity while remaining flexible. For live.o, this foundation enables us to focus on marketplace features—payment processing, pattern matching, and tiered services—knowing our authentication layer is secure and scalable. If you\'re building a Rails application that needs authentication, start with OAuth. The initial complexity pays dividends in security, user experience, and reduced maintenance burden.'
+        },
+        tags: ['OAuth', 'Ruby on Rails', 'Authentication', 'Security', 'Backend Development']
+    },
+    {
+        id: 'live-o-democratizing-music',
+        title: 'Building live.o: Democratizing the Music Industry Through Technology',
+        excerpt: 'The story behind live.o—from university music student struggling to find collaborators, to building a platform that helps creative professionals connect with clients and opportunities.',
+        category: 'Personal Reflections',
+        date: '2026-01-14',
+        readTime: '12 min read',
+        content: {
+            introduction: 'I started university as a music student with big dreams and limited connections. I was 18, passionate about production, and completely naive about how the music industry actually works. Over four years, I met dozens of talented musicians, producers, and engineers—many older than me, some already gigging professionally—who all shared the same frustration: "Where do I find work? Who do I ask for opportunities?" That question stuck with me long after I left music for software engineering. live.o is my attempt to answer it.',
+            sections: [
+                {
+                    heading: 'The Music Industry\'s Discovery Problem',
+                    content: 'The music industry has always had a discovery problem, but it\'s not what you think. Everyone talks about how hard it is for artists to get discovered by labels or fans. That\'s true, but there\'s a deeper issue: talented musicians can\'t find the people who need their specific skills. A guitarist who can play jazz fusion sits at home because the producer three miles away doesn\'t know they exist. A mixing engineer with a decade of experience can\'t find clients because they\'re not on the "right" Discord servers or Facebook groups. Fiverr exists, but it\'s overwhelming—thousands of listings with no way to filter for genuine quality or specific needs. SoundCloud is for sharing finished tracks, not finding collaborators. LinkedIn works for traditional jobs but feels completely wrong for creative work. The tools we have don\'t match the way musicians actually work.',
+                    keyPoints: [
+                        'Musicians struggle to find clients who need their specific skills',
+                        'Existing platforms (Fiverr, SoundCloud) don\'t solve the matching problem',
+                        'Geographic proximity matters but current tools ignore it',
+                        'Quality signaling is broken—ratings and reviews aren\'t enough',
+                        'Creative work requires different tools than traditional employment'
+                    ]
+                },
+                {
+                    heading: 'My Music Journey: Learning the Hard Way',
+                    content: 'I studied music at university thinking I\'d become a producer. I was decent—good enough to get session work, not good enough to make a living. What struck me wasn\'t my lack of skill (though that was real); it was how random opportunities were. I got my first paid gig because someone\'s friend mentioned me in a group chat. My second came from a lecturer who knew I needed money. My third was pure luck—I was in the studio when another producer cancelled. None of these opportunities came from me being good. They came from being in the right place, knowing the right person, saying the right thing at the right time. Meanwhile, I knew musicians who were significantly better than me—a drummer who could sight-read anything, a vocalist with perfect pitch—who couldn\'t get work because they didn\'t have the right connections. That felt fundamentally unfair.',
+                    keyPoints: [
+                        'Most music opportunities come from random connections, not merit',
+                        'Being "in the room" matters more than being skilled',
+                        'Talented musicians without connections struggle to find work',
+                        'The current system rewards networking ability over musical ability',
+                        'Geographic and social barriers prevent skill-based matching'
+                    ]
+                },
+                {
+                    heading: 'Switching to Software: A Different Perspective',
+                    content: 'I left music for software engineering, partly because I needed stability, partly because I was curious about building things. The transition was jarring. In software, job opportunities are posted publicly on LinkedIn, Stack Overflow, company websites. You apply, do a technical interview, demonstrate your skills, and get hired (or don\'t). The process isn\'t perfect, but it\'s structured. Contrast that with music: opportunities are whispered in group chats, shared in closed Facebook groups, mentioned casually at gigs. If you\'re not in those spaces, you don\'t even know the work exists. This information asymmetry creates a two-tier system—insiders who know where to look, and outsiders who don\'t. My software background made me realize: this is a technical problem. We can build tools to surface opportunities, match skills with needs, and reduce the role of random luck.',
+                    keyPoints: [
+                        'Software industry has more transparent hiring processes',
+                        'Music opportunities are shared in closed, informal networks',
+                        'Information asymmetry creates insider/outsider dynamics',
+                        'Technical solutions can reduce reliance on random connections',
+                        'Structured platforms can democratize access to opportunities'
+                    ]
+                },
+                {
+                    heading: 'What live.o Actually Does',
+                    content: 'live.o is built around a simple idea: what if we could match creative professionals with clients who need their exact skills, without requiring existing connections? Here\'s how it works technically. Users create profiles showcasing their work—audio samples, videos, portfolio pieces. Clients post what they need—"I need a jazz guitarist for a recording session" or "Looking for a mixing engineer familiar with hip-hop." Our pattern matching system analyzes both sides—skills, genre preferences, budget, location, availability—and suggests matches. Clients can browse suggested matches, listen to samples, and send offers. Musicians can see opportunities that match their skills without scrolling through thousands of irrelevant listings. Payments flow through Stripe with a tiered system—clients choose packages (basic, standard, premium) with different revision allowances. This structure benefits both sides: clients get clear pricing, musicians get protected payment, and both have a framework for managing revisions and scope.',
+                    keyPoints: [
+                        'Pattern matching connects skills with needs automatically',
+                        'Profile showcases replace the need for personal connections',
+                        'Tiered pricing provides structure for both clients and creatives',
+                        'Stripe integration ensures secure, reliable payments',
+                        'Revision system manages scope and expectations clearly',
+                        'Geographic and genre filters improve match quality'
+                    ]
+                },
+                {
+                    heading: 'The Technical Vision: Rails + Next.js + OAuth',
+                    content: 'We chose Ruby on Rails for the backend because Rails makes database-backed applications fast to build and maintain. Our pattern matching system queries PostgreSQL with complex filters—genre tags, skill categories, location radius, budget ranges. Rails\' ActiveRecord makes these queries straightforward. Next.js on the frontend gives us server-side rendering for SEO (important for musicians building their public profiles) and fast page loads. OAuth authentication via Google and GitHub reduces signup friction—users hate creating new passwords. Stripe handles payments with webhooks that trigger our tiered pricing logic. Currently, we\'re integrating the payment flow and testing authentication edge cases. Next up: building the pattern matching algorithm. This isn\'t simple keyword matching—we\'re training a model on successful matches to improve suggestions over time.',
+                    keyPoints: [
+                        'Rails provides rapid development for database-backed features',
+                        'Next.js enables SEO-friendly musician profiles',
+                        'OAuth reduces signup friction and improves security',
+                        'Stripe webhooks trigger tiered pricing and revision logic',
+                        'Pattern matching will evolve from rules-based to ML-based',
+                        'PostgreSQL handles complex filtering queries efficiently'
+                    ]
+                },
+                {
+                    heading: 'The Wider Vision: Democratizing Music',
+                    content: 'live.o isn\'t just about connecting musicians with gigs—it\'s about fundamentally changing who gets access to opportunities in the music industry. Right now, the industry rewards people who: went to the "right" schools (Berklee, Juilliard), live in the "right" cities (LA, Nashville, London), know the "right" people (industry insiders), or can afford to work for free while building connections. This system is exclusionary by design. It favors wealth, geography, and social capital over talent. live.o\'s vision is to make skill the primary filter. If you\'re a great guitarist in a small town in Scotland, you should be able to find work. If you\'re a mixing engineer who learned on YouTube instead of audio school, your portfolio should speak for itself. If you\'re a vocalist who can\'t afford to move to London, remote collaboration tools should enable you to work with producers anywhere. Technology can\'t solve all of music\'s inequalities, but it can reduce the role of random luck and insider access.',
+                    keyPoints: [
+                        'Current music industry favors wealth and connections over skill',
+                        'Geographic barriers prevent talented musicians from finding work',
+                        'Formal education requirements exclude self-taught musicians',
+                        'live.o makes skill demonstration the primary filter',
+                        'Remote collaboration reduces geographic limitations',
+                        'Transparent pricing and payments protect both parties'
+                    ]
+                },
+                {
+                    heading: 'Challenges We\'re Facing',
+                    content: 'Building a marketplace is hard. Our biggest challenge right now is the cold-start problem: clients won\'t come if there are no musicians, and musicians won\'t join if there are no clients. We\'re solving this by manually onboarding musicians we know are talented, building their profiles, and using those profiles to attract clients. Once we have enough liquidity on both sides, network effects take over. Second challenge: quality control. Fiverr struggles with this—how do you distinguish genuinely skilled musicians from beginners? We\'re implementing verification systems: LinkedIn-style skill endorsements from other users, verified credentials (music degrees, certifications), and portfolio reviews by industry professionals. Third challenge: pricing. How much should a mixing engineer charge? A session guitarist? We\'re building pricing guides based on market research and historical data to help both sides set fair rates.',
+                    keyPoints: [
+                        'Cold-start problem requires manual curation initially',
+                        'Quality signaling needs multi-layered verification',
+                        'Pricing transparency helps both clients and musicians',
+                        'Network effects will drive growth once critical mass is reached',
+                        'Trust and safety features are essential for marketplace success',
+                        'Balancing automation with human curation improves quality'
+                    ]
+                },
+                {
+                    heading: 'Why This Matters to Me',
+                    content: 'I think about the musicians I knew in university—the drummer who worked retail despite being phenomenal, the producer who gave up music because they couldn\'t find clients, the vocalist who moved to London (going into debt) because they believed that was the only way to make it. These were talented people who loved music and wanted to build careers, but the system failed them. Not because they lacked skill, but because they lacked connections. That\'s what drives me to build live.o. If we can make skill matter more than luck, if we can help one talented musician find sustainable work, if we can reduce the role of insider access even slightly, this project is worth it. I left music, but I haven\'t stopped caring about the people still trying to make it work.',
+                    keyPoints: [
+                        'Personal experience with talented musicians who couldn\'t find work',
+                        'Current system prioritizes connections over skill',
+                        'Financial barriers prevent talented people from pursuing music',
+                        'live.o aims to make skill-based matching the norm',
+                        'Success means helping musicians build sustainable careers',
+                        'Technology can reduce (not eliminate) industry inequalities'
+                    ]
+                }
+            ],
+            conclusion: 'live.o is still early—we\'re integrating payments, testing authentication, building the pattern matching system. But the vision is clear: a platform where talented musicians can find work based on their skills, not their connections. Where clients can find the exact creative professional they need without scrolling through thousands of irrelevant profiles. Where pricing is transparent, payments are protected, and geography matters less. The music industry has always been gatekept by insiders who control access to opportunities. We\'re building a gate that anyone can walk through. Whether that vision succeeds depends on execution, market demand, and a bit of luck. But having seen firsthand how many talented musicians struggle unnecessarily, I think it\'s worth trying. If you\'re a musician, producer, or creative professional who\'s felt the frustration of not knowing where to find work, live.o is for you. And if you\'re a client who\'s struggled to find the right creative talent, we\'re building this for you too. Let\'s make the music industry a little more fair.'
+        },
+        tags: ['Music Industry', 'Entrepreneurship', 'live.o', 'Personal Journey', 'Product Vision']
+    },
+    {
         id: 'ai-infrastructure-bubble',
         title: 'The AI Infrastructure Bubble: When Trillion-Dollar Bets Meet Reality',
         excerpt: 'Investors are hedging against AI companies with credit default swaps. What does this mean for tech\'s biggest bet since the dot-com era—and what should everyday consumers make of it?',
@@ -646,6 +886,7 @@ export const blogPosts = [
 export const blogCategories = [
     'All Posts',
     'Tech & Finance',
+    'Tech & Development',
     'Usability Analysis',
     'Product Design Excellence',
     'Design Philosophy',

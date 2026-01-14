@@ -58,12 +58,12 @@ const Portfolio = () => {
             link: "/case-study/filmslate"
         },
         {
-            id: 'freq-space',
-            name: "freq.space",
-            description: "Full-stack marketplace connecting creative professionals with clients through portfolio showcasing and real-time collaboration tools.",
+            id: 'live-o',
+            name: "live.o",
+            description: "Building the next Fiverr for the creative space. A full-stack marketplace connecting creative professionals with clients through portfolio showcasing, pattern matching, and tiered payment systems.",
             category: "Full-Stack Development",
             status: "In Development",
-            link: "/case-study/freq-space"
+            link: "/case-study/live-o"
         },
         {
             id: 'publication-summarizer',
