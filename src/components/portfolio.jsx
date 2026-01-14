@@ -149,7 +149,7 @@ const Portfolio = () => {
                 <div className="max-w-6xl mx-auto px-6 pt-24">
                     <div className="mb-4">
                         <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                            Product Associate • London • Building the next Fiverr for the creative scene
+                            Product Associate • London • Building the next Fiverr for the creative space
                         </span>
                     </div>
                     
