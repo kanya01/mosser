@@ -58,12 +58,12 @@ const Portfolio = () => {
             link: "/case-study/filmslate"
         },
         {
-            id: 'freq-space',
-            name: "freq.space",
-            description: "Full-stack marketplace connecting creative professionals with clients through portfolio showcasing and real-time collaboration tools.",
+            id: 'live-o',
+            name: "live.o",
+            description: "Building the next Fiverr for the creative space. A full-stack marketplace connecting creative professionals with clients through portfolio showcasing, pattern matching, and tiered payment systems.",
             category: "Full-Stack Development",
             status: "In Development",
-            link: "/case-study/freq-space"
+            link: "/case-study/live-o"
         },
         {
             id: 'publication-summarizer',
@@ -149,7 +149,7 @@ const Portfolio = () => {
                 <div className="max-w-6xl mx-auto px-6 pt-24">
                     <div className="mb-4">
                         <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                            Product Associate • London
+                            Product Associate • London • Building the next Fiverr for the creative space
                         </span>
                     </div>
                     
@@ -161,7 +161,7 @@ const Portfolio = () => {
                     <p className="text-lg text-stone-600 dark:text-stone-400 max-w-xl mb-12 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
                         I help product teams make better decisions through data analysis, 
                         user research, and cross-functional collaboration. 
-                        Currently shaping product strategy at Raviro.
+                        Currently shaping product strategy at Raviro and building the future of the music industry at live.o.
                     </p>
                     
                     <div className="flex gap-4">
