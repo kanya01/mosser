@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, Clock } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, Menu, X, LogIn, LogOut } from 'lucide-react';
 import { blogPosts, blogCategories } from '../data/blogPosts';
 import DarkModeToggle from './DarkModeToggle';
 
 const Blog = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('All Posts');
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         setIsLoaded(true);
         window.scrollTo(0, 0);
     }, []);
+
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    const closeMobileMenu = () => {
+        setIsMobileMenuOpen(false);
+    };
+
+    const handleAuth = () => {
+        setIsLoggedIn(!isLoggedIn);
+        // TODO: Implement actual authentication logic
+    };
 
     const filteredPosts = selectedCategory === 'All Posts' 
         ? blogPosts 
@@ -25,7 +40,9 @@ const Blog = () => {
                     <Link to="/" className="text-xl tracking-tight font-medium text-stone-900 dark:text-stone-100">
                         Moses Mwangi
                     </Link>
-                    <div className="flex items-center gap-8">
+                    
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center gap-6">
                         <Link
                             to="/"
                             className="text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
@@ -54,7 +71,100 @@ const Blog = () => {
                         >
                             Contact
                         </a>
+                        <button
+                            onClick={handleAuth}
+                            className="inline-flex items-center gap-2 text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            {isLoggedIn ? (
+                                <>
+                                    <LogOut className="w-4 h-4" />
+                                    Logout
+                                </>
+                            ) : (
+                                <>
+                                    <LogIn className="w-4 h-4" />
+                                    Login
+                                </>
+                            )}
+                        </button>
                         <DarkModeToggle />
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <div className="flex md:hidden items-center gap-4">
+                        <DarkModeToggle />
+                        <button
+                            onClick={toggleMobileMenu}
+                            className="text-stone-900 dark:text-stone-100 p-2 hover:bg-stone-100 dark:hover:bg-stone-900 rounded-lg transition-colors"
+                            aria-label="Toggle mobile menu"
+                        >
+                            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
+                    </div>
+                </div>
+
+                {/* Mobile Menu */}
+                <div 
+                    className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+                        isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                >
+                    <div className="px-6 py-4 bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800">
+                        <div className="flex flex-col space-y-4">
+                            <Link
+                                to="/"
+                                onClick={closeMobileMenu}
+                                className="text-base tracking-wide text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors py-2"
+                                style={{ fontFamily: 'system-ui, sans-serif' }}
+                            >
+                                Home
+                            </Link>
+                            <Link
+                                to="/blog"
+                                onClick={closeMobileMenu}
+                                className="text-base tracking-wide text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors py-2"
+                                style={{ fontFamily: 'system-ui, sans-serif' }}
+                            >
+                                Blog
+                            </Link>
+                            <a
+                                href="/#projects"
+                                onClick={closeMobileMenu}
+                                className="text-base tracking-wide text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors py-2"
+                                style={{ fontFamily: 'system-ui, sans-serif' }}
+                            >
+                                Projects
+                            </a>
+                            <a
+                                href="/#contact"
+                                onClick={closeMobileMenu}
+                                className="text-base tracking-wide text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors py-2"
+                                style={{ fontFamily: 'system-ui, sans-serif' }}
+                            >
+                                Contact
+                            </a>
+                            <button
+                                onClick={() => {
+                                    handleAuth();
+                                    closeMobileMenu();
+                                }}
+                                className="inline-flex items-center gap-2 text-base tracking-wide text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors py-2 text-left"
+                                style={{ fontFamily: 'system-ui, sans-serif' }}
+                            >
+                                {isLoggedIn ? (
+                                    <>
+                                        <LogOut className="w-5 h-5" />
+                                        Logout
+                                    </>
+                                ) : (
+                                    <>
+                                        <LogIn className="w-5 h-5" />
+                                        Login
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </nav>
