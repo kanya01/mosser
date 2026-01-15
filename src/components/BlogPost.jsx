@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, Tag, Menu, X, LogIn, LogOut } from 'lucide-react';
 import { blogPosts } from '../data/blogPosts';
 import DarkModeToggle from './DarkModeToggle';
 
@@ -8,6 +8,8 @@ const BlogPost = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const post = blogPosts.find(p => p.id === id);
 
@@ -19,6 +21,19 @@ const BlogPost = () => {
         setIsLoaded(true);
         window.scrollTo(0, 0);
     }, [post, navigate]);
+
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    const closeMobileMenu = () => {
+        setIsMobileMenuOpen(false);
+    };
+
+    const handleAuth = () => {
+        setIsLoggedIn(!isLoggedIn);
+        // TODO: Implement actual authentication logic
+    };
 
     if (!post) {
         return null;
@@ -35,13 +50,92 @@ const BlogPost = () => {
                         style={{ fontFamily: 'system-ui, sans-serif' }}
                     >
                         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                        <span>Back to Blog</span>
+                        <span className="hidden sm:inline">Back to Blog</span>
                     </Link>
-                    <div className="flex items-center gap-6">
+                    
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center gap-6">
                         <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Article
                         </span>
+                        <button
+                            onClick={handleAuth}
+                            className="inline-flex items-center gap-2 text-sm tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            {isLoggedIn ? (
+                                <>
+                                    <LogOut className="w-4 h-4" />
+                                    Logout
+                                </>
+                            ) : (
+                                <>
+                                    <LogIn className="w-4 h-4" />
+                                    Login
+                                </>
+                            )}
+                        </button>
                         <DarkModeToggle />
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <div className="flex md:hidden items-center gap-4">
+                        <DarkModeToggle />
+                        <button
+                            onClick={toggleMobileMenu}
+                            className="text-stone-900 dark:text-stone-100 p-2 hover:bg-stone-100 dark:hover:bg-stone-900 rounded-lg transition-colors"
+                            aria-label="Toggle mobile menu"
+                        >
+                            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
+                    </div>
+                </div>
+
+                {/* Mobile Menu */}
+                <div 
+                    className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+                        isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                >
+                    <div className="px-6 py-4 bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800">
+                        <div className="flex flex-col space-y-4">
+                            <Link
+                                to="/"
+                                onClick={closeMobileMenu}
+                                className="text-base tracking-wide text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors py-2"
+                                style={{ fontFamily: 'system-ui, sans-serif' }}
+                            >
+                                Home
+                            </Link>
+                            <Link
+                                to="/blog"
+                                onClick={closeMobileMenu}
+                                className="text-base tracking-wide text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors py-2"
+                                style={{ fontFamily: 'system-ui, sans-serif' }}
+                            >
+                                Blog
+                            </Link>
+                            <button
+                                onClick={() => {
+                                    handleAuth();
+                                    closeMobileMenu();
+                                }}
+                                className="inline-flex items-center gap-2 text-base tracking-wide text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors py-2 text-left"
+                                style={{ fontFamily: 'system-ui, sans-serif' }}
+                            >
+                                {isLoggedIn ? (
+                                    <>
+                                        <LogOut className="w-5 h-5" />
+                                        Logout
+                                    </>
+                                ) : (
+                                    <>
+                                        <LogIn className="w-5 h-5" />
+                                        Login
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </header>
