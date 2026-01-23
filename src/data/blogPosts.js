@@ -109,6 +109,8 @@ export const blogPosts = [
             conclusion: 'Building products with a user-centric mindset isn\'t about following a rigid methodology or checking boxes in a design process. It\'s about cultivating genuine curiosity about users, systematic validation of assumptions, and continuous iteration based on feedback and data. For live.o, this approach means we\'re not just building a platform we think musicians need—we\'re building one that solves problems we\'ve validated through research, designed through user collaboration, and refined through continuous learning. The result isn\'t perfect, and it never will be. But it\'s real, it\'s useful, and it gets better every week. That\'s what user-centric design makes possible.'
         },
         tags: ['Product Management', 'User-Centric Design', 'Product Strategy', 'UX Design', 'Continuous Improvement']
+    },
+    {
         id: 'testing-strategies-typescript-components',
         title: 'Testing Strategies for TypeScript Components: Finding the Right Balance',
         excerpt: 'An exploration of testing approaches for the Live.O music collaboration platform—evaluating when tests add value versus when they hinder development, and comparing Jest and Cypress.',
