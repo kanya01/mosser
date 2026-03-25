@@ -72,6 +72,14 @@ const Portfolio = () => {
             category: "AI/ML Concept",
             status: "Concept Phase",
             link: "/case-study/publication-summarizer"
+        },
+        {
+            id: 'skilldeck',
+            name: "SkillDeck",
+            description: "An AI development accelerator that scaffolds production-ready agent skills via Ruby gems. Developers select skills through a GUI to reduce hallucinations, enforce conventions, and ship cleaner code—faster. Built toward a community registry where developers share, fork, and co-develop skills.",
+            category: "Developer Tools",
+            status: "In Development",
+            link: "/blog/skilldeck-scaffold-smarter-ship-better"
         }
     ];
 
