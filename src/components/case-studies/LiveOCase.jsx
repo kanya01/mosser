@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Github, Music, MessageCircle, Users, ShoppingBag, Zap, Layout } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Music, MessageCircle, Users, ShoppingBag, Zap, Layout, CheckCircle2, Clock, Bell, CreditCard, Search, Lock, Star, Package } from 'lucide-react';
 import DarkModeToggle from '../DarkModeToggle';
 
 const LiveOCase = () => {
@@ -12,76 +12,138 @@ const LiveOCase = () => {
     }, []);
 
     const techStack = {
-        backend: ['Ruby on Rails', 'PostgreSQL', 'OAuth', 'Stripe API', 'Action Cable', 'Redis', 'Sentry'],
-        frontend: ['Next.js', 'React 18', 'Tailwind CSS', 'OAuth Authentication']
+        backend: ['Ruby on Rails', 'PostgreSQL', 'OAuth', 'Stripe API', 'Action Cable', 'Redis', 'Sentry', 'SolidQueue', 'Resend'],
+        frontend: ['Next.js', 'React 18', 'Tailwind CSS', 'Stripe Elements', 'Active Storage']
     };
 
-    const features = [
+    const builtFeatures = [
         {
-            icon: Music,
-            title: 'Multi-Format Upload',
-            description: 'Support for audio (MP3, WAV, FLAC), video (MP4, WebM), and images.',
-            status: 'Complete'
+            icon: Lock,
+            title: 'Auth & User Profiles',
+            description: 'JWT authentication (24-hour expiry), Auth0 OAuth (Google & GitHub), user profiles with avatar, bio, skills, and role.'
         },
         {
-            icon: Zap,
-            title: 'OAuth Authentication',
-            description: 'Secure authentication flow with OAuth integration.',
-            status: 'In Progress'
-        },
-        {
-            icon: Layout,
-            title: 'Pattern Matching System',
-            description: 'Intelligent system to match users with suitable services based on their needs.',
-            status: 'In Progress'
-        },
-        {
-            icon: Users,
-            title: 'Stripe Payment Integration',
-            description: 'Secure payment processing with Stripe for seamless transactions.',
-            status: 'In Progress'
-        },
-        {
-            icon: MessageCircle,
-            title: 'Tiered Payment System',
-            description: 'Flexible pricing tiers with revision system for creative services.',
-            status: 'In Progress'
+            icon: Search,
+            title: 'Creator Discovery',
+            description: 'Unified /discover page with role-based filtering (Producer, Vocalist, Engineer), experience level filtering, and keyword search.'
         },
         {
             icon: ShoppingBag,
-            title: 'Marketplace',
-            description: 'Service listings and professional search functionality.',
-            status: 'In Progress'
+            title: 'Services & Tiers',
+            description: 'Full service CRUD with tiered pricing (Basic, Standard, Premium), features list per tier, and comparison view UI.'
+        },
+        {
+            icon: CreditCard,
+            title: 'Stripe Payments',
+            description: 'PaymentIntent integration, Stripe Connect for seller payouts, 14-day earnings hold, payout requests, and webhook handling.'
+        },
+        {
+            icon: Package,
+            title: 'Orders & Delivery',
+            description: 'Full order lifecycle (pending → paid → in_progress → in_review → completed), revision flows, and deliverable upload/download.'
+        },
+        {
+            icon: MessageCircle,
+            title: 'Messaging',
+            description: 'Direct conversations between users with real-time message display and read status tracking via Action Cable.'
+        },
+        {
+            icon: Bell,
+            title: 'Email & Notifications',
+            description: 'Branded emails via Resend, in-app notification bell, 12 event types, async delivery via SolidQueue, and newsletter with double opt-in.'
+        },
+        {
+            icon: Layout,
+            title: 'Seller Dashboard',
+            description: 'Earnings overview (available, pending, total), order management, and Stripe Connect account status.'
         }
     ];
 
-    const process = [
+    const roadmap = [
         {
-            phase: '01',
-            title: 'Problem Identification',
-            description: 'Creative professionals lack a unified platform combining portfolio showcasing, real-time collaboration, and marketplace functionality. Existing solutions are fragmented across SoundCloud, Behance, and Fiverr.'
+            phase: 'Phase 1 & 2',
+            title: 'Core Platform & Email',
+            description: 'Full marketplace, payments, orders, messaging, email notifications, and seller dashboard.',
+            status: 'complete',
+            label: 'Complete'
         },
         {
-            phase: '02',
-            title: 'Market Research',
-            description: 'Analyzed competitors to identify key gaps: no timestamp-based audio feedback, no integrated marketplace in portfolio platforms, and poor real-time collaboration tools.'
+            phase: 'Phase 3',
+            title: 'Tech Debt Resolution',
+            description: 'Auth persistence improvements, lint & type check fixes, hardcoded data cleanup, and order scoping.',
+            status: 'active',
+            label: 'In Progress'
         },
         {
-            phase: '03',
-            title: 'User Research',
-            description: 'Conducted interviews with musicians, producers, and engineers. 78% wanted a single platform, 85% valued real-time feedback, and 92% struggled with client acquisition.'
+            phase: 'Phase 4',
+            title: 'Admin Hub',
+            description: 'Private admin panel for user management, sign-up monitoring, support queries, newsletter, and platform metrics.',
+            status: 'complete',
+            label: 'Complete'
         },
         {
-            phase: '04',
-            title: 'Technical Architecture',
-            description: 'Built with Ruby on Rails backend and Next.js frontend for scalability and performance. Implemented OAuth for secure authentication, Stripe for payment processing, and Action Cable for real-time features. Currently integrating payment flow and testing authentication, while developing pattern matching system for service discovery and tiered payment system with revision management.'
+            phase: 'Phase 5',
+            title: 'Support System',
+            description: 'User-facing help form, support ticket lifecycle, admin responses, and FAQ / knowledge base.',
+            status: 'planned',
+            label: 'Planned'
+        },
+        {
+            phase: 'Phase 6a',
+            title: 'Reviews & Ratings',
+            description: 'Review model tied to completed orders, star ratings with aggregate computation, and seller responses.',
+            status: 'planned',
+            label: 'Planned'
+        },
+        {
+            phase: 'Phase 6b',
+            title: 'Service-Oriented Messaging',
+            description: 'File sharing in chat, in-conversation service offers, order initiation from chat, order updates in thread, and rich message types.',
+            status: 'next',
+            label: 'Key Next Feature'
+        },
+        {
+            phase: 'Phase 7',
+            title: 'Polish & Scale',
+            description: 'Waveform audio player, infinite scroll, comprehensive test suite (90%+ coverage), rate limiting, and mobile audit.',
+            status: 'future',
+            label: 'Future'
         }
     ];
 
-    const researchStats = [
-        { value: '78%', label: 'Want unified platform' },
-        { value: '85%', label: 'Need real-time feedback' },
-        { value: '92%', label: 'Struggle with client acquisition' }
+    const statusStyles = {
+        complete: {
+            badge: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400',
+            dot: 'bg-emerald-500',
+            border: 'border-emerald-200 dark:border-emerald-800'
+        },
+        active: {
+            badge: 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400',
+            dot: 'bg-amber-500',
+            border: 'border-amber-200 dark:border-amber-800'
+        },
+        next: {
+            badge: 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
+            dot: 'bg-blue-500',
+            border: 'border-blue-200 dark:border-blue-800'
+        },
+        planned: {
+            badge: 'bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400',
+            dot: 'bg-stone-400',
+            border: 'border-stone-200 dark:border-stone-800'
+        },
+        future: {
+            badge: 'bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400',
+            dot: 'bg-purple-400',
+            border: 'border-stone-200 dark:border-stone-800'
+        }
+    };
+
+    const platformStats = [
+        { value: '2', label: 'Phases shipped' },
+        { value: '12+', label: 'Notification event types' },
+        { value: '5', label: 'Order lifecycle stages' },
+        { value: '78%', label: 'Creators want a unified platform' }
     ];
 
     return (
@@ -113,8 +175,8 @@ const LiveOCase = () => {
                         <span className="text-xs tracking-[0.2em] uppercase text-blue-500 dark:text-blue-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Full-Stack Development
                         </span>
-                        <span className="text-xs px-2 py-1 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                            In Development
+                        <span className="text-xs px-2 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                            Live &amp; Growing
                         </span>
                     </div>
                     
@@ -124,12 +186,13 @@ const LiveOCase = () => {
                     </h1>
                     
                     <p className="text-xl text-stone-600 dark:text-stone-400 leading-relaxed max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        Building the next Fiverr for the creative space. A full-stack platform connecting 
-                        musicians, producers, and creative professionals with clients who need their services.
+                        A community-first music collaboration marketplace—live at{' '}
+                        <a href="https://liveo.space" target="_blank" rel="noopener noreferrer" className="text-blue-500 dark:text-blue-400 underline underline-offset-2">liveo.space</a>
+                        {' '}and onboarding new creators. Built with Ruby on Rails and Next.js, it connects musicians, producers, vocalists, and engineers through a full-featured service marketplace.
                     </p>
 
                     <div className="flex flex-wrap gap-2 mt-8">
-                        {['Next.js', 'Ruby on Rails', 'OAuth', 'Stripe', 'PostgreSQL'].map((tag) => (
+                        {['Next.js', 'Ruby on Rails', 'Stripe', 'PostgreSQL', 'Action Cable', 'Resend'].map((tag) => (
                             <span 
                                 key={tag}
                                 className="px-4 py-2 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 rounded-full text-sm"
@@ -138,6 +201,19 @@ const LiveOCase = () => {
                                 {tag}
                             </span>
                         ))}
+                    </div>
+
+                    <div className="mt-10">
+                        <a
+                            href="https://liveo.space"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <ExternalLink className="w-4 h-4" />
+                            Explore the Platform
+                        </a>
                     </div>
                 </div>
             </section>
@@ -149,18 +225,18 @@ const LiveOCase = () => {
                         The Vision
                     </span>
                     <p className="text-2xl md:text-3xl font-light leading-relaxed">
-                        A unified platform where creative professionals can showcase their work, 
-                        connect with collaborators, and build sustainable careers—all without 
-                        fragmenting their presence across multiple services.
+                        A platform built with community at its core—where creative professionals 
+                        don&apos;t just transact, they collaborate, grow together, and shape the 
+                        platform they work on.
                     </p>
                 </div>
             </section>
 
-            {/* Research Stats */}
+            {/* Platform Stats */}
             <section className="py-20 px-6">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-3 gap-8">
-                        {researchStats.map((stat, index) => (
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        {platformStats.map((stat, index) => (
                             <div key={index} className="text-center">
                                 <div className="text-4xl md:text-5xl font-normal text-blue-500 dark:text-blue-400 mb-2">{stat.value}</div>
                                 <div className="text-sm text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{stat.label}</div>
@@ -170,69 +246,35 @@ const LiveOCase = () => {
                 </div>
             </section>
 
-            {/* Process */}
+            {/* What's Built */}
             <section className="py-20 px-6 bg-white dark:bg-stone-900">
-                <div className="max-w-4xl mx-auto">
-                    <div className="mb-16">
-                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                            Development
-                        </span>
-                        <h2 className="text-3xl md:text-4xl font-normal">
-                            <span className="text-stone-900 dark:text-stone-100">Product </span>
-                            <span className="italic text-blue-500 dark:text-blue-400">journey</span>
-                        </h2>
-                    </div>
-
-                    <div className="space-y-12">
-                        {process.map((step, index) => (
-                            <div key={index} className="border-t border-stone-200 dark:border-stone-800 pt-8">
-                                <div className="flex gap-6">
-                                    <span className="text-4xl font-light text-stone-300 dark:text-stone-700">{step.phase}</span>
-                                    <div className="flex-1">
-                                        <h3 className="text-xl font-medium text-stone-900 dark:text-stone-100 mb-3">{step.title}</h3>
-                                        <p className="text-stone-600 dark:text-stone-400 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                                            {step.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Features */}
-            <section className="py-20 px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="mb-16">
                         <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                            Features
+                            Platform — Live Now
                         </span>
                         <h2 className="text-3xl md:text-4xl font-normal">
-                            <span className="text-stone-900 dark:text-stone-100">Core </span>
-                            <span className="italic text-blue-500 dark:text-blue-400">functionality</span>
+                            <span className="text-stone-900 dark:text-stone-100">What&apos;s </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">shipped</span>
                         </h2>
+                        <p className="mt-4 text-stone-600 dark:text-stone-400 max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                            Phases 1 &amp; 2 are fully deployed. Everything below is live and accessible to users at liveo.space.
+                        </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {features.map((feature, index) => {
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {builtFeatures.map((feature, index) => {
                             const Icon = feature.icon;
                             return (
                                 <div key={index} className="border border-stone-200 dark:border-stone-800 rounded-lg p-6 hover:border-stone-300 dark:hover:border-stone-700 transition-colors">
                                     <div className="flex items-start justify-between mb-4">
-                                        <div className="w-10 h-10 bg-blue-50 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                                            <Icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+                                        <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg flex items-center justify-center">
+                                            <Icon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                                         </div>
-                                        <span className={`text-xs px-2 py-1 rounded-full ${
-                                            feature.status === 'Complete' 
-                                                ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' 
-                                                : 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
-                                        }`} style={{ fontFamily: 'system-ui, sans-serif' }}>
-                                            {feature.status}
-                                        </span>
+                                        <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-1" />
                                     </div>
-                                    <h3 className="text-lg font-medium text-stone-900 dark:text-stone-100 mb-2">{feature.title}</h3>
-                                    <p className="text-stone-600 dark:text-stone-400 text-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>{feature.description}</p>
+                                    <h3 className="text-base font-medium text-stone-900 dark:text-stone-100 mb-2">{feature.title}</h3>
+                                    <p className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>{feature.description}</p>
                                 </div>
                             );
                         })}
@@ -242,21 +284,101 @@ const LiveOCase = () => {
 
             {/* Key Differentiator */}
             <section className="py-20 px-6 bg-blue-500 dark:bg-blue-600 text-white">
-                <div className="max-w-4xl mx-auto text-center">
-                    <span className="text-xs tracking-[0.3em] uppercase text-blue-200 block mb-6" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        Key Differentiator
+                <div className="max-w-4xl mx-auto">
+                    <span className="text-xs tracking-[0.3em] uppercase text-blue-200 block mb-6 text-center" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                        What Sets live.o Apart
                     </span>
-                    <h3 className="text-2xl md:text-3xl font-light leading-relaxed mb-6">
-                        Interactive Waveform Comments & Pattern Matching
+                    <h3 className="text-2xl md:text-3xl font-light leading-relaxed mb-10 text-center">
+                        Community-First Collaboration
                     </h3>
-                    <p className="text-blue-100 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        Unlike SoundCloud's basic commenting or Behance's visual-only feedback, live.o enables 
-                        precise timestamp-based comments on audio waveforms. Creative professionals can receive 
-                        specific feedback at exact moments in their tracks—essential for collaborative music 
-                        production and audio engineering workflows. Combined with an intelligent pattern matching 
-                        system and tiered payment with revision management, live.o connects the right creators 
-                        with the right clients—faster and more efficiently than traditional marketplaces.
-                    </p>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className="bg-white/10 rounded-xl p-6">
+                            <div className="flex items-center gap-3 mb-3">
+                                <Users className="w-5 h-5 text-blue-100" />
+                                <h4 className="font-medium text-white" style={{ fontFamily: 'system-ui, sans-serif' }}>Built with Community</h4>
+                            </div>
+                            <p className="text-blue-100 text-sm leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                Unlike Fiverr or SoundCloud, live.o is being shaped by the community it serves. 
+                                Creators influence the roadmap, and the platform is designed to foster genuine 
+                                professional relationships—not just one-off transactions.
+                            </p>
+                        </div>
+                        <div className="bg-white/10 rounded-xl p-6">
+                            <div className="flex items-center gap-3 mb-3">
+                                <MessageCircle className="w-5 h-5 text-blue-100" />
+                                <h4 className="font-medium text-white" style={{ fontFamily: 'system-ui, sans-serif' }}>Service-Oriented Messaging <span className="text-xs ml-1 opacity-75">(Coming Next)</span></h4>
+                            </div>
+                            <p className="text-blue-100 text-sm leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                The next major differentiator: transforming chat into a full service collaboration hub. 
+                                Send service proposals, accept offers, initiate orders, share files, and track 
+                                deliverables—all within a single conversation thread.
+                            </p>
+                        </div>
+                        <div className="bg-white/10 rounded-xl p-6">
+                            <div className="flex items-center gap-3 mb-3">
+                                <Music className="w-5 h-5 text-blue-100" />
+                                <h4 className="font-medium text-white" style={{ fontFamily: 'system-ui, sans-serif' }}>Audio-Native Marketplace</h4>
+                            </div>
+                            <p className="text-blue-100 text-sm leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                Portfolio previews with audio playback directly on creator cards. The platform understands 
+                                the creative workflow—not just job listings, but the ability to hear and evaluate work 
+                                before engaging a professional.
+                            </p>
+                        </div>
+                        <div className="bg-white/10 rounded-xl p-6">
+                            <div className="flex items-center gap-3 mb-3">
+                                <Star className="w-5 h-5 text-blue-100" />
+                                <h4 className="font-medium text-white" style={{ fontFamily: 'system-ui, sans-serif' }}>Trust Through Reviews <span className="text-xs ml-1 opacity-75">(Coming Soon)</span></h4>
+                            </div>
+                            <p className="text-blue-100 text-sm leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                A reviews system tied to completed orders will bring transparency and trust. 
+                                Sellers can respond to reviews, and aggregate ratings will surface the most 
+                                reliable professionals in the community.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Roadmap */}
+            <section className="py-20 px-6">
+                <div className="max-w-4xl mx-auto">
+                    <div className="mb-16">
+                        <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                            Where We Are &amp; Where We&apos;re Going
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-normal">
+                            <span className="text-stone-900 dark:text-stone-100">Platform </span>
+                            <span className="italic text-blue-500 dark:text-blue-400">roadmap</span>
+                        </h2>
+                    </div>
+
+                    <div className="space-y-4">
+                        {roadmap.map((item, index) => {
+                            const styles = statusStyles[item.status];
+                            return (
+                                <div key={index} className={`border ${styles.border} rounded-lg p-6 transition-colors`}>
+                                    <div className="flex items-start justify-between gap-4">
+                                        <div className="flex items-start gap-4">
+                                            <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${styles.dot}`} />
+                                            <div>
+                                                <div className="flex items-center gap-3 mb-1">
+                                                    <span className="text-xs tracking-[0.2em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                                        {item.phase}
+                                                    </span>
+                                                </div>
+                                                <h3 className="text-lg font-medium text-stone-900 dark:text-stone-100 mb-1">{item.title}</h3>
+                                                <p className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>{item.description}</p>
+                                            </div>
+                                        </div>
+                                        <span className={`text-xs px-3 py-1 rounded-full flex-shrink-0 ${styles.badge}`} style={{ fontFamily: 'system-ui, sans-serif' }}>
+                                            {item.label}
+                                        </span>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </section>
 
@@ -302,9 +424,19 @@ const LiveOCase = () => {
             <section className="py-20 px-6 border-t border-stone-200 dark:border-stone-800">
                 <div className="max-w-4xl mx-auto text-center">
                     <p className="text-stone-500 dark:text-stone-400 mb-8" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                        live.o is an open-source project. Check out the repository to see the full implementation.
+                        live.o is live and onboarding creators. Explore the platform or check out the open-source repository.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
+                        <a 
+                            href="https://liveo.space"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <ExternalLink className="w-4 h-4" />
+                            View Live
+                        </a>
                         <a 
                             href="https://github.com/kanya01/live.o"
                             target="_blank"
