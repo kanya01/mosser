@@ -8,6 +8,7 @@ import BlogPost from './components/BlogPost.jsx'
 import FilmSlateCase from './components/case-studies/FilmSlateCase.jsx'
 import LiveOCase from './components/case-studies/LiveOCase.jsx'
 import PublicationSummarizerCase from './components/case-studies/PublicationSummarizerCase.jsx'
+import SkillDeckCase from './components/case-studies/SkillDeckCase.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                     <Route path="/case-study/filmslate" element={<FilmSlateCase />} />
                     <Route path="/case-study/live-o" element={<LiveOCase />} />
                     <Route path="/case-study/publication-summarizer" element={<PublicationSummarizerCase />} />
+                    <Route path="/case-study/skilldeck" element={<SkillDeckCase />} />
                 </Routes>
             </Router>
         </DarkModeProvider>
