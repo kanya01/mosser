@@ -1156,6 +1156,78 @@ export const blogPosts = [
             conclusion: 'Stripe demonstrates that developer experience is product design. Every API endpoint, error message, and code example is a design decision. In B2B products, the "user" isn\'t always who you think—sometimes it\'s the developer evaluating your docs at 2am. Design for that moment.'
         },
         tags: ['API Design', 'Developer Experience', 'B2B Products']
+    },
+    {
+        id: 'skilldeck-scaffold-smarter-ship-better',
+        title: 'Scaffold Smarter, Ship Better: Introducing SkillDeck',
+        excerpt: 'SkillDeck is an AI development accelerator that lets you load production-ready agent skills via Ruby gems and select them through a GUI—so your pipeline stays clean, your agents stay focused, and your team ships faster.',
+        category: 'Tech & Development',
+        date: '2026-03-25',
+        readTime: '10 min read',
+        content: {
+            introduction: 'Every developer has had that moment: you\'ve shipped a feature, the CI pipeline explodes with linting errors, and you spend the next two days untangling messes that a smarter scaffolding decision could have prevented. That exact experience—building a feature with the antigravity gem and watching a cascade of linting issues tear through the codebase—is what sparked SkillDeck. The idea is simple but powerful: what if you could load up an AI agent\'s skills the way you load a Ruby gem, selecting precisely the guardrails and expertise your project needs before a single line of code is written?',
+            sections: [
+                {
+                    heading: 'The Problem SkillDeck Solves',
+                    content: 'AI-assisted development has made engineers faster, but it has also introduced a new class of bugs: hallucinations dressed up as features. When an AI agent doesn\'t know the conventions of your stack, it confidently generates code that compiles but violates your style guide, ignores your test patterns, or introduces subtle security issues. Most IDEs offer a library of skills or rules to steer AI behaviour, but the experience is fragmented—settings buried in config files, rules that don\'t travel with the project, and no community layer to build on. SkillDeck aims to fix all of that in one gem install.',
+                    keyPoints: [
+                        'AI hallucinations are a real productivity drain in complex codebases',
+                        'Generic AI agents lack awareness of project-specific conventions',
+                        'Linting failures and style violations slow down code review cycles',
+                        'Existing skill/rule systems are fragmented and non-portable',
+                        'A gem-based approach makes skills first-class, versioned dependencies'
+                    ]
+                },
+                {
+                    heading: 'How SkillDeck Works',
+                    content: 'SkillDeck ships as a Ruby gem. Once installed, it surfaces a lightweight GUI—accessible from the command line or your IDE plugin—where you browse and activate agent skills. A skill is a curated bundle of prompts, rules, and context that instructs the underlying AI agent how to behave for a specific task: Rails API development, React component design, GDPR-compliant data handling, accessible UI patterns, and more. Think of it like adding a linter config to your project, except the "config" is a living, versioned knowledge package that the AI reads before touching your code. Activate the "Rails Best Practices" skill and your agent knows to favour service objects over fat controllers. Activate "Accessible Components" and it will refuse to generate interactive elements without ARIA labels.',
+                    keyPoints: [
+                        'Install via `gem install skilldeck` — zero friction to get started',
+                        'GUI lets you browse, preview, and activate skills in seconds',
+                        'Skills are versioned and lockable in your Gemfile like any other dependency',
+                        'Each skill bundles prompts, rules, and contextual knowledge',
+                        'Multiple skills can be layered and composed for complex projects',
+                        'Skills travel with the repo — every team member gets the same AI behaviour'
+                    ]
+                },
+                {
+                    heading: 'Designed for Every Level of Developer',
+                    content: 'One of the core design principles behind SkillDeck is accessibility across skill levels. A junior developer inherits the hard-won conventions of senior engineers packaged as a skill—they don\'t need to memorise the style guide, the AI will just follow it. A senior engineer can author skills that encode their expertise and share them with the team, or publish them to the SkillDeck registry for the wider community. A product manager working with no-code tools can activate a plain-English skill that keeps AI suggestions aligned with the product spec. The GUI is deliberately approachable: every skill includes a short description, a set of example inputs and outputs, and a compatibility matrix showing which frameworks and languages it supports. You know exactly what you\'re activating before you activate it.',
+                    keyPoints: [
+                        'Juniors inherit senior expertise through skills — no tribal knowledge required',
+                        'Seniors can author skills and share them across teams or the community',
+                        'GUI abstracts complexity without hiding power users\' controls',
+                        'Each skill ships with examples and compatibility information',
+                        'Skills reduce the gap between developer intent and AI output'
+                    ]
+                },
+                {
+                    heading: 'Why Ruby Gems?',
+                    content: 'The gem ecosystem was the natural starting point because Ruby\'s package management is mature, opinionated, and deeply integrated into the Rails workflow that many AI-assisted projects still use. Gems have versioning, dependency resolution, and a well-understood publishing lifecycle. More importantly, the gem metaphor already resonates with developers: you add a gem when you need a capability you don\'t want to build yourself. SkillDeck borrows exactly that mental model. The technical proof of concept is running on gems, but the architecture is designed to be language-agnostic. npm packages, PyPI wheels, and Go modules are all on the roadmap. The gem phase is about validating the core loop—install, browse, activate, ship—before expanding the surface area.',
+                    keyPoints: [
+                        'Gems provide mature versioning and dependency resolution out of the box',
+                        'The gem mental model maps cleanly onto the "add a capability" workflow',
+                        'Language-agnostic architecture planned: npm, pip, and Go modules coming next',
+                        'Starting narrow (Ruby) allows fast iteration on the core install-browse-activate loop',
+                        'Publishing a skill to the registry follows the same flow as publishing a gem'
+                    ]
+                },
+                {
+                    heading: 'The Community Vision',
+                    content: 'The long-term potential of SkillDeck lives in its community layer. We\'re building toward a public registry where developers can contribute skills, fork and improve existing ones, and co-develop specialised packs for emerging domains—AI agent orchestration, MCP (Model Context Protocol) integrations, accessibility tooling, and more. Imagine a world where the best Rails security practices are encoded in a skill maintained by the community, updated as new CVEs emerge, and automatically available to every team that locks it in their Gemfile. Or where a team building an AI coding assistant can compose their own skills from community building blocks, tailored to their stack and published back for others to benefit from. That\'s the SkillDeck we\'re building toward: not just a productivity tool, but a living knowledge commons for AI-assisted development.',
+                    keyPoints: [
+                        'Public registry for community-contributed skills planned for v2',
+                        'Skills can be forked, improved, and republished like open-source packages',
+                        'MCP (Model Context Protocol) integrations will be first-class skill types',
+                        'Domain-specific skill packs: security, accessibility, performance, and more',
+                        'Co-working skills will allow teams to blend private and community knowledge',
+                        'The registry becomes a knowledge commons that improves with every contribution'
+                    ]
+                }
+            ],
+            conclusion: 'SkillDeck started as a frustration and turned into a conviction: the gap between what AI agents can do and what they should do in your specific codebase is a skill problem, not a model problem. Better models help, but better skills—precise, versioned, community-maintained guardrails—are what keep production pipelines clean. We\'re early, we\'re building on Ruby gems, and the GUI is still rough around the edges. But the core loop works, and the feedback from developers who\'ve tried it has been consistent: activating the right skill before starting a feature means fewer surprises at code review and fewer linting fires to put out at 11pm. If that sounds useful, follow the project. The community registry is where this gets really interesting.'
+        },
+        tags: ['SkillDeck', 'AI Development', 'Ruby Gems', 'Developer Tools', 'Agent Skills', 'Productivity']
     }
 ];
 
