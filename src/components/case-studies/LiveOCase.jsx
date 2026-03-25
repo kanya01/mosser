@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Github, Music, MessageCircle, Users, ShoppingBag, Zap, Layout } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Music, MessageCircle, Users, ShoppingBag, Zap, Layout } from 'lucide-react';
 import DarkModeToggle from '../DarkModeToggle';
 
 const LiveOCase = () => {
@@ -305,6 +305,16 @@ const LiveOCase = () => {
                         live.o is an open-source project. Check out the repository to see the full implementation.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
+                        <a 
+                            href="https://liveo.space"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-sm tracking-wide transition-all duration-300"
+                            style={{ fontFamily: 'system-ui, sans-serif' }}
+                        >
+                            <ExternalLink className="w-4 h-4" />
+                            View Live
+                        </a>
                         <a 
                             href="https://github.com/kanya01/live.o"
                             target="_blank"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Mail, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Github, Mail, ArrowRight, ArrowUpRight, ExternalLink } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';
 
 const Portfolio = () => {
@@ -63,7 +63,8 @@ const Portfolio = () => {
             description: "Building the next Fiverr for the creative space. A full-stack marketplace connecting creative professionals with clients through portfolio showcasing, pattern matching, and tiered payment systems.",
             category: "Full-Stack Development",
             status: "In Development",
-            link: "/case-study/live-o"
+            link: "/case-study/live-o",
+            liveUrl: "https://liveo.space"
         },
         {
             id: 'publication-summarizer',
@@ -301,6 +302,21 @@ const Portfolio = () => {
                                         </div>
                                         <h3 className="text-2xl font-medium text-stone-900 dark:text-stone-100 mb-2">{project.name}</h3>
                                         <p className="text-stone-600 dark:text-stone-400 max-w-2xl" style={{ fontFamily: 'system-ui, sans-serif' }}>{project.description}</p>
+                                        {project.liveUrl && (
+                                            <div className="mt-4">
+                                                <a
+                                                    href={project.liveUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm transition-colors duration-200"
+                                                    style={{ fontFamily: 'system-ui, sans-serif' }}
+                                                >
+                                                    <ExternalLink className="w-3.5 h-3.5" />
+                                                    View Live
+                                                </a>
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="ml-6 mt-2">
                                         <ArrowUpRight className="w-5 h-5 text-stone-400 dark:text-stone-500 group-hover:text-stone-900 dark:group-hover:text-stone-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
