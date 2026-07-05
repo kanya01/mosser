@@ -124,7 +124,7 @@ const Blog = () => {
                     </MotionDiv>
 
                     <MotionH1 variants={cardVariants} className="text-5xl md:text-7xl leading-tight mb-8 max-w-4xl">
-                        <span className="block font-normal text-stone-900 dark:text-stone-100">Thoughts with a little</span>
+                        <span className="block font-normal text-stone-900 dark:text-stone-100">Thoughts on</span>
                         <span className="block italic text-blue-500 dark:text-blue-400">things that matter</span>
                     </MotionH1>
 
@@ -134,7 +134,7 @@ const Blog = () => {
                         style={{ fontFamily: 'system-ui, sans-serif' }}
                     >
                         Products, tech bubbles, life philosophies, and the occasional existential crisis.
-                        An editorial rhythm for products, tech bubbles, life philosophies, and the occasional existential crisis.
+                        The browsing experience stays editorial and calm while reading, then becomes livelier while discovering what to open next.
                     </MotionP>
                 </MotionDiv>
             </section>
