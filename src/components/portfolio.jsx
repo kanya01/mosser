@@ -492,12 +492,15 @@ const Portfolio = () => {
                         viewport={viewport}
                         variants={staggerVariants}
                     >
-                        {skills.map((skillGroup, index) => (
-                            <MotionDiv
+                        {skills.map((skillGroup, index) => {
+                            const hoverRotation = index % 2 === 0 ? SUBTLE_ROTATION_LEFT : SUBTLE_ROTATION_RIGHT;
+
+                            return (
+                                <MotionDiv
                                 key={skillGroup.category}
                                 variants={itemVariants}
                                 className="rounded-[28px] border border-stone-200/80 dark:border-stone-800/80 bg-white/75 dark:bg-stone-900/70 p-6 shadow-sm backdrop-blur"
-                                whileHover={motionEnabled ? { y: -6, rotate: index % 2 === 0 ? SUBTLE_ROTATION_LEFT : SUBTLE_ROTATION_RIGHT } : undefined}
+                                whileHover={motionEnabled ? { y: -6, rotate: hoverRotation } : undefined}
                             >
                                 <div className="mb-5 flex items-center justify-between">
                                     <h4 className="text-sm font-medium text-stone-900 dark:text-stone-100" style={{ fontFamily: 'system-ui, sans-serif' }}>
@@ -513,7 +516,8 @@ const Portfolio = () => {
                                     ))}
                                 </ul>
                             </MotionDiv>
-                        ))}
+                            );
+                        })}
                     </MotionDiv>
                 </div>
             </MotionSection>

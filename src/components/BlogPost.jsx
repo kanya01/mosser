@@ -163,9 +163,9 @@ const BlogPost = () => {
 
                                 {section.quotes && section.quotes.length > 0 && (
                                     <div className="mt-8 space-y-6">
-                                        {section.quotes.map((quote) => (
+                                        {section.quotes.map((quote, quoteIndex) => (
                                             <MotionBlockquote
-                                                key={`${quote.author}-${quote.text}`}
+                                                key={`${quote.author}-${quoteIndex}`}
                                                 className="border-l-4 border-stone-300 dark:border-stone-700 pl-6 py-2"
                                                 initial={motionEnabled ? { opacity: 0, x: -18 } : false}
                                                 whileInView={motionEnabled ? { opacity: 1, x: 0, transition: { duration: 0.55, ease: easing } } : undefined}
