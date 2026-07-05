@@ -134,7 +134,7 @@ const Blog = () => {
                         style={{ fontFamily: 'system-ui, sans-serif' }}
                     >
                         Products, tech bubbles, life philosophies, and the occasional existential crisis.
-                        The browsing experience stays editorial and calm while reading, then becomes livelier while discovering what to open next.
+                        Essays on how ideas, products, and perspective shape the way we build, work, and live.
                     </MotionP>
                 </MotionDiv>
             </section>
