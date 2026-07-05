@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, useReducedMotion } from 'framer-motion';
 import { Github, Mail, ArrowRight, ArrowUpRight, ExternalLink } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';

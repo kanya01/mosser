@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
 import { blogPosts } from '../data/blogPosts';

@@ -1,18 +1,9 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 const DarkModeContext = createContext();
 
-export const useDarkMode = () => {
-    const context = useContext(DarkModeContext);
-    if (!context) {
-        throw new Error('useDarkMode must be used within a DarkModeProvider');
-    }
-    return context;
-};
-
 export const DarkModeProvider = ({ children }) => {
     const [isDarkMode, setIsDarkMode] = useState(() => {
-        // Check localStorage first, then system preference
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('darkMode');
             if (saved !== null) {
@@ -25,8 +16,7 @@ export const DarkModeProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
-        
-        // Update document class for Tailwind dark mode
+
         if (isDarkMode) {
             document.documentElement.classList.add('dark');
         } else {
@@ -35,7 +25,7 @@ export const DarkModeProvider = ({ children }) => {
     }, [isDarkMode]);
 
     const toggleDarkMode = () => {
-        setIsDarkMode(prev => !prev);
+        setIsDarkMode((prev) => !prev);
     };
 
     return (
