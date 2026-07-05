@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
 import { blogPosts } from '../data/blogPosts';
@@ -17,6 +16,10 @@ const sectionVariants = {
         transition: { duration: 0.7, ease: easing }
     }
 };
+
+const MotionDiv = motion.div;
+const MotionSection = motion.section;
+const MotionBlockquote = motion.blockquote;
 
 const BlogPost = () => {
     const { id } = useParams();
@@ -45,7 +48,7 @@ const BlogPost = () => {
 
     return (
         <div className="min-h-screen overflow-x-hidden bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors duration-300" style={{ fontFamily: 'Georgia, serif' }}>
-            <motion.div
+            <MotionDiv
                 className="fixed left-0 top-0 z-[60] h-1 w-full origin-left bg-gradient-to-r from-blue-500 via-violet-500 to-blue-400 dark:from-blue-400 dark:via-violet-400 dark:to-cyan-400"
                 style={{ scaleX: motionEnabled ? progress : 0 }}
             />
@@ -71,19 +74,19 @@ const BlogPost = () => {
 
             <article className="relative px-6 pt-32 pb-20 overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none">
-                    <motion.div
+                    <MotionDiv
                         className="absolute top-12 left-[8%] h-64 w-64 rounded-full bg-blue-200/30 dark:bg-blue-500/12 blur-3xl"
                         animate={motionEnabled ? { y: [0, 18, 0], x: [0, 10, 0] } : undefined}
                         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
                     />
-                    <motion.div
+                    <MotionDiv
                         className="absolute top-48 right-[10%] h-72 w-72 rounded-full bg-violet-200/25 dark:bg-violet-500/10 blur-3xl"
                         animate={motionEnabled ? { y: [0, -16, 0], x: [0, -14, 0] } : undefined}
                         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
                     />
                 </div>
 
-                <motion.div
+                <MotionDiv
                     className="max-w-4xl mx-auto relative z-10"
                     initial={motionEnabled ? { opacity: 0, y: 30 } : false}
                     animate={motionEnabled ? (isLoaded ? { opacity: 1, y: 0, transition: { duration: 0.8, ease: easing } } : undefined) : undefined}
@@ -109,7 +112,7 @@ const BlogPost = () => {
                         </div>
                     </div>
 
-                    <motion.div
+                    <MotionDiv
                         className="mb-12 rounded-[28px] border border-stone-200/80 dark:border-stone-800/80 bg-white/80 dark:bg-stone-900/70 p-8 shadow-sm backdrop-blur"
                         initial={motionEnabled ? { opacity: 0, y: 24 } : false}
                         animate={motionEnabled ? (isLoaded ? { opacity: 1, y: 0, transition: { duration: 0.85, delay: 0.08, ease: easing } } : undefined) : undefined}
@@ -117,11 +120,11 @@ const BlogPost = () => {
                         <p className="text-xl text-stone-700 dark:text-stone-300 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             {post.content.introduction}
                         </p>
-                    </motion.div>
+                    </MotionDiv>
 
                     <div className="space-y-12">
                         {post.content.sections.map((section) => (
-                            <motion.section
+                            <MotionSection
                                 key={section.heading}
                                 className="border-t border-stone-200 dark:border-stone-800 pt-8"
                                 initial={motionEnabled ? 'hidden' : false}
@@ -138,7 +141,7 @@ const BlogPost = () => {
                                 </p>
 
                                 {section.keyPoints && section.keyPoints.length > 0 && (
-                                    <motion.div
+                                    <MotionDiv
                                         className="rounded-r-[28px] border-l-4 border-blue-500 dark:border-blue-400 bg-blue-50/80 dark:bg-blue-900/20 p-6"
                                         initial={motionEnabled ? { opacity: 0, x: -16 } : false}
                                         whileInView={motionEnabled ? { opacity: 1, x: 0, transition: { duration: 0.55, ease: easing } } : undefined}
@@ -155,13 +158,13 @@ const BlogPost = () => {
                                                 </li>
                                             ))}
                                         </ul>
-                                    </motion.div>
+                                    </MotionDiv>
                                 )}
 
                                 {section.quotes && section.quotes.length > 0 && (
                                     <div className="mt-8 space-y-6">
                                         {section.quotes.map((quote) => (
-                                            <motion.blockquote
+                                            <MotionBlockquote
                                                 key={`${quote.author}-${quote.text}`}
                                                 className="border-l-4 border-stone-300 dark:border-stone-700 pl-6 py-2"
                                                 initial={motionEnabled ? { opacity: 0, x: -18 } : false}
@@ -174,15 +177,15 @@ const BlogPost = () => {
                                                 <cite className="text-sm text-stone-500 dark:text-stone-400 not-italic" style={{ fontFamily: 'system-ui, sans-serif' }}>
                                                     — {quote.author}
                                                 </cite>
-                                            </motion.blockquote>
+                                            </MotionBlockquote>
                                         ))}
                                     </div>
                                 )}
-                            </motion.section>
+                            </MotionSection>
                         ))}
                     </div>
 
-                    <motion.div
+                    <MotionDiv
                         className="mt-12 pt-12 border-t border-stone-200 dark:border-stone-800"
                         initial={motionEnabled ? 'hidden' : false}
                         whileInView={motionEnabled ? 'visible' : undefined}
@@ -195,10 +198,10 @@ const BlogPost = () => {
                         <p className="text-lg text-stone-600 dark:text-stone-400 leading-relaxed" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             {post.content.conclusion}
                         </p>
-                    </motion.div>
+                    </MotionDiv>
 
                     {post.sources && post.sources.length > 0 && (
-                        <motion.div
+                        <MotionDiv
                             className="mt-12 pt-8 border-t border-stone-200 dark:border-stone-800"
                             initial={motionEnabled ? 'hidden' : false}
                             whileInView={motionEnabled ? 'visible' : undefined}
@@ -222,10 +225,10 @@ const BlogPost = () => {
                                     </li>
                                 ))}
                             </ul>
-                        </motion.div>
+                        </MotionDiv>
                     )}
 
-                    <motion.div
+                    <MotionDiv
                         className="mt-12 pt-8 border-t border-stone-200 dark:border-stone-800"
                         initial={motionEnabled ? 'hidden' : false}
                         whileInView={motionEnabled ? 'visible' : undefined}
@@ -244,16 +247,16 @@ const BlogPost = () => {
                                 </span>
                             ))}
                         </div>
-                    </motion.div>
+                    </MotionDiv>
 
-                    <motion.div
+                    <MotionDiv
                         className="mt-16 pt-8 border-t border-stone-200 dark:border-stone-800 text-center"
                         initial={motionEnabled ? 'hidden' : false}
                         whileInView={motionEnabled ? 'visible' : undefined}
                         viewport={viewport}
                         variants={sectionVariants}
                     >
-                        <motion.div whileHover={motionEnabled ? { y: -4 } : undefined}>
+                        <MotionDiv whileHover={motionEnabled ? { y: -4 } : undefined}>
                             <Link
                                 to="/blog"
                                 className="inline-flex items-center gap-2 bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 px-8 py-4 rounded-full text-sm tracking-wide transition-all duration-300 hover:bg-stone-800 dark:hover:bg-stone-200"
@@ -262,9 +265,9 @@ const BlogPost = () => {
                                 <ArrowLeft className="w-4 h-4" />
                                 Back to all articles
                             </Link>
-                        </motion.div>
-                    </motion.div>
-                </motion.div>
+                        </MotionDiv>
+                    </MotionDiv>
+                </MotionDiv>
             </article>
 
             <footer className="py-8 px-6 border-t border-stone-200 dark:border-stone-800">

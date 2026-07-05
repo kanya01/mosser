@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
 import { motion, useReducedMotion } from 'framer-motion';
 import { Github, Mail, ArrowRight, ArrowUpRight, ExternalLink } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';
 
 const easing = [0.22, 1, 0.36, 1];
 const viewport = { once: true, amount: 0.2 };
+const SUBTLE_ROTATION_LEFT = -1;
+const SUBTLE_ROTATION_RIGHT = 1;
 
 const sectionVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -33,6 +34,13 @@ const itemVariants = {
         transition: { duration: 0.7, ease: easing }
     }
 };
+
+const MotionDiv = motion.div;
+const MotionSection = motion.section;
+const MotionH1 = motion.h1;
+const MotionP = motion.p;
+const MotionSpan = motion.span;
+const MotionA = motion.a;
 
 const Portfolio = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -189,12 +197,12 @@ const Portfolio = () => {
 
             <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none">
-                    <motion.div
+                    <MotionDiv
                         className="absolute -top-24 left-[8%] h-72 w-72 rounded-full bg-blue-200/40 dark:bg-blue-500/15 blur-3xl"
                         animate={motionEnabled ? { x: [0, 24, 0], y: [0, 18, 0], scale: [1, 1.08, 1] } : undefined}
                         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
                     />
-                    <motion.div
+                    <MotionDiv
                         className="absolute top-1/3 right-[10%] h-80 w-80 rounded-full bg-violet-200/30 dark:bg-violet-500/10 blur-3xl"
                         animate={motionEnabled ? { x: [0, -32, 0], y: [0, -16, 0], scale: [1, 0.94, 1] } : undefined}
                         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
@@ -202,24 +210,24 @@ const Portfolio = () => {
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.08),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(99,102,241,0.08),transparent_32%)] dark:bg-[radial-gradient(circle_at_top,rgba(96,165,250,0.15),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(129,140,248,0.12),transparent_32%)]" />
                 </div>
 
-                <motion.div
+                <MotionDiv
                     className="max-w-6xl mx-auto px-6 pt-24 relative z-10"
                     initial={motionEnabled ? 'hidden' : false}
                     animate={motionEnabled ? (isLoaded ? 'visible' : 'hidden') : undefined}
                     variants={staggerVariants}
                 >
-                    <motion.div variants={itemVariants} className="mb-4">
+                    <MotionDiv variants={itemVariants} className="mb-4">
                         <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Product Associate • London • Building the next Fiverr for the creative space
                         </span>
-                    </motion.div>
+                    </MotionDiv>
 
-                    <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl leading-tight mb-8 max-w-4xl">
+                    <MotionH1 variants={itemVariants} className="text-5xl md:text-7xl leading-tight mb-8 max-w-4xl">
                         <span className="block font-normal text-stone-900 dark:text-stone-100">Turning data into</span>
                         <span className="block italic text-blue-500 dark:text-blue-400">product decisions</span>
-                    </motion.h1>
+                    </MotionH1>
 
-                    <motion.p
+                    <MotionP
                         variants={itemVariants}
                         className="text-lg text-stone-600 dark:text-stone-400 max-w-2xl mb-10 leading-relaxed"
                         style={{ fontFamily: 'system-ui, sans-serif' }}
@@ -227,11 +235,11 @@ const Portfolio = () => {
                         I help product teams make better decisions through data analysis,
                         user research, and cross-functional collaboration.
                         Currently shaping product strategy at Raviro and building the future of the music industry at live.o.
-                    </motion.p>
+                    </MotionP>
 
-                    <motion.div variants={itemVariants} className="flex flex-wrap gap-3 mb-12">
+                    <MotionDiv variants={itemVariants} className="flex flex-wrap gap-3 mb-12">
                         {heroSignals.map((signal, index) => (
-                            <motion.span
+                            <MotionSpan
                                 key={signal}
                                 className="rounded-full border border-stone-200/80 dark:border-stone-700/80 bg-white/70 dark:bg-stone-900/60 px-4 py-2 text-xs uppercase tracking-[0.24em] text-stone-600 dark:text-stone-300 shadow-sm backdrop-blur"
                                 style={{ fontFamily: 'system-ui, sans-serif' }}
@@ -239,12 +247,12 @@ const Portfolio = () => {
                                 transition={{ duration: 5 + index, repeat: Infinity, ease: 'easeInOut' }}
                             >
                                 {signal}
-                            </motion.span>
+                            </MotionSpan>
                         ))}
-                    </motion.div>
+                    </MotionDiv>
 
-                    <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-                        <motion.a
+                    <MotionDiv variants={itemVariants} className="flex flex-wrap gap-4">
+                        <MotionA
                             href="#contact"
                             className="inline-flex items-center gap-2 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 px-6 py-3 text-sm tracking-wide transition-all duration-300 hover:bg-stone-800 dark:hover:bg-stone-200"
                             style={{ fontFamily: 'system-ui, sans-serif' }}
@@ -253,8 +261,8 @@ const Portfolio = () => {
                         >
                             <Mail className="w-4 h-4" />
                             Get in touch
-                        </motion.a>
-                        <motion.a
+                        </MotionA>
+                        <MotionA
                             href="https://github.com/kanya01"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -264,8 +272,8 @@ const Portfolio = () => {
                         >
                             <Github className="w-4 h-4" />
                             View GitHub
-                        </motion.a>
-                        <motion.div whileHover={motionEnabled ? { y: -3 } : undefined}>
+                        </MotionA>
+                        <MotionDiv whileHover={motionEnabled ? { y: -3 } : undefined}>
                             <Link
                                 to="/blog"
                                 className="inline-flex items-center gap-2 rounded-full border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-300 px-6 py-3 text-sm tracking-wide transition-all duration-300 hover:border-stone-400 dark:hover:border-stone-600 hover:bg-stone-100 dark:hover:bg-stone-900"
@@ -274,20 +282,20 @@ const Portfolio = () => {
                                 <ArrowRight className="w-4 h-4" />
                                 Read Blog
                             </Link>
-                        </motion.div>
-                    </motion.div>
-                </motion.div>
+                        </MotionDiv>
+                    </MotionDiv>
+                </MotionDiv>
 
-                <motion.div
+                <MotionDiv
                     className="absolute bottom-12 left-1/2 -translate-x-1/2 pointer-events-none"
                     animate={motionEnabled ? { y: [0, 10, 0] } : undefined}
                     transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
                 >
                     <div className="w-px h-16 bg-gradient-to-b from-blue-500/70 to-transparent dark:from-blue-400/80 mx-auto" />
-                </motion.div>
+                </MotionDiv>
             </section>
 
-            <motion.section
+            <MotionSection
                 id="experience"
                 className="py-24 px-6"
                 initial={motionEnabled ? 'hidden' : false}
@@ -304,7 +312,7 @@ const Portfolio = () => {
                         </h2>
                     </div>
 
-                    <motion.div
+                    <MotionDiv
                         className="relative space-y-10 md:space-y-14"
                         initial={motionEnabled ? 'hidden' : false}
                         whileInView={motionEnabled ? 'visible' : undefined}
@@ -313,7 +321,7 @@ const Portfolio = () => {
                     >
                         <div className="absolute left-3 top-2 bottom-2 hidden md:block w-px bg-gradient-to-b from-blue-400/70 via-stone-300 to-transparent dark:from-blue-400/70 dark:via-stone-700" />
                         {experiences.map((exp, index) => (
-                            <motion.div
+                            <MotionDiv
                                 key={exp.company}
                                 className="relative md:pl-14"
                                 variants={itemVariants}
@@ -321,7 +329,7 @@ const Portfolio = () => {
                                 <div className="absolute left-0 top-9 hidden md:flex h-6 w-6 items-center justify-center rounded-full border border-blue-200 bg-white shadow-sm dark:border-blue-500/40 dark:bg-stone-900">
                                     <span className="h-2.5 w-2.5 rounded-full bg-blue-500 dark:bg-blue-400" />
                                 </div>
-                                <motion.div
+                                <MotionDiv
                                     className="rounded-[28px] border border-stone-200/80 dark:border-stone-800/80 bg-white/75 dark:bg-stone-900/70 p-8 shadow-sm backdrop-blur"
                                     whileHover={motionEnabled ? { y: -6, borderColor: 'rgba(59,130,246,0.35)' } : undefined}
                                     transition={{ duration: 0.25 }}
@@ -347,12 +355,12 @@ const Portfolio = () => {
                                             </ul>
                                         </div>
                                     </div>
-                                </motion.div>
-                            </motion.div>
+                                </MotionDiv>
+                            </MotionDiv>
                         ))}
-                    </motion.div>
+                    </MotionDiv>
 
-                    <motion.div
+                    <MotionDiv
                         className="mt-24"
                         initial={motionEnabled ? 'hidden' : false}
                         whileInView={motionEnabled ? 'visible' : undefined}
@@ -362,7 +370,7 @@ const Portfolio = () => {
                         <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400 block mb-8" style={{ fontFamily: 'system-ui, sans-serif' }}>Education</span>
                         <div className="grid md:grid-cols-2 gap-8">
                             {education.map((edu) => (
-                                <motion.div
+                                <MotionDiv
                                     key={edu.institution}
                                     variants={itemVariants}
                                     className="rounded-[24px] border border-stone-200/80 dark:border-stone-800/80 bg-stone-50/80 dark:bg-stone-900/60 p-6"
@@ -371,14 +379,14 @@ const Portfolio = () => {
                                     <h4 className="text-lg font-medium text-stone-900 dark:text-stone-100 mb-1">{edu.institution}</h4>
                                     <p className="text-stone-600 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.degree}</p>
                                     <p className="text-sm text-stone-400 dark:text-stone-500 mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{edu.period}</p>
-                                </motion.div>
+                                </MotionDiv>
                             ))}
                         </div>
-                    </motion.div>
+                    </MotionDiv>
                 </div>
-            </motion.section>
+            </MotionSection>
 
-            <motion.section
+            <MotionSection
                 id="projects"
                 className="py-24 px-6 bg-white/70 dark:bg-stone-900/70"
                 initial={motionEnabled ? 'hidden' : false}
@@ -395,7 +403,7 @@ const Portfolio = () => {
                         </h2>
                     </div>
 
-                    <motion.div
+                    <MotionDiv
                         className="space-y-6"
                         initial={motionEnabled ? 'hidden' : false}
                         whileInView={motionEnabled ? 'visible' : undefined}
@@ -403,7 +411,7 @@ const Portfolio = () => {
                         variants={staggerVariants}
                     >
                         {projects.map((project) => (
-                            <motion.div
+                            <MotionDiv
                                 key={project.id}
                                 variants={itemVariants}
                                 whileHover={motionEnabled ? { y: -8 } : undefined}
@@ -455,13 +463,13 @@ const Portfolio = () => {
                                         </div>
                                     </div>
                                 </Link>
-                            </motion.div>
+                            </MotionDiv>
                         ))}
-                    </motion.div>
+                    </MotionDiv>
                 </div>
-            </motion.section>
+            </MotionSection>
 
-            <motion.section
+            <MotionSection
                 className="py-24 px-6"
                 initial={motionEnabled ? 'hidden' : false}
                 whileInView={motionEnabled ? 'visible' : undefined}
@@ -477,7 +485,7 @@ const Portfolio = () => {
                         </h2>
                     </div>
 
-                    <motion.div
+                    <MotionDiv
                         className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
                         initial={motionEnabled ? 'hidden' : false}
                         whileInView={motionEnabled ? 'visible' : undefined}
@@ -485,11 +493,11 @@ const Portfolio = () => {
                         variants={staggerVariants}
                     >
                         {skills.map((skillGroup, index) => (
-                            <motion.div
+                            <MotionDiv
                                 key={skillGroup.category}
                                 variants={itemVariants}
                                 className="rounded-[28px] border border-stone-200/80 dark:border-stone-800/80 bg-white/75 dark:bg-stone-900/70 p-6 shadow-sm backdrop-blur"
-                                whileHover={motionEnabled ? { y: -6, rotate: index % 2 === 0 ? -1 : 1 } : undefined}
+                                whileHover={motionEnabled ? { y: -6, rotate: index % 2 === 0 ? SUBTLE_ROTATION_LEFT : SUBTLE_ROTATION_RIGHT } : undefined}
                             >
                                 <div className="mb-5 flex items-center justify-between">
                                     <h4 className="text-sm font-medium text-stone-900 dark:text-stone-100" style={{ fontFamily: 'system-ui, sans-serif' }}>
@@ -504,13 +512,13 @@ const Portfolio = () => {
                                         </li>
                                     ))}
                                 </ul>
-                            </motion.div>
+                            </MotionDiv>
                         ))}
-                    </motion.div>
+                    </MotionDiv>
                 </div>
-            </motion.section>
+            </MotionSection>
 
-            <motion.section
+            <MotionSection
                 id="contact"
                 className="py-24 px-6 bg-white/70 dark:bg-stone-900/70"
                 initial={motionEnabled ? 'hidden' : false}
@@ -531,14 +539,14 @@ const Portfolio = () => {
                         </p>
                     </div>
 
-                    <motion.div
+                    <MotionDiv
                         className="flex flex-wrap justify-center gap-4"
                         initial={motionEnabled ? 'hidden' : false}
                         whileInView={motionEnabled ? 'visible' : undefined}
                         viewport={viewport}
                         variants={staggerVariants}
                     >
-                        <motion.a
+                        <MotionA
                             variants={itemVariants}
                             href="mailto:mosesmwangikanya@gmail.com"
                             className="inline-flex items-center gap-2 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 px-8 py-4 text-sm tracking-wide transition-all duration-300 hover:bg-stone-800 dark:hover:bg-stone-200"
@@ -547,8 +555,8 @@ const Portfolio = () => {
                         >
                             <Mail className="w-4 h-4" />
                             mosesmwangikanya@gmail.com
-                        </motion.a>
-                        <motion.a
+                        </MotionA>
+                        <MotionA
                             variants={itemVariants}
                             href="https://github.com/kanya01"
                             target="_blank"
@@ -559,10 +567,10 @@ const Portfolio = () => {
                         >
                             <Github className="w-4 h-4" />
                             GitHub
-                        </motion.a>
-                    </motion.div>
+                        </MotionA>
+                    </MotionDiv>
                 </div>
-            </motion.section>
+            </MotionSection>
 
             <footer className="py-8 px-6 border-t border-stone-200 dark:border-stone-800">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">

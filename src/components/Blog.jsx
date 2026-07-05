@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { blogPosts, blogCategories } from '../data/blogPosts';
@@ -32,6 +31,12 @@ const cardVariants = {
         transition: { duration: 0.2 }
     }
 };
+
+const MotionDiv = motion.div;
+const MotionSection = motion.section;
+const MotionButton = motion.button;
+const MotionH1 = motion.h1;
+const MotionP = motion.p;
 
 const Blog = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -94,47 +99,47 @@ const Blog = () => {
 
             <section className="relative overflow-hidden px-6 pt-32 pb-16">
                 <div className="absolute inset-0 pointer-events-none">
-                    <motion.div
+                    <MotionDiv
                         className="absolute top-10 left-[8%] h-64 w-64 rounded-full bg-blue-200/35 dark:bg-blue-500/15 blur-3xl"
                         animate={motionEnabled ? { y: [0, 20, 0], x: [0, -14, 0] } : undefined}
                         transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
                     />
-                    <motion.div
+                    <MotionDiv
                         className="absolute top-24 right-[12%] h-72 w-72 rounded-full bg-violet-200/30 dark:bg-violet-500/12 blur-3xl"
                         animate={motionEnabled ? { y: [0, -18, 0], x: [0, 18, 0] } : undefined}
                         transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
                     />
                 </div>
 
-                <motion.div
+                <MotionDiv
                     className="max-w-6xl mx-auto relative z-10"
                     initial={motionEnabled ? 'hidden' : false}
                     animate={motionEnabled ? (isLoaded ? 'visible' : 'hidden') : undefined}
                     variants={listVariants}
                 >
-                    <motion.div variants={cardVariants} className="mb-4">
+                    <MotionDiv variants={cardVariants} className="mb-4">
                         <span className="text-xs tracking-[0.3em] uppercase text-stone-500 dark:text-stone-400" style={{ fontFamily: 'system-ui, sans-serif' }}>
                             Musings & Meanderings
                         </span>
-                    </motion.div>
+                    </MotionDiv>
 
-                    <motion.h1 variants={cardVariants} className="text-5xl md:text-7xl leading-tight mb-8 max-w-4xl">
+                    <MotionH1 variants={cardVariants} className="text-5xl md:text-7xl leading-tight mb-8 max-w-4xl">
                         <span className="block font-normal text-stone-900 dark:text-stone-100">Thoughts with a little</span>
-                        <span className="block italic text-blue-500 dark:text-blue-400">more movement</span>
-                    </motion.h1>
+                        <span className="block italic text-blue-500 dark:text-blue-400">things that matter</span>
+                    </MotionH1>
 
-                    <motion.p
+                    <MotionP
                         variants={cardVariants}
                         className="text-lg text-stone-600 dark:text-stone-400 max-w-2xl leading-relaxed"
                         style={{ fontFamily: 'system-ui, sans-serif' }}
                     >
                         Products, tech bubbles, life philosophies, and the occasional existential crisis.
-                        The motion here leans editorial: calmer while reading, livelier while discovering what to open next.
-                    </motion.p>
-                </motion.div>
+                        An editorial rhythm for products, tech bubbles, life philosophies, and the occasional existential crisis.
+                    </MotionP>
+                </MotionDiv>
             </section>
 
-            <motion.section
+            <MotionSection
                 className="px-6 pb-12"
                 initial={motionEnabled ? 'hidden' : false}
                 whileInView={motionEnabled ? 'visible' : undefined}
@@ -147,7 +152,7 @@ const Blog = () => {
                             const isSelected = selectedCategory === category;
 
                             return (
-                                <motion.button
+                                <MotionButton
                                     key={category}
                                     variants={cardVariants}
                                     onClick={() => setSelectedCategory(category)}
@@ -161,19 +166,19 @@ const Blog = () => {
                                     whileTap={motionEnabled ? { scale: 0.98 } : undefined}
                                 >
                                     {category}
-                                </motion.button>
+                                </MotionButton>
                             );
                         })}
                     </div>
                 </div>
-            </motion.section>
+            </MotionSection>
 
             <section className="px-6 pb-24">
                 <div className="max-w-6xl mx-auto">
-                    <motion.div layout className="grid md:grid-cols-2 gap-8" variants={listVariants} initial={false} animate="visible">
+                    <MotionDiv layout className="grid md:grid-cols-2 gap-8" variants={listVariants} initial={false} animate="visible">
                         <AnimatePresence mode="popLayout">
                             {filteredPosts.map((post) => (
-                                <motion.div
+                                <MotionDiv
                                     key={post.id}
                                     layout
                                     variants={cardVariants}
@@ -233,10 +238,10 @@ const Blog = () => {
                                             </div>
                                         </div>
                                     </Link>
-                                </motion.div>
+                                </MotionDiv>
                             ))}
                         </AnimatePresence>
-                    </motion.div>
+                    </MotionDiv>
                 </div>
             </section>
 
