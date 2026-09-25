@@ -12,6 +12,18 @@ const Portfolio = () => {
 
     const experiences = [
         {
+            company: "Skin Rocks",
+            role: "Technology Delivery Coordinator",
+            period: "Summer 2026",
+            location: "London, UK",
+            achievements: [
+                "Coordinated technology delivery for a leading skincare platform, ensuring timely and efficient project execution",
+                "Facilitated cross-functional communication between product, engineering, and design teams",
+                "Implemented process improvements that enhanced project tracking and reporting",
+                "Supported the launch of new features by coordinating testing and feedback sessions"
+            ]
+        },
+        {
             company: "Raviro",
             role: "Product Associate",
             period: "June 2024 - Present",
@@ -50,12 +62,12 @@ const Portfolio = () => {
 
     const projects = [
         {
-            id: 'filmslate',
-            name: "FilmSlate",
-            description: "Enhanced onboarding experience for an indie film streaming platform, focusing on personalization to improve trial-to-paid conversion rates.",
-            category: "Product Strategy",
-            status: "MVP Complete",
-            link: "/case-study/filmslate"
+            id: 'meridian',
+            name: "Meridian",
+            description: "We’re building a marketplace for local services, starting in Kenya, that helps people find and book reliable professionals for cleaning, maintenance and handyman work. We aim to make hiring easier and more trustworthy while helping service providers find customers and grow their businesses.",
+            category: "Full-Stack Development",
+            status: "In Development",
+            link: "/case-study/meridian"
         },
         {
             id: 'live-o',
@@ -81,6 +93,14 @@ const Portfolio = () => {
             category: "Developer Tools",
             status: "In Development",
             link: "/case-study/skilldeck"
+        },
+        {
+            id: 'filmslate',
+            name: "FilmSlate",
+            description: "Enhanced onboarding experience for an indie film streaming platform, focusing on personalization to improve trial-to-paid conversion rates.",
+            category: "Product Strategy",
+            status: "MVP Complete",
+            link: "/case-study/filmslate"
         }
     ];
 
