@@ -13,6 +13,13 @@ export default {
       animation: {
         'pulse': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'bounce': 'bounce 2s infinite',
+        'blink': 'blink 1.1s steps(1) infinite',
+      },
+      keyframes: {
+        blink: {
+          '0%, 49%': { opacity: '1' },
+          '50%, 100%': { opacity: '0' },
+        },
       },
       backdropBlur: {
         'xs': '2px',
