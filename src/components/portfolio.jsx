@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
+import GithubHoverCard from './GithubHoverCard.jsx';
 
 const experiences = [
     {
@@ -598,14 +599,16 @@ function Portfolio() {
                             </a>
                         </p>
                         <p className="mt-2">
-                            <a
-                                href="https://github.com/kanya01"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={linkClass}
-                            >
-                                github.com/kanya01
-                            </a>
+                            <GithubHoverCard username="kanya01">
+                                <a
+                                    href="https://github.com/kanya01"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={linkClass}
+                                >
+                                    github.com/kanya01
+                                </a>
+                            </GithubHoverCard>
                             {'  /  '}
                             <Link to="/blog" className={linkClass}>blog</Link>
                         </p>
