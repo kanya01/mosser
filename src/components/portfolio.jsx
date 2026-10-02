@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import GithubHoverCard from './GithubHoverCard.jsx';
+import BlurScrollReveal from './BlurScrollReveal.jsx';
 
 const experiences = [
     {
@@ -490,7 +491,7 @@ function Portfolio() {
                                                 {experience.achievements.map((achievement) => (
                                                     <li key={achievement} className="pl-4">
                                                         <span aria-hidden="true" className="-ml-4 mr-2 text-[#8f8f8f]">-</span>
-                                                        {achievement}
+                                                        <BlurScrollReveal as="span" text={achievement} />
                                                     </li>
                                                 ))}
                                             </ul>
@@ -521,7 +522,7 @@ function Portfolio() {
                                         </span>
                                     </div>
                                     <p className="text-[#8f8f8f]">{project.category}</p>
-                                    <p className="mt-1">{project.description}</p>
+                                    <BlurScrollReveal className="mt-1" text={project.description} />
                                     <p className="mt-1">
                                         <Link to={project.link} className={linkClass}>
                                             case study →
@@ -558,7 +559,7 @@ function Portfolio() {
                             {skills.map((group) => (
                                 <Fragment key={group.category}>
                                     <dt className="text-[#8f8f8f]">{group.category}</dt>
-                                    <dd>{group.items.join(' / ')}</dd>
+                                    <BlurScrollReveal as="dd" text={group.items.join(' / ')} />
                                 </Fragment>
                             ))}
                         </dl>
@@ -573,7 +574,7 @@ function Portfolio() {
                             {education.map((item) => (
                                 <div key={item.institution}>
                                     <h3 className="font-normal">{item.institution}</h3>
-                                    <p>{item.degree}</p>
+                                    <BlurScrollReveal text={item.degree} />
                                     <p className="text-[#8f8f8f]">{item.period}</p>
                                 </div>
                             ))}
