@@ -27,11 +27,11 @@ function BlurScrollReveal({
     as = 'p',
     text,
     className,
-    offset = ['start end', 'end 75%'],
-    stagger = 0.85,
+    offset = ['start 70%', 'end 40%'],
+    stagger = 0.2,
     duration = 0.15,
     opacity = [0, 1],
-    blur = ['8px', '0px'],
+    blur = ['20px', '0px'],
     y = ['6px', '0px'],
     ...props
 }) {
