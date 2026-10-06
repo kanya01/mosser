@@ -1,8 +1,10 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import GithubHoverCard from './GithubHoverCard.jsx';
 import BlurScrollReveal from './BlurScrollReveal.jsx';
+import ProjectDemo from './ProjectDemo.jsx';
+import { projectDemos } from '../data/projectDemos.js';
 
 const experiences = [
     {
@@ -159,6 +161,9 @@ const SHOW_STATUS_BAR = true;
 const SHOW_GLOBE = true;
 const ANIMATE_GLOBE = true;
 const SHOW_SCANLINES = false;
+
+const buttonLinkClass =
+    'cursor-pointer underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white';
 
 const linkClass =
     'underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white';
@@ -364,6 +369,8 @@ function StatusBar({ active, position }) {
 function Portfolio() {
     const reduceMotion = useReducedMotion();
     const { active, position } = useScrollState();
+    const [openDemo, setOpenDemo] = useState(null);
+    const closeDemo = useCallback(() => setOpenDemo(null), []);
     const [lastLogin] = useState(() => {
         const d = new Date();
         const date = d.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' });
@@ -508,41 +515,69 @@ function Portfolio() {
                         </SectionHeading>
 
                         <div className="space-y-9">
-                            {projects.map((project) => (
-                                <article key={project.id}>
-                                    <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                                        <h3 className="font-normal">
+                            {projects.map((project) => {
+                                const demo = projectDemos[project.id];
+                                const open = openDemo === project.id;
+                                const toggleId = `demo-toggle-${project.id}`;
+                                return (
+                                    <article key={project.id}>
+                                        <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+                                            <h3 className="font-normal">
+                                                <Link to={project.link} className={linkClass}>
+                                                    {project.name}
+                                                </Link>
+                                            </h3>
+                                            <span className="whitespace-nowrap text-[13px] text-[#8f8f8f]">
+                                                <span aria-hidden="true">{statusGlyphs[project.status] || '○'} </span>
+                                                {project.status.toLowerCase()}
+                                            </span>
+                                        </div>
+                                        <p className="text-[#8f8f8f]">{project.category}</p>
+                                        <BlurScrollReveal className="mt-1" text={project.description} />
+                                        <p className="mt-1">
+                                            {demo && (
+                                                <>
+                                                    <button
+                                                        id={toggleId}
+                                                        type="button"
+                                                        onClick={() => setOpenDemo(open ? null : project.id)}
+                                                        aria-expanded={open}
+                                                        aria-controls={open ? `demo-${project.id}` : undefined}
+                                                        className={buttonLinkClass}
+                                                    >
+                                                        {open ? '■ stop demo' : '▶ run demo'}
+                                                    </button>
+                                                    {'  /  '}
+                                                </>
+                                            )}
                                             <Link to={project.link} className={linkClass}>
-                                                {project.name}
+                                                case study →
                                             </Link>
-                                        </h3>
-                                        <span className="whitespace-nowrap text-[13px] text-[#8f8f8f]">
-                                            <span aria-hidden="true">{statusGlyphs[project.status] || '○'} </span>
-                                            {project.status.toLowerCase()}
-                                        </span>
-                                    </div>
-                                    <p className="text-[#8f8f8f]">{project.category}</p>
-                                    <BlurScrollReveal className="mt-1" text={project.description} />
-                                    <p className="mt-1">
-                                        <Link to={project.link} className={linkClass}>
-                                            case study →
-                                        </Link>
-                                        {project.liveUrl && (
-                                            <>
-                                                {'  /  '}
-                                                <a
-                                                    href={project.liveUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={linkClass}
-                                                >
-                                                    live site ↗
-                                                </a>
-                                            </>
+                                            {project.liveUrl && (
+                                                <>
+                                                    {'  /  '}
+                                                    <a
+                                                        href={project.liveUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className={linkClass}
+                                                    >
+                                                        live site ↗
+                                                    </a>
+                                                </>
+                                            )}
+                                        </p>
+                                        {demo && open && (
+                                            <ProjectDemo
+                                                project={project}
+                                                steps={demo}
+                                                toggleId={toggleId}
+                                                onClose={closeDemo}
+                                            />
                                         )}
-                                    </p>
-                                </article>
-                            ))}
+                                    </article>
+                                );
+                            })}
                         </div>
 
                         <p aria-hidden="true" className="mt-7 whitespace-pre text-[13px] text-[#8f8f8f]">
