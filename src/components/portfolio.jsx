@@ -9,7 +9,8 @@ import { projectDemos } from '../data/projectDemos.js';
 // The live.o replica is heavy (fonts, imagery, a whole mini app), so it only
 // loads once someone opens it.
 const LiveOShowcase = lazy(() => import('./liveo/LiveOShowcase.jsx'));
-const showcases = { 'live-o': LiveOShowcase };
+const MeridianShowcase = lazy(() => import('./meridian/MeridianShowcase.jsx'));
+const showcases = { meridian: MeridianShowcase, 'live-o': LiveOShowcase };
 
 const experiences = [
     {
@@ -580,7 +581,7 @@ function Portfolio() {
                                         {Showcase && open && (
                                             <Suspense
                                                 fallback={
-                                                    <p className="mt-4 text-[#8f8f8f]">loading live.o…</p>
+                                                    <p className="mt-4 text-[#8f8f8f]">loading {project.name}…</p>
                                                 }
                                             >
                                                 <Showcase

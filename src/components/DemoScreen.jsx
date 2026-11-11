@@ -38,128 +38,6 @@ function Cta({ label, p, at, className = '' }) {
     );
 }
 
-function SearchScreen({ screen, p }) {
-    const typed = screen.query.slice(0, Math.round(clamp01(p / 0.32) * screen.query.length));
-    return (
-        <>
-            <div className="mb-[1em] flex items-center gap-[.6em] border border-[#3a3a3a] px-[.8em] py-[.55em]">
-                <span className="text-[#8f8f8f]">&gt;</span>
-                <span>{typed}</span>
-                <span className="inline-block h-[1.1em] w-[.5em] bg-white" style={{ opacity: p < 0.4 ? 1 : 0 }} />
-            </div>
-            <div className="flex flex-col gap-[.5em]">
-                {screen.results.map((r, i) => (
-                    <div
-                        key={r.name}
-                        className="flex justify-between gap-[1em] border px-[.8em] py-[.55em]"
-                        style={{ ...enter(p >= 0.4 + i * 0.07), ...pick(i === screen.pick && p >= 0.78) }}
-                    >
-                        <span className="flex min-w-0 flex-col">
-                            <span>{r.name}</span>
-                            <span className="opacity-60">{r.meta}</span>
-                        </span>
-                        <span className="whitespace-nowrap">{r.tag}</span>
-                    </div>
-                ))}
-            </div>
-        </>
-    );
-}
-
-function CompareScreen({ screen, p }) {
-    return (
-        <>
-            {screen.brief && <p className="mb-[.9em] text-[#8f8f8f]">{screen.brief}</p>}
-            <div className="grid grid-cols-3 gap-[.7em]">
-                {screen.cards.map((c, i) => (
-                    <div
-                        key={c.name}
-                        className="flex flex-col gap-[.3em] border p-[.9em]"
-                        style={{ ...enter(p >= 0.04 + i * 0.1), ...pick(i === screen.pick && p >= 0.46) }}
-                    >
-                        <span className="mb-[.3em] flex justify-between gap-[.5em]">
-                            <span>{c.name}</span>
-                            {c.badge && <span className="whitespace-nowrap opacity-60">{c.badge}</span>}
-                        </span>
-                        {c.lines.map((line) => (
-                            <span key={line} className="opacity-60">{line}</span>
-                        ))}
-                        <span className="mt-[.7em]">{c.price}</span>
-                    </div>
-                ))}
-            </div>
-            <div className="mt-[1.1em] flex justify-end">
-                <Cta label={screen.cta} p={p} at={0.64} />
-            </div>
-        </>
-    );
-}
-
-function BookScreen({ screen, p }) {
-    return (
-        <>
-            <p>{screen.label}</p>
-            <p className="mb-[1em] text-[#8f8f8f]">{screen.sub}</p>
-            <div className="grid grid-cols-3 gap-[.6em]">
-                {screen.slots.map((slot, i) => (
-                    <span
-                        key={slot}
-                        className="border p-[.7em] text-center"
-                        style={{ ...enter(p >= 0.04 + i * 0.05), ...pick(i === screen.pick && p >= 0.38) }}
-                    >
-                        {slot}
-                    </span>
-                ))}
-            </div>
-            <div className="mt-[1.1em] flex justify-end">
-                <Cta label={screen.cta} p={p} at={0.58} />
-            </div>
-        </>
-    );
-}
-
-function DashScreen({ screen, p }) {
-    const grow = clamp01((p - 0.2) / 0.45);
-    return (
-        <>
-            <div className="mb-[1.2em] grid grid-cols-3 gap-[.7em]">
-                {screen.tiles.map((tile, i) => (
-                    <div
-                        key={tile.k}
-                        className="border border-[#2e2e2e] px-[.9em] py-[.6em]"
-                        style={enter(p >= 0.04 + i * 0.08)}
-                    >
-                        <span className="block text-[.85em] text-[#8f8f8f]">{tile.k}</span>
-                        <span className="text-[1.7em]">{tile.v}</span>
-                    </div>
-                ))}
-            </div>
-            <div className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-[1.6em]">
-                <div className="flex flex-col gap-[.35em]">
-                    <span className="mb-[.2em] text-[#8f8f8f]">jobs / day</span>
-                    {screen.bars.map(([label, value]) => (
-                        <div key={label} className="grid grid-cols-[2.5em_minmax(0,1fr)] items-center gap-[.6em]">
-                            <span className="text-[#8f8f8f]">{label}</span>
-                            <span
-                                className="h-[.75em] bg-white"
-                                style={{ width: `${(value * grow * 100).toFixed(1)}%`, transition: 'width .2s linear' }}
-                            />
-                        </div>
-                    ))}
-                </div>
-                <div className="flex flex-col gap-[.5em]">
-                    <span className="text-[#8f8f8f]">activity</span>
-                    {screen.feed.map((item, i) => (
-                        <span key={item} style={enter(p >= 0.4 + i * 0.12)}>
-                            - {item}
-                        </span>
-                    ))}
-                </div>
-            </div>
-        </>
-    );
-}
-
 function GridScreen({ screen, p }) {
     let n = 0;
     return (
@@ -390,10 +268,6 @@ function PlayerScreen({ screen, p }) {
 }
 
 const SCREENS = {
-    search: SearchScreen,
-    compare: CompareScreen,
-    book: BookScreen,
-    dash: DashScreen,
     grid: GridScreen,
     term: TermScreen,
     upload: UploadScreen,
