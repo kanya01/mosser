@@ -81,63 +81,6 @@ export const projectDemos = {
             },
         },
     ],
-    'live-o': [
-        {
-            short: 'portfolio',
-            title: 'Build a portfolio',
-            caption: 'Creatives showcase their work in one place.',
-            screen: {
-                type: 'grid',
-                app: 'live.o',
-                url: '/amara',
-                tileH: '6.4em',
-                profile: { name: 'Amara Okafor', role: 'photographer, London', chips: ['editorial', 'portrait', 'brand'] },
-                rows: [
-                    {
-                        heading: 'selected work',
-                        tiles: ['editorial / 01', 'portrait / 02', 'brand / 03', 'editorial / 04', 'portrait / 05', 'brand / 06'],
-                    },
-                ],
-            },
-        },
-        {
-            short: 'match',
-            title: 'Get matched',
-            caption: 'Clients are matched with creatives who fit the brief.',
-            screen: {
-                type: 'compare',
-                app: 'live.o',
-                url: '/matches',
-                brief: 'brief: brand shoot · 2 days · London · Nov',
-                pick: 0,
-                cta: 'Send brief',
-                cards: [
-                    { name: 'Amara O.', badge: 'best fit', lines: ['photographer', 'brand, editorial', 'available Nov'], price: 'from £600 / day' },
-                    { name: 'Leo H.', badge: 'good fit', lines: ['photographer', 'brand, product', 'available Dec'], price: 'from £450 / day' },
-                    { name: 'Sana I.', badge: 'good fit', lines: ['photo + video', 'brand, events', 'available Nov'], price: 'from £700 / day' },
-                ],
-            },
-        },
-        {
-            short: 'pay',
-            title: 'Tiered payments',
-            caption: 'Agree a tier and pay securely through the platform.',
-            screen: {
-                type: 'compare',
-                app: 'live.o',
-                url: '/checkout',
-                brief: 'Amara O. · brand shoot',
-                pick: 1,
-                cta: 'Pay & start',
-                done: '✓ Payment held securely — project started',
-                cards: [
-                    { name: 'basic', lines: ['1 day', '20 edited images', '1 revision'], price: '£600' },
-                    { name: 'standard', lines: ['2 days', '50 edited images', '2 revisions'], price: '£1,100' },
-                    { name: 'premium', lines: ['2 days + video', '80 edited images', 'unlimited revisions'], price: '£1,800' },
-                ],
-            },
-        },
-    ],
     'publication-summarizer': [
         {
             short: 'upload',

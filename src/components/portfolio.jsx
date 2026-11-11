@@ -1,10 +1,15 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import GithubHoverCard from './GithubHoverCard.jsx';
 import BlurScrollReveal from './BlurScrollReveal.jsx';
 import ProjectDemo from './ProjectDemo.jsx';
 import { projectDemos } from '../data/projectDemos.js';
+
+// The live.o replica is heavy (fonts, imagery, a whole mini app), so it only
+// loads once someone opens it.
+const LiveOShowcase = lazy(() => import('./liveo/LiveOShowcase.jsx'));
+const showcases = { 'live-o': LiveOShowcase };
 
 const experiences = [
     {
@@ -516,7 +521,8 @@ function Portfolio() {
 
                         <div className="space-y-9">
                             {projects.map((project) => {
-                                const demo = projectDemos[project.id];
+                                const Showcase = showcases[project.id];
+                                const demo = projectDemos[project.id] || Showcase;
                                 const open = openDemo === project.id;
                                 const toggleId = `demo-toggle-${project.id}`;
                                 return (
@@ -545,7 +551,11 @@ function Portfolio() {
                                                         aria-controls={open ? `demo-${project.id}` : undefined}
                                                         className={buttonLinkClass}
                                                     >
-                                                        {open ? '■ stop demo' : '▶ run demo'}
+                                                        {open
+                                                            ? '■ stop demo'
+                                                            : Showcase
+                                                              ? '▶ open demo + design'
+                                                              : '▶ run demo'}
                                                     </button>
                                                     {'  /  '}
                                                 </>
@@ -567,7 +577,20 @@ function Portfolio() {
                                                 </>
                                             )}
                                         </p>
-                                        {demo && open && (
+                                        {Showcase && open && (
+                                            <Suspense
+                                                fallback={
+                                                    <p className="mt-4 text-[#8f8f8f]">loading live.o…</p>
+                                                }
+                                            >
+                                                <Showcase
+                                                    project={project}
+                                                    toggleId={toggleId}
+                                                    onClose={closeDemo}
+                                                />
+                                            </Suspense>
+                                        )}
+                                        {!Showcase && demo && open && (
                                             <ProjectDemo
                                                 project={project}
                                                 steps={demo}
