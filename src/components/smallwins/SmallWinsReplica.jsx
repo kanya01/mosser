@@ -267,7 +267,7 @@ function Reframe({ route, go, state, dispatch, animate }) {
                         if (!goal) setActions([]);
                     }}
                     rows={2}
-                    placeholder="e.g. Get a product job"
+                    placeholder="e.g. Launch my app"
                     aria-label="Your goal, in your own words"
                     className={`${inputClass} sw-display resize-none text-[20px] leading-snug`}
                 />
@@ -656,7 +656,7 @@ function Log({ go, state, dispatch }) {
 
 /* ───────────────────────── 5 · weekly review ───────────────────────── */
 
-const OUTSIDE_CHIPS = ['No replies yet', 'A closing date moved', 'Waiting on someone else', 'A rough few days'];
+const OUTSIDE_CHIPS = ['No sign-ups yet', 'App review took days', 'Waiting on someone else', 'A rough few days'];
 
 function Prompt({ n, title, children }) {
     return (

@@ -11,7 +11,7 @@ const TOUR = [
         title: 'Reframe the goal',
         caption: 'Name a goal, answer one question, and turn it into actions you can finish alone. Try typing your own.',
         route: { name: 'reframe' },
-        notes: ['"Get the job" depends on someone else saying yes, so it becomes a direction', 'The deadline in the sentence is set aside, not stored', 'Suggestions can be ticked, edited or ignored'],
+        notes: ['"100 users" depends on other people saying yes, so it becomes a direction', 'The deadline in the sentence is set aside, not stored', 'Suggestions can be ticked, edited or ignored'],
     },
     {
         id: 'week',

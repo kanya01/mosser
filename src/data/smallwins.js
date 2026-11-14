@@ -96,17 +96,17 @@ export const looksLikeOutcome = (text) => /\b(get|land|win|be|become|reach|hit|e
 
 /* ───────────────────────── seed state ───────────────────────── */
 
-const G1 = 'g-job';
+const G1 = 'g-app';
 
 export const initialState = () => ({
     seq: 100,
     goals: [
         {
             id: G1,
-            raw: 'Get a product job before the year ends',
-            title: 'Product job',
+            raw: 'Launch my app and get 100 users before the year ends',
+            title: 'App launch',
             dependsOnYes: true,
-            actions: ['Send two tailored applications', 'Message one person who does the job I want', 'Rewrite one CV bullet with a number in it', 'Practise one interview story out loud'],
+            actions: ['Ship one small improvement', 'Show it to one person and take notes', 'Write the one-line pitch', 'Fix the oldest open bug'],
             status: 'active',
         },
         {
@@ -120,28 +120,28 @@ export const initialState = () => ({
     ],
     // This week's wins. A single win may carry a real-world date; a goal may not.
     week: [
-        { id: 'w1', goalId: G1, text: 'Send two tailored applications', done: true },
-        { id: 'w2', goalId: G1, text: 'Message one person who does the job I want', done: false },
-        { id: 'w3', goalId: G1, text: 'Rewrite one CV bullet with a number in it', done: false, date: 'closes Fri' },
+        { id: 'w1', goalId: G1, text: 'Ship one small improvement', done: true },
+        { id: 'w2', goalId: G1, text: 'Show it to one person and take notes', done: false },
+        { id: 'w3', goalId: G1, text: 'Submit to the indie showcase', done: false, date: 'closes Fri' },
     ],
     todayId: 'w2',
     // Every finished win, newest first. `ago` is days before today.
     log: [
-        { id: 'l1', winId: 'w1', goalId: G1, text: 'Send two tailored applications', ago: Math.min(1, sinceMonday), note: 'Both tailored. The second took half the time.' },
-        { id: 'l2', goalId: G1, text: 'Practise one interview story out loud', ago: sinceMonday + 2, note: 'Recorded it. Less rambling than I feared.' },
-        { id: 'l3', goalId: G1, text: 'Message one person who does the job I want', ago: sinceMonday + 3, note: '' },
-        { id: 'l4', goalId: G1, text: 'Rewrite one CV bullet with a number in it', ago: sinceMonday + 5, note: '13% is a better word than "improved".' },
-        { id: 'l5', goalId: G1, text: 'Send two tailored applications', ago: sinceMonday + 9, note: '' },
-        { id: 'l6', goalId: G1, text: 'List ten companies I would actually enjoy', ago: sinceMonday + 10, note: 'Only six felt honest. Six is fine.' },
-        { id: 'l7', goalId: G1, text: 'Practise one interview story out loud', ago: sinceMonday + 12, note: '' },
-        { id: 'l8', goalId: G1, text: 'Update my portfolio case study', ago: sinceMonday + 16, note: '' },
-        { id: 'l9', goalId: G1, text: 'Message one person who does the job I want', ago: sinceMonday + 17, note: 'She replied the same day.' },
-        { id: 'l10', goalId: G1, text: 'Write down what I want from the next role', ago: sinceMonday + 20, note: '' },
+        { id: 'l1', winId: 'w1', goalId: G1, text: 'Ship one small improvement', ago: Math.min(1, sinceMonday), note: 'Empty state finally says what to do next.' },
+        { id: 'l2', goalId: G1, text: 'Write the one-line pitch', ago: sinceMonday + 2, note: 'Eleven words. It used to be a paragraph.' },
+        { id: 'l3', goalId: G1, text: 'Show it to one person and take notes', ago: sinceMonday + 3, note: '' },
+        { id: 'l4', goalId: G1, text: 'Fix the oldest open bug', ago: sinceMonday + 5, note: 'It was one missing await.' },
+        { id: 'l5', goalId: G1, text: 'Ship one small improvement', ago: sinceMonday + 9, note: '' },
+        { id: 'l6', goalId: G1, text: 'List ten people who might actually use it', ago: sinceMonday + 10, note: 'Only six felt honest. Six is fine.' },
+        { id: 'l7', goalId: G1, text: 'Record a 60-second walkthrough', ago: sinceMonday + 12, note: '' },
+        { id: 'l8', goalId: G1, text: 'Put the landing page live', ago: sinceMonday + 16, note: '' },
+        { id: 'l9', goalId: G1, text: 'Show it to one person and take notes', ago: sinceMonday + 17, note: 'She tried to tap the logo. Noted.' },
+        { id: 'l10', goalId: G1, text: 'Write down what "launched" means', ago: sinceMonday + 20, note: '' },
     ],
     // Onboarding backfill: things that had already moved before day one.
     backfill: [
         { id: 'b1', text: 'Finished my apprenticeship', when: 'June' },
-        { id: 'b2', text: 'Shipped a side project people used', when: 'spring' },
+        { id: 'b2', text: 'Built the first working prototype', when: 'spring' },
         { id: 'b3', text: 'Ran my first user interviews', when: 'last winter' },
     ],
     review: { outside: '', next: '', done: false },
@@ -191,7 +191,9 @@ export function reducer(s, a) {
             // there is room under the two-goal cap, otherwise it is parked.
             const existing = a.id && goalById(s, a.id);
             if (existing) {
-                return { ...s, goals: s.goals.map((g) => (g.id === a.id ? { ...g, raw: a.raw, title: titleOf(a.raw), dependsOnYes: a.dependsOnYes, actions: a.actions } : g)) };
+                // The short title is only re-derived when the wording changes.
+                const title = a.raw === existing.raw ? existing.title : titleOf(a.raw);
+                return { ...s, goals: s.goals.map((g) => (g.id === a.id ? { ...g, raw: a.raw, title, dependsOnYes: a.dependsOnYes, actions: a.actions } : g)) };
             }
             const id = `g${s.seq}`;
             const status = activeGoals(s).length < MAX_ACTIVE_GOALS ? 'active' : 'parked';

@@ -118,7 +118,7 @@ function SmallWinsDesign({ compact, state, dispatch }) {
                         <Spec>Figtree · 400–700<br />everything you read and tap</Spec>
                     </Card>
                     <Card>
-                        <p className="sw-hand text-[30px] leading-none text-[#4A3FCF]">She replied the same day.</p>
+                        <p className="sw-hand text-[30px] leading-none text-[#4A3FCF]">It was one missing await.</p>
                         <Spec>Caveat · 500<br />only the user&rsquo;s own words</Spec>
                     </Card>
                     <Card>
