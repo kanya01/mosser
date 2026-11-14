@@ -10,7 +10,8 @@ import { projectDemos } from '../data/projectDemos.js';
 // loads once someone opens it.
 const LiveOShowcase = lazy(() => import('./liveo/LiveOShowcase.jsx'));
 const MeridianShowcase = lazy(() => import('./meridian/MeridianShowcase.jsx'));
-const showcases = { meridian: MeridianShowcase, 'live-o': LiveOShowcase };
+const SmallWinsShowcase = lazy(() => import('./smallwins/SmallWinsShowcase.jsx'));
+const showcases = { 'small-wins': SmallWinsShowcase, meridian: MeridianShowcase, 'live-o': LiveOShowcase };
 
 const experiences = [
     {
@@ -65,6 +66,15 @@ const experiences = [
 
 const projects = [
     {
+        id: 'small-wins',
+        name: 'Small Wins',
+        description:
+            'A planner-diary that turns one big, anxious goal into an action you can finish today, and keeps a visible record of what has already moved.',
+        category: 'Product concept',
+        status: 'Concept phase',
+        link: '/case-study/small-wins',
+    },
+    {
         id: 'meridian',
         name: 'Meridian',
         description:
@@ -82,15 +92,6 @@ const projects = [
         status: 'In development',
         link: '/case-study/live-o',
         liveUrl: 'https://liveo.space',
-    },
-    {
-        id: 'publication-summarizer',
-        name: 'Publication Summarizer',
-        description:
-            'An AI-powered tool for extracting useful insights from economic publications.',
-        category: 'AI/ML concept',
-        status: 'Concept phase',
-        link: '/case-study/publication-summarizer',
     },
     {
         id: 'skilldeck',

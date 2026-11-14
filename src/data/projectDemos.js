@@ -6,54 +6,6 @@ export const STEP_MS = 5200;
 export const TICK_MS = 100;
 
 export const projectDemos = {
-    'publication-summarizer': [
-        {
-            short: 'upload',
-            title: 'Upload a publication',
-            caption: 'Drop in a report or paper from an economic publisher.',
-            screen: {
-                type: 'upload',
-                app: 'summarizer',
-                url: '/new',
-                file: 'monetary-policy-report.pdf',
-                size: '2.4 MB',
-                parsed: '✓ parsed — 48 pages, 12 charts',
-            },
-        },
-        {
-            short: 'extract',
-            title: 'Extract key insights',
-            caption: 'Findings, figures and implications pulled out automatically.',
-            screen: {
-                type: 'extract',
-                app: 'summarizer',
-                url: '/report/insights',
-                file: 'monetary-policy-report.pdf',
-                highlights: [2, 5, 9, 12],
-                insights: [
-                    'Inflation projected to return to target by late 2027',
-                    'Expected rate path revised lower than the prior report',
-                    'Labour market loosening as wage growth slows',
-                    'Main upside risk: energy price volatility',
-                ],
-            },
-        },
-        {
-            short: 'ask',
-            title: 'Ask follow-ups',
-            caption: 'Query the document in plain language.',
-            screen: {
-                type: 'chat',
-                app: 'summarizer',
-                url: '/report/ask',
-                question: { who: 'you', text: 'What changed since the last report?' },
-                answer: {
-                    who: 'summarizer',
-                    text: 'The expected rate path is lower and the inflation outlook has improved, mainly because wage growth is slowing. See section 2.3.',
-                },
-            },
-        },
-    ],
     skilldeck: [
         {
             short: 'scaffold',
