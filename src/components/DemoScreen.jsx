@@ -116,94 +116,6 @@ function TermScreen({ screen, p }) {
     );
 }
 
-function UploadScreen({ screen, p }) {
-    const prog = clamp01((p - 0.2) / 0.45);
-    const status = prog < 1 ? `uploading… ${Math.round(prog * 100)}%` : p < 0.74 ? 'parsing…' : screen.parsed;
-    return (
-        <>
-            <div
-                className="mb-[1em] border border-dashed px-[1em] py-[2.4em] text-center text-[#8f8f8f]"
-                style={{ borderColor: p >= 0.06 && p < 0.2 ? '#fff' : '#3a3a3a', transition: 'border-color .3s' }}
-            >
-                drop a pdf here, or browse
-            </div>
-            <div className="border border-[#3a3a3a] px-[.9em] py-[.8em]" style={enter(p >= 0.14)}>
-                <div className="flex justify-between gap-[1em]">
-                    <span>{screen.file}</span>
-                    <span className="text-[#8f8f8f]">{screen.size}</span>
-                </div>
-                <div className="relative mt-[.7em] h-[.35em] bg-[#262626]">
-                    <span
-                        className="absolute inset-y-0 left-0 bg-white"
-                        style={{ width: `${(prog * 100).toFixed(1)}%`, transition: 'width .1s linear' }}
-                    />
-                </div>
-                <p className="mt-[.6em] text-[#8f8f8f]">{status}</p>
-            </div>
-        </>
-    );
-}
-
-const DOC_LINES = ['92%', '86%', '95%', '70%', '90%', '88%', '60%', '94%', '82%', '91%', '75%', '89%', '93%', '55%'];
-
-function ExtractScreen({ screen, p }) {
-    const shown = screen.insights.map((_, i) => p >= 0.12 + i * 0.17);
-    return (
-        <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-[1.4em]">
-            <div className="flex flex-col gap-[.55em] overflow-hidden border border-[#262626] p-[.9em]">
-                <span className="text-[.85em] text-[#8f8f8f]">{screen.file}</span>
-                {DOC_LINES.map((width, j) => {
-                    const k = screen.highlights.indexOf(j);
-                    return (
-                        <span
-                            key={j}
-                            className="h-[.5em] flex-none"
-                            style={{
-                                width,
-                                background: k >= 0 && shown[k] ? '#fff' : '#262626',
-                                transition: 'background-color .3s',
-                            }}
-                        />
-                    );
-                })}
-            </div>
-            <div className="flex flex-col gap-[.7em]">
-                <span className="text-[#8f8f8f]">key insights</span>
-                {screen.insights.map((insight, i) => (
-                    <div key={insight} className="grid grid-cols-[2.2em_minmax(0,1fr)]" style={enter(shown[i])}>
-                        <span className="text-[#8f8f8f]">{String(i + 1).padStart(2, '0')}</span>
-                        <span>{insight}</span>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-}
-
-function ChatScreen({ screen, p }) {
-    const { question: q, answer: a } = screen;
-    const qText = q.text.slice(0, Math.round(clamp01(p / 0.28) * q.text.length));
-    const aText = p < 0.45 ? '…' : a.text.slice(0, Math.round(clamp01((p - 0.45) / 0.4) * a.text.length));
-    const bubble = 'max-w-[78%] border px-[.9em] py-[.6em]';
-    const who = 'mb-[.2em] block text-[.8em] opacity-60';
-
-    return (
-        <div className="flex flex-col gap-[1em]">
-            <div
-                className={`${bubble} self-end`}
-                style={{ ...enter(p > 0), borderColor: '#3a3a3a', background: '#141414', color: '#fff' }}
-            >
-                <span className={who}>{q.who}</span>
-                {qText || ' '}
-            </div>
-            <div className={`${bubble} self-start`} style={{ ...enter(p >= 0.34), ...IDLE }}>
-                <span className={who}>{a.who}</span>
-                {aText}
-            </div>
-        </div>
-    );
-}
-
 function ChipsScreen({ screen, p }) {
     return (
         <>
@@ -270,9 +182,6 @@ function PlayerScreen({ screen, p }) {
 const SCREENS = {
     grid: GridScreen,
     term: TermScreen,
-    upload: UploadScreen,
-    extract: ExtractScreen,
-    chat: ChatScreen,
     chips: ChipsScreen,
     player: PlayerScreen,
 };
